@@ -26,9 +26,10 @@ The study uses an annotated Brain Tumor MRI Dataset.
 **Note:** To protect data privacy and comply with repository size limits, the raw dataset is not included in this repository.
 
 ## Results (Pilot Study)
+### Visual Validation: The U-Net model demonstrated successful pixel-level localization, effectively distinguishing tumor tissue from healthy brain structures.
 ![Segmentation Comparison](images/segmentation_results1.png)
 
-
+![Segmentation Comparison](images/segmentation_results2.png)
 
 ## 🗺️ Project Roadmap (2-Semester Research)
 ### Phase 1: Foundation (Semester 1 - Completed)
