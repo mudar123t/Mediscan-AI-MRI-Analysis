@@ -25,6 +25,11 @@ The study uses an annotated Brain Tumor MRI Dataset.
 **Content:** MRI slices paired with ground-truth segmentation masks.
 **Note:** To protect data privacy and comply with repository size limits, the raw dataset is not included in this repository.
 
+## Results (Pilot Study)
+![Segmentation Comparison](images/segmentation_results1.png)
+
+
+
 ## 🗺️ Project Roadmap (2-Semester Research)
 ### Phase 1: Foundation (Semester 1 - Completed)
 - Established a functional Phase 1 system with a pilot dataset.
