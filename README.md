@@ -13,6 +13,7 @@ By isolating the Region of Interest (ROI) from the segmented mask, the system ef
 **Comprehensive Evaluation:** Independent performance monitoring for segmentation (using Dice Coefficient and IoU) and classification (using Accuracy and Confusion Matrices).
 
 ## 🧠 Model Architecture & Methodology
+![Mediscan AI Workflow](images/workflow_diagram.png)
 The project validates an end-to-end framework through a modular strategy:
 **Segmentation (U-Net):** Extracts high-level semantic information while maintaining boundary precision.
 **ROI Generation:** Compares classification performance using full images vs. ground-truth ROIs vs. predicted ROIs to analyze how segmentation quality affects diagnostic results.
