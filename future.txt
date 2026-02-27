@@ -1,0 +1,185 @@
+Evaluation methods:
+
+1. Hausdorff Distance (advanced)
+Measures boundary distance between predicted and GT masks.
+Sensitive to shape errors
+Harder to implement and interpret
+
+
+more methods to study 
+
+| Metric                | Measures                      | Why it’s advanced      |
+| --------------------- | ----------------------------- | ---------------------- |
+| Hausdorff / HD95      | Worst boundary error          | Catches shape failures |
+| ASD                   | Mean boundary error           | Stable geometry metric |
+| Volumetric Similarity | Tumor size error              | Clinically relevant    |
+| ECE (Calibration)     | Confidence reliability        | Safety-critical        |
+| Pixel ROC–AUC         | Threshold-free discrimination | Model comparison       |
+| Boundary F1           | Contour quality               | Shape precision        |
+
+
+
+Second semester roadmap 
+
+A) Data-level improvements (highest ROI)
+1️⃣ More data (obvious but critical)
+
+Use full dataset instead of pilot
+
+Improves everything automatically
+
+2️⃣ Stratified sampling
+
+Your pilot showed:
+
+meningioma underrepresented
+
+Fix:
+
+equal samples per class
+
+improves classification and segmentation stability
+
+3️⃣ Data augmentation (huge impact)
+
+Especially for small tumors.
+
+Examples:
+
+rotations
+
+elastic deformation
+
+intensity shifts
+
+This is one of the biggest gains you can make.
+
+B) Segmentation model improvements
+4️⃣ Longer training + better scheduler
+
+More epochs
+
+Learning rate decay
+
+Early stopping
+
+Low effort, solid gains.
+
+5️⃣ Better loss functions
+
+You already used BCEDice (good).
+
+Next step:
+
+Focal Dice Loss
+
+Tversky Loss (controls FP vs FN)
+
+Especially good for small tumors.
+
+6️⃣ Multi-class segmentation
+
+Instead of:
+
+tumor vs background
+
+Use:
+
+edema
+
+core
+
+enhancing tumor
+
+More complex but very strong academically.
+
+7️⃣ Architectural upgrades
+
+Later semester options:
+
+Attention U-Net
+
+Residual U-Net
+
+nnU-Net style pipeline
+
+Only worth it after data & loss are optimized.
+
+C) ROI extraction improvements
+8️⃣ Adaptive thresholding
+
+Instead of fixed 0.3:
+
+choose threshold per-image
+
+or based on percentile
+
+9️⃣ Morphological refinement
+
+After prediction:
+
+closing
+
+hole filling
+
+smoothing
+
+These improve ROI quality without retraining.
+
+D) Classification improvements
+🔟 Better CNN backbone
+
+Replace SimpleCNN with:
+
+ResNet-18
+
+EfficientNet (even small version)
+
+Large improvement for classification.
+
+1️⃣1️⃣ Multi-input classifier
+
+Feed:
+
+full image
+
+ROI
+
+mask
+
+as separate channels.
+
+Very strong idea.
+
+1️⃣2️⃣ Multi-task learning
+
+Train:
+
+segmentation
+
+classification
+
+together with shared encoder.
+
+This is research-level and very impressive.
+
+E) End-to-end system improvements
+1️⃣3️⃣ Uncertainty-aware pipeline
+
+Use segmentation uncertainty to:
+
+reject low-confidence ROI
+
+fallback to full-image classification
+
+This increases robustness.
+
+1️⃣4️⃣ Clinical-style evaluation
+
+Instead of just accuracy:
+
+per-class sensitivity
+
+false negative rate (critical in cancer)
+
+Very strong justification.
