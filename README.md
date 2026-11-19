@@ -55,8 +55,3 @@ Semester-1 scripts are frozen in [`legacy/semester1/`](legacy/semester1/README.m
 - **Advanced Metrics:** Transitioning to Hausdorff Distance (HD95) for stricter boundary evaluation.
 - **Architectural Upgrades:** Exploring Attention U-Net and Residual U-Net enhancements.
 - **Backbone Optimization:** Replacing the SimpleCNN baseline with ResNet or EfficientNet.
-
-## 👥 Authors
-- **Mudar Shawakh** – Software Engineering Student.
-- **İbrahim Gökdemir** – Software Engineering Student.
-- **Supervisor:** Dr. Cumali Türkmenoğlu.
