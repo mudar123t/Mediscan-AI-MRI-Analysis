@@ -1,0 +1,65 @@
+# ---------------------------------------------------------------
+# Mediscan AI - ignore rules (see project-log/decisions/ADR-0001)
+# Data, weights and generated outputs never go into git.
+# ---------------------------------------------------------------
+
+# Datasets (raw downloads, converted PNGs, derived sets)
+/dataset/
+/data/raw/
+/data/pilot/processed/
+/data/pilot/roi_gt/
+/data/pilot/roi_pred/
+/data/**/*.png
+/data/**/*.jpg
+/data/**/*.npy
+*.mat
+*.nii
+*.nii.gz
+*.h5
+*.hdf5
+*.zip
+
+# Model weights, checkpoints, run outputs
+/outputs/
+/runs/
+/checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+wandb/
+mlruns/
+lightning_logs/
+
+# Semester documents (contain student IDs; kept local - see ADR-0002)
+/docs/
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Claude Code local state (settings.json and hooks ARE tracked)
+.claude/settings.local.json
+.claude/state/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
