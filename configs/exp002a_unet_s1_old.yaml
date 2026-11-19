@@ -1,0 +1,20 @@
+# EXP-002a: semester-1 U-Net with the semester-1 recipe (legacy/semester1/scripts/05_train_unet_pilot.py)
+# on the new patient-disjoint protocol = the fair semester-1 baseline.
+experiment: EXP-002a
+run_name: exp002a_unet_s1_old
+model: {name: unet_s1}
+seed: 0
+deterministic: true
+folds: [0, 1, 2, 3, 4]
+train:
+  epochs: 5              # semester-1 value
+  batch_size: 4          # semester-1 value
+  optimizer: adam        # semester-1 value
+  lr: 1.0e-3             # semester-1 value
+  weight_decay: 0.0
+  scheduler: none
+  augment: none          # semester 1 had no augmentation
+  amp: false             # semester 1 trained in fp32
+  bce_weight: 0.5        # semester-1 BCEDiceLoss(0.5)
+  early_stopping_patience: null   # best-val-Dice checkpoint, as in semester 1
+eval: {threshold: 0.5}

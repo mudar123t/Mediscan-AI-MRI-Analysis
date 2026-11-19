@@ -1,0 +1,20 @@
+# EXP-002b: semester-1 U-Net architecture with the semester-2 training recipe.
+experiment: EXP-002b
+run_name: exp002b_unet_s1_new
+model: {name: unet_s1}
+seed: 0
+deterministic: true
+folds: [0, 1, 2, 3, 4]
+train:
+  epochs: 100
+  batch_size: 8
+  optimizer: adamw
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  scheduler: cosine
+  warmup_epochs: 2
+  augment: default       # flips, affine, light elastic, brightness/contrast/gamma
+  amp: true
+  bce_weight: 0.5
+  early_stopping_patience: 15
+eval: {threshold: 0.5}

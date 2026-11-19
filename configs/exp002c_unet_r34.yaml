@@ -1,0 +1,22 @@
+# EXP-002c: U-Net with ImageNet-pretrained ResNet-34 encoder + decoder dropout (for MC dropout in M1.2).
+experiment: EXP-002c
+run_name: exp002c_unet_r34
+model:
+  name: unet_r34
+  kwargs: {pretrained: true, dropout: 0.2}
+seed: 0
+deterministic: true
+folds: [0, 1, 2, 3, 4]
+train:
+  epochs: 100
+  batch_size: 8
+  optimizer: adamw
+  lr: 3.0e-4             # lower than from-scratch: pretrained encoder
+  weight_decay: 1.0e-4
+  scheduler: cosine
+  warmup_epochs: 2
+  augment: default
+  amp: true
+  bce_weight: 0.5
+  early_stopping_patience: 15
+eval: {threshold: 0.5}
