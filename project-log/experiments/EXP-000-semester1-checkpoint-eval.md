@@ -45,6 +45,6 @@ This **is** the baseline recovery. No earlier numbers exist to compare against.
 2. **The U-Net is weak:** clean test Dice is 0.41, and about half the images have Dice < 0.5. It gets lower Dice on leaked training images (0.33) than on clean ones, which suggests the model is **underfit** (only 5 epochs), not memorising. [VERIFIED numbers; INFERRED cause]
 3. **The core semester-1 claim fails on clean data.** The fully automated pipeline (ROI from predicted mask) scores 0.46, roughly the majority-class rate (0.44). The plain full-image classifier is far better (0.80). Even ROI from perfect GT masks (0.74) does not beat the full image. Possible reasons: masking out everything except the tumor removes context, and the U-Net is weak. [VERIFIED numbers; INFERRED cause]
 4. With n = 50, the confidence intervals are about ±0.11, so the full and GT-ROI results are statistically indistinguishable. The semester-2 baseline needs a larger, patient-wise test set.
-5. Every clean50 number may still be optimistic because of patient-level leakage (§8.2 of the audit).
+5. Every clean50 number is still optimistic: **43/50 clean test images come from patients also in training** (verified with raw PIDs on 2026-11-19; audit §8.2).
 
 **Thesis value:** this is a strong "honest evaluation" finding. It motivates patient-wise evaluation and a redesign of how segmentation helps classification.

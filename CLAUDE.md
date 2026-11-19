@@ -4,7 +4,7 @@
 
 ## Project
 Graduation project (Software Engineering, 2 semesters). Brain-MRI pipeline: a U-Net segments the tumor (binary), then a CNN classifies the type (glioma / meningioma / pituitary). Semester 1 is done (tag `v1.0-semester1`). Semester 2 goal: add a **creative, novel, rigorously evaluated** contribution (the committee says the core idea is common; the supervisor may co-publish). Target grade AA.
-- Data: Figshare brain tumor dataset (Cheng et al.), 3,064 T1-CE slices, 233 patients, with masks and patient IDs (in the raw `.mat`). Not in git.
+- Data: Figshare brain tumor dataset (Cheng et al.), 3,064 T1-CE slices, 233 patients, binary masks and patient IDs. Raw `.mat` files in `dataset/dataset/data/`, patient-wise 5-fold indices in `dataset/dataset/cvind.mat`. Not in git.
 - Known semester-1 issues: val/test contaminated by training images; image-level (not patient-wise) split; see `project-log/00-project-understanding.md` and `experiments/EXP-000`.
 
 ## Tech stack
@@ -61,7 +61,7 @@ project-log/             project memory (see below)
 8. Use subagents in parallel only where they clearly help (e.g. literature search by topic). Keep it moderate.
 
 ## Phases
-1 Audit ✅ · 2 Repo/memory/logging setup ✅ · 3 future.txt analysis · 4 SOTA research · 5 Idea selection · 6 Implementation plan + execution. Current phase: see HANDOFF.md.
+1 Audit ✅ · 2 Repo/memory/logging setup ✅ · 3 future.txt analysis ✅ · 4 SOTA research · 5 Idea selection · 6 Implementation plan + execution. Current phase: see HANDOFF.md.
 
 ## Logging system (`project-log/`)
 | File | Purpose |

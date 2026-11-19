@@ -26,7 +26,7 @@ Commit mapping (old → new): `2167d62→ef9c188`, `dbe1761→08ed11c`, `323890b
 
 ## Consequences
 - The repo now holds no data. Datasets live outside git; download instructions will be documented (Phase 6).
-- Semester-1 checkpoints stay on local disk only (`outputs/`, ignored) and in the backup bundle. Optional later step: attach them to a GitHub Release (not done; needs approval).
+- Semester-1 checkpoints stay on local disk only (`outputs/`, ignored) and in the backup bundle. Kareem decided on 2026-11-19: **local only**; no GitHub Release.
 - Anyone with an old clone must re-clone. There were 0 forks at rewrite time.
 - GitHub may serve old objects by SHA until its garbage collection runs. Contacting GitHub Support can speed this up if needed.
 - The local `.git` still contains the old objects (reflog) until `git gc` runs. That's harmless, and the backup exists anyway.

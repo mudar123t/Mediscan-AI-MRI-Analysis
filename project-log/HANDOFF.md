@@ -1,32 +1,30 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 (end of Phase 2, before Kareem's approval)
-**Active phase:** Phase 2 done → waiting at the STOP gate. Next: **Phase 3 (future.txt analysis)** after approval.
-**Branch:** `main` (setup merged from `chore/phase2-repo-setup`). Baseline tag: `v1.0-semester1` = `390d7a0`.
+**Last updated:** 2026-11-19 (end of Phase 3, before Kareem's approval)
+**Active phase:** Phase 3 done → waiting at the STOP gate (discussion). Next: **Phase 4 (SOTA research)** after approval.
+**Branch:** `research/phase3-future-analysis` (merged to `main` by fast-forward). Baseline tag: `v1.0-semester1` = `390d7a0`.
 
 ## Where things stand
-- Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
-- Git history rewritten to remove data and weights (225 MB → 210 KB); backup bundle at `../mediscan-backup-2026-11-19/` ([ADR-0001](decisions/ADR-0001-remove-data-and-weights-from-git-history.md)).
-- `.gitignore` active; `docs/` kept local ([ADR-0002](decisions/ADR-0002-keep-semester-docs-local.md), provisional).
-- `CLAUDE.md`, logging system and hooks are in place ([ADR-0003](decisions/ADR-0003-git-workflow.md), [ADR-0004](decisions/ADR-0004-logging-system-and-hooks.md)).
-- Semester-1 numbers recovered in [EXP-000](experiments/EXP-000-semester1-checkpoint-eval.md). Clean test: Dice 0.411; acc full 0.800, GT-ROI 0.740, predicted-ROI 0.460. The contaminated test inflated these to 0.909 / 0.873 / 0.709.
+- Phase 1 audit: [00-project-understanding.md](00-project-understanding.md). Phase 2 setup: see the CHANGELOG.
+- Phase 3: every `future.txt` idea is analysed in [ideas/idea-matrix.md](ideas/idea-matrix.md). Conclusion: ~80 % is baseline strengthening and evaluation hygiene (necessary, not novel). Research-flavoured candidates: **E13** uncertainty-gated pipeline (strongest), **D12** multi-task, **D11** context-preserving multi-input. **B6** (sub-region segmentation) should be dropped because the masks are binary.
+- Semester-1 numbers: [EXP-000](experiments/EXP-000-semester1-checkpoint-eval.md). Clean test: Dice 0.411; acc full 0.800, GT-ROI 0.740, predicted-ROI 0.460. These are still optimistic, because 43/50 clean test images come from training patients.
 
 ## Key facts every agent must know
-- Dataset = Figshare / Cheng et al. (3,064 slices, 233 patients). The semester-1 reports cite the wrong (Kaggle) dataset.
-- The semester-1 evaluation is invalid: 60/110 val and test files are training images, and the split is image-level, not patient-wise.
+- **Raw data:** `dataset/dataset/` (git-ignored). Contents: `data/1.mat`…`3064.mat`, `cvind.mat`, `README.txt`. 3,064 slices, 233 patients (82 meningioma, 89 glioma, 62 pituitary), 1–38 slices per patient, PID present, binary masks, 15 images at 256² and the rest at 512². `cvind.mat` folds are patient-disjoint.
+- The old converted PNGs are in `dataset/output/` (min-max uint8, interpolated masks); the pilot is in `data/pilot/`. Both are git-ignored.
+- The semester-1 evaluation is invalid (contaminated directories + patient leakage).
 - The local PyTorch is **CPU-only** (`2.9.1+cpu`). The GPU is an RTX 3050 Laptop with **4 GB**.
+- `docs/` stays local (ADR-0002, accepted). Semester-1 checkpoints stay local only (no Release).
 - Rule: no code, model or training changes until Phase 6 is approved.
 
 ## Next steps
-1. Kareem reviews Phase 2 (structure, hook test, commits) and approves.
-2. Phase 3: analyse every idea in `future.txt` → `ideas/idea-matrix.md`. STOP.
-3. Phase 4: SOTA research, including **alternative or extra datasets** (Kareem is open to a better one) and verifying the Figshare licence.
+1. Kareem discusses the Phase 3 analysis and approves.
+2. Phase 4: SOTA research. Check the novelty of E13, D11 and D12 on this task and dataset. Cover the unexplored angles (XAI, foundation models, robustness, report generation, edge, HITL demo). Find datasets for external validation or replacement. Verify the Figshare licence and the semester-1 references. Outputs go to `research/` + `research-summary.md`.
+3. Phase 5: score and select.
 
 ## Open questions / blockers
-- ADR-0002: should `docs/` stay out of the public repo? (default: yes)
-- Should the semester-1 checkpoints be attached to a GitHub Release for `v1.0-semester1`? (default: no, local only)
-- Raw `.mat` files (with patient IDs): Kareem is re-downloading them; they are not yet in the folder.
-- GitHub still reports the old repo size until its GC runs. No action needed unless we want GitHub Support to purge the cache.
+- None blocking. Phase 4 decides whether to use subagents for parallel literature search by topic (moderate parallelism, per rule 8).
+- GitHub still reports the old repo size until its GC runs (no action).
 
 ## Key decisions
-ADR-0001 history rewrite · ADR-0002 docs local (provisional) · ADR-0003 git workflow · ADR-0004 logging + hooks.
+ADR-0001 history rewrite · ADR-0002 docs local (accepted) · ADR-0003 git workflow · ADR-0004 logging + hooks.

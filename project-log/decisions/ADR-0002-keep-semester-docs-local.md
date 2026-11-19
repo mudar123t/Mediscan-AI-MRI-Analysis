@@ -1,7 +1,7 @@
 # ADR-0002 — Keep `docs/` (semester reports and slides) out of the public repo for now
 
 - **Date:** 2026-11-19
-- **Status:** Provisional — needs Kareem's confirmation
+- **Status:** Accepted (Kareem confirmed on 2026-11-19: keep `docs/` local)
 
 ## Context
 `docs/` (untracked) holds the semester-1 thesis versions, interim reports, slides and an unrelated course template. These documents contain **both students' full names and student ID numbers**. The repo is public. Kareem said that GitHub presents the project as a solo project and that no team sections should be added.

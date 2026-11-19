@@ -168,7 +168,8 @@ Therefore the semester-1 baseline must be **re-measured** (see §9 and Questions
 - `unet_best.pt` (04:40), the ROI sets (04:43) and the three CNNs (04:47–04:50) were all produced **after** the 04:29 split, so **every val and test number from semester 1 was computed on sets where 55 % of the images (60/110) were training images**. Model selection (best epoch) was also done on this contaminated val set.
 - The thesis states the test set is held out "preventing data leakage" (`final report1.pdf` §4.6). This is not true for the runs that produced the checkpoints.
 
-### 8.2 HIGH — Patient-level leakage even in the clean 50-image lists [I, strong evidence]
+### 8.2 HIGH — Patient-level leakage even in the clean 50-image lists [V as of 2026-11-19]
+> **Confirmed with raw PIDs** (`dataset/dataset/data/*.mat`): **43/50 test** and **41/50 val** images in the split lists come from patients who also have images in `train`. `cvind.mat` folds are patient-disjoint (0 of 233 patients span more than one fold). The original evidence follows.
 - Split is by image; the dataset has ~13 slices per patient (3,064/233) [V numbers], and PID was discarded.
 - Evidence: `cvind` folds form 492 contiguous index runs over 3,064 files, i.e. files are grouped in blocks [V]. **19/50 test** and **24/50 val** images have a training image within ±3 indices in the **same CV fold** (i.e. very likely the same patient) [V computation, I interpretation].
 - Normalized cross-correlation of each clean test image to its nearest training image: median 0.767; 15/50 > 0.8; 4/50 > 0.9 [V].
