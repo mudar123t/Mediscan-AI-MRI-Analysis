@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mediscan"
+version = "0.2.0.dev0"
+description = "Brain-MRI tumor segmentation and classification with segmentation-quality-aware routing"
+readme = "README.md"
+requires-python = ">=3.11"
+# Exact pins live in requirements.txt (direct) and requirements-lock.txt (full freeze).
+dependencies = [
+    "torch>=2.9",
+    "torchvision>=0.24",
+    "numpy",
+    "scipy",
+    "pandas",
+    "scikit-learn",
+    "h5py",
+    "opencv-python-headless",
+    "pyyaml",
+    "albumentations",
+    "segmentation-models-pytorch",
+    "timm",
+    "matplotlib",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+external = ["imagehash", "Pillow"]
+demo = ["gradio"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "data: needs the raw Figshare dataset in dataset/dataset (skipped if missing)",
+    "gpu: needs a CUDA GPU (skipped if missing)",
+]

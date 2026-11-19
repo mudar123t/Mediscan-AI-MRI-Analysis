@@ -1,0 +1,22 @@
+# Shared defaults. Experiment configs (added from M0.2 on) override these keys.
+# Paths are relative to the repository root.
+
+paths:
+  raw_data: dataset/dataset            # Figshare .mat files + cvind.mat (local only, git-ignored)
+  processed: data/processed            # output of the M0.2 conversion (git-ignored)
+  runs: runs                           # one fresh folder per run (git-ignored)
+
+data:
+  image_size: 256                      # Q3 approved 2026-11-19 (native 512; 512 only as an ablation)
+  classes: [meningioma, glioma, pituitary]   # Figshare labels 1, 2, 3
+  n_folds: 5                           # patient-disjoint folds from cvind.mat
+  val_fold_rule: "(test_fold + 1) % 5" # val fold for each outer test fold; train = other 3
+
+reproducibility:
+  seeds: [0, 1, 2]
+  deterministic: true
+
+hardware:
+  device: cuda                         # falls back to cpu when CUDA is unavailable
+  amp: true
+  num_workers: 0                       # Windows: start at 0, raise after measuring

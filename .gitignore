@@ -6,6 +6,7 @@
 # Datasets (raw downloads, converted PNGs, derived sets)
 /dataset/
 /data/raw/
+/data/processed/
 /data/pilot/processed/
 /data/pilot/roi_gt/
 /data/pilot/roi_pred/
