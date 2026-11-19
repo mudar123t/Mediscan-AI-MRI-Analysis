@@ -1,0 +1,13 @@
+# M0.2 / EXP-001: convert the raw Figshare .mat files into one array set + metadata.
+paths:
+  raw_data: dataset/dataset            # contains data/1..3064.mat and cvind.mat
+  processed: data/processed/figshare_256
+  splits: data/splits                  # tracked: figshare_fold{k}.json
+
+data:
+  image_size: 256
+  intensity_percentiles: [0.5, 99.5]   # per-image clipping before scaling to [0, 1]
+  storage_dtype: uint8                 # 3,064 x 256 x 256 x 1 B = about 0.2 GB per array
+
+checks:
+  min_border_iou: 0.80                 # orientation check: mask vs tumorBorder polygon (native res)
