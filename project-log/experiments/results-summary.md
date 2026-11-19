@@ -6,6 +6,7 @@ All experiments vs the semester-1 baseline. Test-set numbers only, unless noted.
 
 | EXP | Date | Model / change | Test set | Seg Dice | Seg IoU | Cls acc [95 % CI] | Cls macro-F1 | Notes |
 |---|---|---|---|---|---|---|---|---|
+| [EXP-001](EXP-001-data-pipeline.md) | 2026-11-19 | Data pipeline (no model) | all 3,064 / 233 patients | — | — | — | — | 0 patients across folds; 0 empty masks; border IoU median 0.970 |
 | [EXP-000](EXP-000-semester1-checkpoint-eval.md) | 2026-11-19 | Semester-1 U-Net (5 ep) | pilot test clean50 | 0.411 | 0.309 | — | — | image-level split; possible patient leakage |
 | [EXP-000](EXP-000-semester1-checkpoint-eval.md) | 2026-11-19 | Semester-1 SimpleCNN, full image | pilot test clean50 | — | — | 0.800 [0.670, 0.888] | 0.814 | dir110 (contaminated) = 0.909 |
 | [EXP-000](EXP-000-semester1-checkpoint-eval.md) | 2026-11-19 | Semester-1 SimpleCNN, ROI from GT mask | pilot test clean50 | — | — | 0.740 [0.604, 0.841] | 0.746 | upper bound; needs GT at test time |

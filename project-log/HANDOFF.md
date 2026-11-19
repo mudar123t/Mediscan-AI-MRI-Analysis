@@ -1,14 +1,15 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 (M0.1 done)
-**Active phase:** **Phase 6 execution, M0.1 (environment & repo structure).** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md): legacy move yes, `.venv` + CUDA torch yes, 256² yes, Gradio, plan yes).
-**Branch:** `chore/m0-env-structure`.
+**Last updated:** 2026-11-19 (M0.2 done)
+**Active phase:** **Phase 6 execution, M0.2 done → next M0.3 (segmentation, EXP-002).** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `feature/m0-data-pipeline`.
 
-## M0.1 status: done (commit on `chore/m0-env-structure`)
-- `.venv` (Python 3.12.2) with torch 2.9.1+cu128; GPU verified (RTX 3050, cap 8.6). Pinned `requirements.txt` + `requirements-lock.txt`. Details: [environment.md](environment.md).
-- Semester-1 code in `legacy/semester1/` (git mv). New: `pyproject.toml` (`pip install -e . --no-deps`), `configs/base.yaml`, `src/mediscan/utils/repro.py`, `tests/` (6 pass incl. GPU).
-- GPU probe: semester-1 UNet b8 256² AMP 0.102 s/step, 863 MiB.
-- Open: README "Authors" section vs solo-presentation rule (asked Kareem).
+## Milestone status
+- **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
+- **M0.2 done** ([EXP-001](experiments/EXP-001-data-pipeline.md)): `scripts/prepare_figshare.py` → `data/processed/figshare_256/` (images.npy, masks.npy uint8 256², metadata.csv, report.json; 384 MB, git-ignored) + tracked `data/splits/figshare_fold{0..4}.json` (test k, val (k+1) mod 5, train rest). 3,064 slices / 233 patients, 0 patients across folds, 0 empty masks, border-IoU median 0.970. 19 tests pass.
+- How to rebuild the data: `.venv/Scripts/python scripts/prepare_figshare.py [--overwrite]` (~90 s).
+- Facts learned: semester-1 images were transposed; the dataset has **no pixel spacing** (HD95 in pixels); slices mix axial/coronal/sagittal views (no view field).
+- README authors section removed (`3923a2a`, Kareem's request).
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -29,11 +30,10 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. M0.2 data pipeline (`feature/m0-data-pipeline`, EXP-001) → M0.3 segmentation → M0.4 classification → **STOP** (report vs baseline).
-3. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
+1. M0.3 segmentation → M0.4 classification → **STOP** (report vs baseline).
+2. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
 
 ## Open questions / blockers
-- README "Authors" section: keep / remove / change? (solo-presentation rule)
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 

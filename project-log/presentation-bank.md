@@ -11,8 +11,10 @@ The strongest results, figures and "wow" points for the final presentation, coll
 4. **"We are not alone: the field's benchmarks leak."** Slice-level splits inflate accuracy by 29–55 % (Yagis 2021). Kaggle merges: 28.8 % near-duplicates, 95.5 % patient overlap (Vangala 2026). Our patient-disjoint protocol is a strength. Source: `research/research-summary.md §1A`.
 5. **"Even the dataset's authors knew context matters."** Cheng 2015: tight ROI 83.5 % → dilated ROI 88.2 %. This matches our ROI finding. Source: literature-matrix #1.
 6. **Positioning slide:** grid of "common" vs "open" angles (`research-summary.md §1B–C`).
+7. **"We even found the images were sideways."** Semester-1 conversion never transposed the MATLAB arrays: every image was mirrored across the diagonal. The new pipeline is checked against the hand-drawn tumor borders (median IoU 0.970, 3,064/3,064 slices ≥ 0.846). Source: EXP-001.
 
 ## Figures to make
+- EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
 - Bar chart: accuracy on contaminated vs clean test, for each of the 3 inputs (data in EXP-000 `results.json`).
 - Diagram: image-level split vs patient-wise split (leakage illustration).
 - Before/after repo hygiene: 225 MB → 210 KB (ADR-0001), as an optional engineering slide.

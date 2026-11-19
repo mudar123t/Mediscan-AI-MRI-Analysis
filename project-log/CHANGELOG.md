@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — M0.2 data pipeline (EXP-001)
+- `3923a2a` docs: README authors section removed (Kareem's request).
+- New `src/mediscan/data/{figshare,splits,datasets,augment}.py`, `scripts/prepare_figshare.py`, `configs/data_figshare.yaml`, `tests/test_data_pipeline.py` (13 tests), tracked `data/splits/figshare_fold{0..4}.json`.
+- EXP-001: 3,064 slices / 233 patients, patient-disjoint splits, orientation verified against tumorBorder (median IoU 0.970). Found: semester-1 images were transposed; no pixel spacing in the dataset → plan §2.2 HD95 in pixels.
+- results-summary, thesis-map, presentation-bank updated.
+- *Why:* M0.2 of the approved plan; every later experiment reads only these split files.
+
 ## 2026-11-19 — Phase 6 plan approved; M0.1 environment and structure done
 - ADR-0007: Q1–Q5 approved (legacy move, `.venv` + CUDA torch, 256², Gradio, plan).
 - `git mv` of semester-1 scripts, `conv.py`, `notebooks/` → `legacy/semester1/` (history kept); `03_check_pilot_data,py` → `.py`.

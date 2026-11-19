@@ -60,7 +60,7 @@ Each milestone: small commits → update HANDOFF/CHANGELOG/EXP logs/thesis-map/p
 | `models/seg.py` | (a) semester-1 `UNet` (old recipe); (b) U-Net with ImageNet-pretrained ResNet-34 encoder (segmentation-models-pytorch) + decoder dropout for MC dropout |
 | `models/cls.py` | ResNet-18 / EfficientNet-B0 (timm/torchvision, pretrained), 1→3-channel adaptation |
 | `views.py` | Classifier input views: `full`, `masked_roi` (semester-1 style), `context_crop(margin)` (bounding box + margin, resized), `mask_channel` (D11 ablation) |
-| `metrics/seg.py` | Dice, IoU, HD95 (mm), NSD (τ = 2 px [I]) with an explicit empty-mask rule; per image and per patient |
+| `metrics/seg.py` | Dice, IoU, HD95 (**pixels**: the dataset has no pixel spacing, EXP-001), NSD (τ = 2 px [I]) with an explicit empty-mask rule; per image and per patient |
 | `metrics/cls.py` | Balanced accuracy, macro-F1, MCC, AUROC (OvR), per-class recall, confusion matrix, ECE (15 bins), Brier |
 | `metrics/selective.py` | Risk–coverage, AURC, E-AURC, AUGRC, accuracy@coverage, referral rate |
 | `stats.py` | Patient-level bootstrap CIs (2,000 resamples), paired bootstrap of differences, McNemar |

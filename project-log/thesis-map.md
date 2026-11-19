@@ -13,6 +13,8 @@ Maps log entries and findings to the semester-2 thesis sections. Semester-1 thes
 | 3 Methodology — evaluation protocol | `00-project-understanding.md §8`, `EXP-000` | Why a patient-wise split is required; leakage audit method (stale files, CV-fold adjacency, NCC) | ready |
 | 2/3 Discussion of `future.txt` roadmap | `ideas/idea-matrix.md` | Which planned improvements are hygiene vs contribution; why B6 was dropped | ready |
 | 4 Experiments — baseline re-evaluation | `experiments/EXP-000-semester1-checkpoint-eval.md` | Contaminated vs clean metrics; CIs | ready |
+| 3 Methodology — data pipeline | `experiments/EXP-001-data-pipeline.md`, `src/mediscan/data/` | Conversion (transpose, percentile normalisation, nearest-neighbour masks), orientation check vs tumorBorder (median IoU 0.970), fold composition tables, split rule (val = (k+1) mod 5) | ready |
+| 6 Discussion — semester-1 preprocessing flaws | EXP-001 findings 2 | Semester-1 images were transposed and masks interpolated | ready |
 | 5 Results | `experiments/results-summary.md` | Master table | ongoing |
 | 6 Discussion — limitations of semester 1 | `00-project-understanding.md §8`, `EXP-000` conclusions | Leakage inflated accuracy by 0.11 (full image); predicted-ROI pipeline ≈ majority class | ready |
 | Appendix — reproducibility / engineering | `decisions/ADR-0001..0004`, `CHANGELOG.md` | Repo cleanup, workflow, logging, hooks | ready |
