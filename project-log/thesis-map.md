@@ -15,6 +15,7 @@ Maps log entries and findings to the semester-2 thesis sections. Semester-1 thes
 | 4 Experiments — baseline re-evaluation | `experiments/EXP-000-semester1-checkpoint-eval.md` | Contaminated vs clean metrics; CIs | ready |
 | 3 Methodology — data pipeline | `experiments/EXP-001-data-pipeline.md`, `src/mediscan/data/` | Conversion (transpose, percentile normalisation, nearest-neighbour masks), orientation check vs tumorBorder (median IoU 0.970), fold composition tables, split rule (val = (k+1) mod 5) | ready |
 | 6 Discussion — semester-1 preprocessing flaws | EXP-001 findings 2 | Semester-1 images were transposed and masks interpolated | ready |
+| 4 Experiments — segmentation baseline | `experiments/EXP-002-segmentation.md`, `results.json` | Recipe vs encoder ablation (a/b/c), pooled 5-fold OOF Dice/IoU/HD95/NSD with patient CIs, paired tests, per class, LCC ablation, training cost | ready |
 | 5 Results | `experiments/results-summary.md` | Master table | ongoing |
 | 6 Discussion — limitations of semester 1 | `00-project-understanding.md §8`, `EXP-000` conclusions | Leakage inflated accuracy by 0.11 (full image); predicted-ROI pipeline ≈ majority class | ready |
 | Appendix — reproducibility / engineering | `decisions/ADR-0001..0004`, `CHANGELOG.md` | Repo cleanup, workflow, logging, hooks | ready |

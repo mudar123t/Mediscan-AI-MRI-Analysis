@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — M0.3 done: EXP-002 results logged
+- EXP-002 (5-fold, patient-disjoint, 3,064 slices): a old recipe Dice 0.508 [0.475, 0.541] (fair semester-1 baseline); b new recipe 0.759 (+0.250); c ResNet-34 U-Net 0.786 [0.766, 0.806], HD95 14.4 px (+0.027 vs b). Planned target 0.85–0.93 not reached.
+- New: `experiments/EXP-002-segmentation.md` + `results.json`, session log `sessions/2026-11-19-m0-3-segmentation.md`. Updated results-summary, thesis-map, presentation-bank (beats 8–9), environment (measured epoch times), HANDOFF.
+- *Why:* close M0.3 with the numbers on file before M0.4.
+
+## 2026-11-19 — M0.3 segmentation code; EXP-002 training started
+- `abc5efd` feat: seg model factory (semester-1 UNet; ResNet-34 U-Net with decoder dropout), seg metrics (Dice/IoU/HD95 px/NSD), patient bootstrap.
+- `6145871` exp: `scripts/train_seg.py` + configs EXP-002a (old recipe: 5 ep, bs 4, Adam 1e-3, no aug, fp32), 002b (same UNet, new recipe: ≤100 ep, cosine, AdamW, aug, AMP, early stop 15), 002c (pretrained ResNet-34 U-Net, lr 3e-4).
+- Eval script `scripts/eval_seg.py`; vectorised `mean_ci`.
+- *Why:* M0.3 of the plan; the fair semester-1 baseline and the improved segmenter for M1.
+
 ## 2026-11-19 — M0.2 data pipeline (EXP-001)
 - `3923a2a` docs: README authors section removed (Kareem's request).
 - New `src/mediscan/data/{figshare,splits,datasets,augment}.py`, `scripts/prepare_figshare.py`, `configs/data_figshare.yaml`, `tests/test_data_pipeline.py` (13 tests), tracked `data/splits/figshare_fold{0..4}.json`.

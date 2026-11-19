@@ -13,8 +13,12 @@ The strongest results, figures and "wow" points for the final presentation, coll
 6. **Positioning slide:** grid of "common" vs "open" angles (`research-summary.md §1B–C`).
 7. **"We even found the images were sideways."** Semester-1 conversion never transposed the MATLAB arrays: every image was mirrored across the diagonal. The new pipeline is checked against the hand-drawn tumor borders (median IoU 0.970, 3,064/3,064 slices ≥ 0.846). Source: EXP-001.
 
+8. **"Same network, +0.25 Dice."** The semester-1 U-Net with only a new training recipe goes from Dice 0.508 to 0.759 on the same patient-disjoint folds (paired Δ +0.250 [0.228, 0.273]). A pretrained ResNet-34 encoder adds +0.027 and cuts boundary error from 25.0 to 14.4 px HD95. Source: EXP-002.
+9. **Glioma is the hard case.** Dice 0.685 for glioma vs 0.893 for meningioma (EXP-002c). Sets up the router: hard cases should go to a radiologist.
+
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
 - Bar chart: accuracy on contaminated vs clean test, for each of the 3 inputs (data in EXP-000 `results.json`).
 - Diagram: image-level split vs patient-wise split (leakage illustration).
 - Before/after repo hygiene: 225 MB → 210 KB (ADR-0001), as an optional engineering slide.
+- EXP-002: bar chart of Dice/HD95 for arms a/b/c with patient CIs; per-class Dice bars (data in `experiments/EXP-002-segmentation/results.json`).

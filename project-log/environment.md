@@ -18,3 +18,9 @@ Updated at every milestone. Each run also writes its own `environment.json` (via
 Semester-1 `UNet` (7.76 M params), random tensors, batch 8, 1×256×256, Adam, AMP fp16, cuDNN non-deterministic, 20 timed steps after 5 warm-up steps:
 - **0.102 s/step**, peak allocated VRAM **863 MiB**.
 - [I] At about 1,840 training slices per fold (3 of 5 folds), one epoch would be about 230 steps ≈ 23 s of GPU compute, before data loading. Real epoch times are measured in EXP-002.
+
+### Measured epoch times (EXP-002, real training, 256², ~1,800 training slices per fold)
+- Semester-1 UNet, fp32, batch 4: 50.7 s/epoch (fold 0 median), peak 914–922 MiB.
+- Semester-1 UNet, AMP, batch 8, with augmentation: 33.5 s/epoch (fold 0 median), peak ~900 MiB.
+- ResNet-34 U-Net, AMP, batch 8, with augmentation: 29.9–30.9 s/epoch (folds 0–3 medians), peak 990–1,087 MiB.
+- Full EXP-002 (15 folds): about 6.1 h sequential.
