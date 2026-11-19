@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 21:30 (M0.3 done, EXP-002 logged)
-**Active phase:** **Phase 6 execution, M0.3 done and pushed. M0.4 (classification + views, EXP-003) on hold: Kareem said not to start it yet.** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `exp/m0-segmentation` pushed; `main` = `origin/main` = `cf69bb2` (fast-forward, approved by Kareem).
+**Last updated:** 2026-11-20 00:05 (M0.4 training running)
+**Active phase:** **Phase 6 execution, M0.4 classification + views (EXP-003): training running in the background.** Kareem: start M0.4 as planned, no additions to the plan; 4–7 h is OK. Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `exp/m0-classification` (from `main` `1f9377c`; commits `18e6fe1`, `7cf0f70`; not pushed). `origin/main` = `cf69bb2`; local `main` has 1 unpushed docs commit `1f9377c`.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -17,6 +17,12 @@
     - b (same UNet, new recipe): Dice 0.759; Δ vs a +0.250 [0.228, 0.273].
     - **c (ResNet-34 U-Net): Dice 0.786 [0.766, 0.806], HD95 14.4 px**; Δ vs b +0.027 [0.019, 0.037]. Glioma 0.685 / meningioma 0.893 / pituitary 0.858.
   - Planned target 0.85–0.93 **not reached** (reasons only inferred). Arm c is the candidate M1 segmenter; its weights and OOF predictions are in `runs/exp002c_unet_r34/fold*/`.
+
+- **M0.4 in progress (EXP-003):** `src/mediscan/views.py` (full, masked_roi = semester-1 style, context_crop(margin) square bbox + margin resized to 256; empty pred mask → crop falls back to full image), `models/cls.py` (semester-1 SimpleCNN; timm ResNet-18 / EfficientNet-B0 ImageNet, in_chans=1), `metrics/cls.py`, `calibration.py` (temperature scaling, val only), `stats.confusion_bootstrap` (paired patient bootstrap), `utils/optim.py` (moved from train_seg, unchanged behaviour). `scripts/train_cls.py`, `scripts/eval_cls.py`, 8 configs `configs/exp003*.yaml`. 37 tests pass.
+  - Arms (5 folds each): a SimpleCNN old recipe (10 ep, bs 8, Adam 1e-3, no aug, best val acc) full image; ResNet-18 full / masked / crop 0, 8, 16, 32 px; EfficientNet-B0 full. New recipe: ≤60 ep, bs 32, AdamW 3e-4, cosine, aug, AMP, patience 15, select on val balanced accuracy.
+  - Train/select on GT-mask views; test (and val, for temperature fitting) also with EXP-002c predicted masks (thr 0.5 + largest component).
+  - Probes (fold 0, 2 epochs, `runs/probe_exp003*`, not results): ResNet-18 ~9 s/epoch, 753 MiB; EffNet-B0 ~10 s/epoch, 1,898 MiB; SimpleCNN ~4 s/epoch.
+  - Running since 2026-11-20 00:02: `bash runs/run_exp003.sh > runs/exp003.log` (resumable). Estimate [I] 3.5–5.5 h.
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -37,7 +43,7 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **Wait for Kareem's go** before M0.4 classification + views (EXP-003, branch `exp/m0-classification`) → **STOP** (report vs baseline; decide whether to tune the segmenter).
+1. When `runs/run_exp003.sh` finishes: `.venv/Scripts/python scripts/eval_cls.py --runs exp003a_simplecnn_old exp003_r18_full exp003_r18_masked exp003_r18_crop0 exp003_r18_crop8 exp003_r18_crop16 exp003_r18_crop32 exp003_effb0_full --out project-log/experiments/EXP-003-classification/results.json` → EXP-003 log → **STOP** (report vs baseline; decide whether to tune the segmenter).
 2. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
 
 ## Open questions / blockers

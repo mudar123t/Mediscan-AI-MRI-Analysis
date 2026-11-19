@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M0.4 code; EXP-003 training started
+- `18e6fe1` feat: classifier views (full, masked ROI, context crop), cls model factory (SimpleCNN, ResNet-18, EfficientNet-B0), cls metrics (bal. acc, macro-F1, MCC, AUROC, ECE, Brier, NLL), temperature scaling, paired confusion-matrix patient bootstrap; optimizer/schedule helpers moved to `utils/optim.py` (train_seg behaviour unchanged). 37 tests pass.
+- `7cf0f70` exp: `scripts/train_cls.py`, `scripts/eval_cls.py`, 8 EXP-003 configs (SimpleCNN old recipe; ResNet-18 × 6 views; EfficientNet-B0 full).
+- Training of 40 runs started 2026-11-20 00:02 (estimate 3.5–5.5 h from probes).
+- *Why:* M0.4 of the approved plan, as approved by Kareem (no additions).
+
 ## 2026-11-19 — M0.3 pushed
 - Pushed `exp/m0-segmentation` (`abc5efd..cf69bb2`) and fast-forwarded `main` `9c30667..cf69bb2` (Kareem approved). M0.4 on hold until Kareem says go.
 
