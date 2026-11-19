@@ -60,6 +60,22 @@ def paired_patient_bootstrap(
     return {"diff": observed, "ci_low": float(lo), "ci_high": float(hi), "p_two_sided": min(p, 1.0)}
 
 
-def mean_ci(df: pd.DataFrame, col: str, **kwargs: object) -> dict[str, float]:
-    """Patient-bootstrap CI of the slice-level mean of one column."""
-    return patient_bootstrap(df, lambda d: float(d[col].mean()), **kwargs)  # type: ignore[arg-type]
+def mean_ci(
+    df: pd.DataFrame,
+    col: str,
+    pid_col: str = "pid",
+    n_boot: int = 2000,
+    alpha: float = 0.05,
+    seed: int = 0,
+) -> dict[str, float]:
+    """Patient-bootstrap CI of the slice-level mean of one column (vectorised).
+
+    Equivalent to ``patient_bootstrap(df, lambda d: d[col].mean())``.
+    """
+    per_pid = df.groupby(pid_col)[col].agg(["sum", "size"])
+    s, n = per_pid["sum"].to_numpy(dtype=float), per_pid["size"].to_numpy()
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, len(per_pid), size=(n_boot, len(per_pid)))
+    values = s[idx].sum(1) / n[idx].sum(1)
+    lo, hi = np.percentile(values, [100 * alpha / 2, 100 * (1 - alpha / 2)])
+    return {"estimate": float(df[col].mean()), "ci_low": float(lo), "ci_high": float(hi), "n_patients": len(per_pid)}

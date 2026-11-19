@@ -9,7 +9,7 @@ import torch
 
 from mediscan.metrics import seg as m
 from mediscan.models.seg import build_seg_model, enable_mc_dropout
-from mediscan.stats import mean_ci, paired_patient_bootstrap
+from mediscan.stats import mean_ci, paired_patient_bootstrap, patient_bootstrap
 
 
 def _square(y0: int, x0: int, s: int, size: int = 64) -> np.ndarray:
@@ -50,6 +50,9 @@ def test_bootstrap_ci_contains_estimate() -> None:
     df = pd.DataFrame({"pid": np.repeat(np.arange(30), 4), "x": rng.random(120), "y": rng.random(120) + 0.2})
     ci = mean_ci(df, "x", n_boot=300)
     assert ci["ci_low"] <= ci["estimate"] <= ci["ci_high"] and ci["n_patients"] == 30
+    slow = patient_bootstrap(df, lambda d: float(d["x"].mean()), n_boot=300)
+    assert slow["estimate"] == pytest.approx(ci["estimate"])
+    assert abs(slow["ci_low"] - ci["ci_low"]) < 0.03 and abs(slow["ci_high"] - ci["ci_high"]) < 0.03
     d = paired_patient_bootstrap(df, "y", "x", n_boot=300)
     assert d["diff"] > 0 and d["ci_low"] > 0 and d["p_two_sided"] < 0.05
 
