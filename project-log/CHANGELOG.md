@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — M0.3 pushed
+- Pushed `exp/m0-segmentation` (`abc5efd..cf69bb2`) and fast-forwarded `main` `9c30667..cf69bb2` (Kareem approved). M0.4 on hold until Kareem says go.
+
 ## 2026-11-19 — M0.3 done: EXP-002 results logged
 - EXP-002 (5-fold, patient-disjoint, 3,064 slices): a old recipe Dice 0.508 [0.475, 0.541] (fair semester-1 baseline); b new recipe 0.759 (+0.250); c ResNet-34 U-Net 0.786 [0.766, 0.806], HD95 14.4 px (+0.027 vs b). Planned target 0.85–0.93 not reached.
 - New: `experiments/EXP-002-segmentation.md` + `results.json`, session log `sessions/2026-11-19-m0-3-segmentation.md`. Updated results-summary, thesis-map, presentation-bank (beats 8–9), environment (measured epoch times), HANDOFF.

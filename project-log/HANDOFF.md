@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
 **Last updated:** 2026-11-19 21:30 (M0.3 done, EXP-002 logged)
-**Active phase:** **Phase 6 execution, M0.3 done → next M0.4 (classification + views, EXP-003), then STOP.** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `exp/m0-segmentation` (commits `abc5efd`, `6145871`, `813903a` + docs commit; **not pushed yet: waiting for Kareem's OK**).
+**Active phase:** **Phase 6 execution, M0.3 done and pushed. M0.4 (classification + views, EXP-003) on hold: Kareem said not to start it yet.** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `exp/m0-segmentation` pushed; `main` = `origin/main` = `cf69bb2` (fast-forward, approved by Kareem).
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -37,7 +37,7 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. Kareem: OK to push `exp/m0-segmentation` and fast-forward `main`? Then M0.4 classification + views (EXP-003, branch `exp/m0-classification`) → **STOP** (report vs baseline; decide whether to tune the segmenter).
+1. **Wait for Kareem's go** before M0.4 classification + views (EXP-003, branch `exp/m0-classification`) → **STOP** (report vs baseline; decide whether to tune the segmenter).
 2. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
 
 ## Open questions / blockers
