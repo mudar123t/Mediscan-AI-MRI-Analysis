@@ -1,30 +1,35 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 (end of Phase 3, before Kareem's approval)
-**Active phase:** Phase 3 done → waiting at the STOP gate (discussion). Next: **Phase 4 (SOTA research)** after approval.
-**Branch:** `research/phase3-future-analysis` (merged to `main` by fast-forward). Baseline tag: `v1.0-semester1` = `390d7a0`.
+**Last updated:** 2026-11-19 (end of Phase 4, before Kareem's approval)
+**Active phase:** Phase 4 done → waiting at the STOP gate (present the research summary). Next: **Phase 5 (idea selection)** after approval.
+**Branch:** `research/phase4-sota` (fast-forward into `main` after commit). Baseline tag: `v1.0-semester1` = `390d7a0`.
 
 ## Where things stand
-- Phase 1 audit: [00-project-understanding.md](00-project-understanding.md). Phase 2 setup: see the CHANGELOG.
-- Phase 3: every `future.txt` idea is analysed in [ideas/idea-matrix.md](ideas/idea-matrix.md). Conclusion: ~80 % is baseline strengthening and evaluation hygiene (necessary, not novel). Research-flavoured candidates: **E13** uncertainty-gated pipeline (strongest), **D12** multi-task, **D11** context-preserving multi-input. **B6** (sub-region segmentation) should be dropped because the masks are binary.
-- Semester-1 numbers: [EXP-000](experiments/EXP-000-semester1-checkpoint-eval.md). Clean test: Dice 0.411; acc full 0.800, GT-ROI 0.740, predicted-ROI 0.460. These are still optimistic, because 43/50 clean test images come from training patients.
+- Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
+- Phase 3 idea analysis: [ideas/idea-matrix.md](ideas/idea-matrix.md). Now includes the Phase 4 verdicts and research ideas R1–R7.
+- **Phase 4:** [research/research-summary.md](research/research-summary.md) is the main read. The [literature matrix](research/literature-matrix.md) holds the core table and the spot-check log. [references.bib](research/references.bib) has 116 verified entries. Topic files are `research/topics/T1–T4`; 13 paper notes are in `research/papers/`.
+- **Phase 4 headline findings:**
+  - D11 and D12 are common.
+  - Classifier-only referral for brain tumors exists (Sharma 2026).
+  - **Segmentation-quality-aware routing (R1) was not found** and is the leading candidate.
+  - Keep the Figshare dataset (CC BY 4.0); use BDNeuro-MRI as the external test.
+  - 0/12 semester-1 references are correct as cited.
+- Semester-1 numbers: [EXP-000](experiments/EXP-000-semester1-checkpoint-eval.md) (clean test: Dice 0.411; acc 0.80 / 0.74 / 0.46).
 
 ## Key facts every agent must know
-- **Raw data:** `dataset/dataset/` (git-ignored). Contents: `data/1.mat`…`3064.mat`, `cvind.mat`, `README.txt`. 3,064 slices, 233 patients (82 meningioma, 89 glioma, 62 pituitary), 1–38 slices per patient, PID present, binary masks, 15 images at 256² and the rest at 512². `cvind.mat` folds are patient-disjoint.
-- The old converted PNGs are in `dataset/output/` (min-max uint8, interpolated masks); the pilot is in `data/pilot/`. Both are git-ignored.
+- **Raw data:** `dataset/dataset/` (git-ignored). Contents: `data/1..3064.mat`, `cvind.mat` (patient-disjoint folds). 233 patients, PIDs, binary masks. Licence CC BY 4.0: cite DOI 10.6084/m9.figshare.1512427 + Cheng 2015.
 - The semester-1 evaluation is invalid (contaminated directories + patient leakage).
-- The local PyTorch is **CPU-only** (`2.9.1+cpu`). The GPU is an RTX 3050 Laptop with **4 GB**.
-- `docs/` stays local (ADR-0002, accepted). Semester-1 checkpoints stay local only (no Release).
+- The local PyTorch is **CPU-only**. The GPU is an RTX 3050 Laptop with **4 GB**.
 - Rule: no code, model or training changes until Phase 6 is approved.
 
 ## Next steps
-1. Kareem discusses the Phase 3 analysis and approves.
-2. Phase 4: SOTA research. Check the novelty of E13, D11 and D12 on this task and dataset. Cover the unexplored angles (XAI, foundation models, robustness, report generation, edge, HITL demo). Find datasets for external validation or replacement. Verify the Figshare licence and the semester-1 references. Outputs go to `research/` + `research-summary.md`.
-3. Phase 5: score and select.
+1. Kareem reviews the Phase 4 summary.
+2. Phase 5: score all ideas (future.txt + R1–R7) on N/F/T/M/D/Th. Propose 3–5 options (at least one ambitious and one safe). Discuss. Record the choice as an ADR.
+3. Phase 6: plan → groundwork milestone (new leak-free baseline) → contribution.
 
 ## Open questions / blockers
-- None blocking. Phase 4 decides whether to use subagents for parallel literature search by topic (moderate parallelism, per rule 8).
-- GitHub still reports the old repo size until its GC runs (no action).
+- Semester-1 ref [12]: T4 thinks the real source is Abdusalomov et al. 2023 (*Cancers* 15:4172). Kareem should confirm before we replace it.
+- Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 
 ## Key decisions
-ADR-0001 history rewrite · ADR-0002 docs local (accepted) · ADR-0003 git workflow · ADR-0004 logging + hooks.
+ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding.

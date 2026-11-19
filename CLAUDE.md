@@ -61,7 +61,7 @@ project-log/             project memory (see below)
 8. Use subagents in parallel only where they clearly help (e.g. literature search by topic). Keep it moderate.
 
 ## Phases
-1 Audit ✅ · 2 Repo/memory/logging setup ✅ · 3 future.txt analysis ✅ · 4 SOTA research · 5 Idea selection · 6 Implementation plan + execution. Current phase: see HANDOFF.md.
+1 Audit ✅ · 2 Repo/memory/logging setup ✅ · 3 future.txt analysis ✅ · 4 SOTA research ✅ · 5 Idea selection · 6 Implementation plan + execution. Current phase: see HANDOFF.md.
 
 ## Logging system (`project-log/`)
 | File | Purpose |

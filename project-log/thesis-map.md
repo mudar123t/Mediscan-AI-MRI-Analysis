@@ -5,7 +5,10 @@ Maps log entries and findings to the semester-2 thesis sections. Semester-1 thes
 | Thesis section | Source (log / file / commit) | Content to use | Status |
 |---|---|---|---|
 | 1 Introduction — motivation for the semester-2 contribution | `university-requirements.md` | Committee asked for a creative addition to a common pipeline | pending |
-| 2 Literature review | `research/literature-matrix.md`, `research/research-summary.md` | Verified SOTA; replace placeholder references from semester 1 | Phase 4 |
+| 2 Literature review | `research/literature-matrix.md`, `research/research-summary.md`, `research/topics/T1–T4` | Verified SOTA (116 refs), trends, novelty landscape | ready |
+| References (all chapters) | `research/references.bib`, `research/topics/T4 §6` | **Rebuild the reference list**: 0/12 semester-1 refs correct as cited; fix [2]–[10], remove/replace [11], [12] | ready |
+| 3 Methodology — evaluation standard | `research-summary.md §4`, T4 §5 (Metrics Reloaded, CLAIM 2024) | Metrics, CIs, external test, CLAIM appendix | ready |
+| 3 Methodology — datasets | T4 §1–3 | Figshare CC BY 4.0 citation; BDNeuro-MRI external test; why not Kaggle merges | ready |
 | 3 Methodology — data | `00-project-understanding.md §3` | Correct dataset: Figshare / Cheng et al., 3,064 slices, 233 patients (fix wrong Kaggle citation) | ready |
 | 3 Methodology — evaluation protocol | `00-project-understanding.md §8`, `EXP-000` | Why a patient-wise split is required; leakage audit method (stale files, CV-fold adjacency, NCC) | ready |
 | 2/3 Discussion of `future.txt` roadmap | `ideas/idea-matrix.md` | Which planned improvements are hygiene vs contribution; why B6 was dropped | ready |

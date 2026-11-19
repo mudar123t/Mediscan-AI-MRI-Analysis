@@ -1,6 +1,6 @@
 # Idea Matrix
 
-- **Last updated:** 2026-11-19 (Phase 3: `future.txt` analysis)
+- **Last updated:** 2026-11-19 (Phase 4: novelty verdicts from verified literature added; research-sourced ideas R1–R7 added)
 - **Labels:** [V] VERIFIED · [I] INFERRED · [U] UNKNOWN.
 - **Novelty judgements here are [I]** (my knowledge of the field). Phase 4 will check them against verified literature and may change them.
 - **Numeric 1–5 scores are given in Phase 5.** Phase 3 gives qualitative assessments only.
@@ -98,7 +98,7 @@
 | A3 | Augmentation | data | yes | 1 | none | medium [I] | Baseline strengthening |
 | B4 | Longer training + scheduler + early stop | seg | yes (GPU hours) | 0.5 | none | high (U-Net underfit) [I] | Baseline strengthening |
 | B5 | Tversky / Focal-Tversky | seg | yes | 0.5 | none | low–medium [I] | Optional ablation |
-| B6 | Multi-class sub-region segmentation | seg | **no data** | very high | none | — | **Drop** (binary masks only [V]) |
+| B6 | Multi-class sub-region segmentation | seg | **no data** | very high | none | — | **Dropped** (ADR-0005; binary masks only [V]) |
 | B7 | Attention/Res U-Net, nnU-Net | seg | yes / nnU-Net [U] | 1–3 | none | medium [I] | nnU-Net as reference baseline |
 | C8 | Adaptive threshold | ROI | yes | 0.5 | none | low [I] | Small ablation |
 | C9 | Morphological refinement | ROI | yes | 0.5 | none | low [I] | Small ablation |
@@ -116,3 +116,29 @@
 3. **B6 should be dropped** for this dataset.
 4. Phase 4 must check: (a) how common E13/D11/D12 are on this exact task and dataset, (b) the angles `future.txt` does not cover (XAI and faithfulness, foundation models, cross-dataset robustness, report generation, edge deployment, human-in-the-loop demo), and (c) whether a better or additional dataset exists for external validation (Kareem is open to it).
 5. Rough budget for "mandatory" items (P0, A1, A2, A3, B4, D10, E1–E6, E14) is about 8–10 working days plus GPU time [I]. This leaves room for one ambitious contribution.
+
+
+---
+
+## Phase 4 update — novelty verdicts from verified literature
+Source: [research/research-summary.md](../research/research-summary.md) and the T1–T4 topic files.
+
+| ID | Phase 3 novelty guess [I] | Phase 4 verdict | Evidence |
+|---|---|---|---|
+| D11 | low–medium [U] | **Common**: mask-as-channel already done on Figshare | T1 R12 (Zaman 2025); R1/R11 context studies |
+| D12 | medium [U] | **Very common**; no reliable gain | T1 R5, R6, R10 (95.99 vs 95.87 %), R14, R15 |
+| E13 | medium–high [U] | **Components common.** Classifier-only referral now exists (Sharma 2026). **Seg-uncertainty-driven view routing + referral not found** | T2 §2; Sharma 2026 spot-checked |
+| E4 | low–medium | **Expected** (not novel) | Guo 2017; Sharma 2026 |
+| A3 (GAN/diffusion variant) | — | **Common, mixed results** | T3 (Yapici 2023, Khan 2026) |
+| B7 | none | Confirmed: nnU-Net is the reference recipe; a light attention U-Net reaches Dice 0.93 on a patient split | T1 R8, R22 |
+
+## Research-sourced candidates (source: Phase 4)
+| ID | Idea | Source | Novelty (Phase 4) | Feasible on 4 GB | Effort (days) [I] | Notes |
+|---|---|---|---|---|---|---|
+| R1 | Segmentation-quality-aware routing: (dilated) ROI / full image / refer, gated by segmentation uncertainty | E13 + Cheng 2015 + EXP-000 | **Not found** (strongest) | yes (MC dropout / TTA / fold ensemble) | 5–8 after groundwork | Must beat always-full, MSP gate, Sharma-style gate |
+| R2 | U-Net vs MedSAM/LiteMedSAM disagreement + box-jitter as gate signal | T3 gap 1 | Not found for cls gating | yes (inference; precomputed embeddings) | 3–5 | SAM is weak with poor boxes (Ali 2024) |
+| R3 | "When does segmentation help classification?" (mask quality × context margin study) | T1 gaps | Not measured systematically for CNN pipelines on Figshare | yes | 3–4 | Motivates R1 |
+| R4 | XAI-as-diagnostic (in-mask / ring / elsewhere attribution, linked to correctness and routing) | T2 gap 4 | Partially done (Filvantorkaman 2025); linkage open | yes | 2–4 | Secondary contribution |
+| R5 | Grounded uncertainty-aware 2D report with a number-consistency check | T3 gap 4 | 2D version appears open | yes (template; LLM optional) | 3–6 | Demo layer |
+| R6 | Integrity-first benchmark (patient-disjoint + pHash audit + BDNeuro-MRI external test) | T1/T4 | Rare for a full pipeline | yes | 3–5 | Evaluation backbone |
+| R7 | Conformal referral (prediction sets) | T2 §1c | Moderately fresh for this task | yes | 1–2 | Add-on to R1 |

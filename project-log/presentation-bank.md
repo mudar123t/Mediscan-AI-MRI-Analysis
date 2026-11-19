@@ -8,6 +8,10 @@ The strongest results, figures and "wow" points for the final presentation, coll
 
 3. **Even the "clean" test set was not clean.** 43 of its 50 images came from patients already seen in training (verified with patient IDs). Reason for patient-wise evaluation. Source: `00-project-understanding.md §8.2`.
 
+4. **"We are not alone: the field's benchmarks leak."** Slice-level splits inflate accuracy by 29–55 % (Yagis 2021). Kaggle merges: 28.8 % near-duplicates, 95.5 % patient overlap (Vangala 2026). Our patient-disjoint protocol is a strength. Source: `research/research-summary.md §1A`.
+5. **"Even the dataset's authors knew context matters."** Cheng 2015: tight ROI 83.5 % → dilated ROI 88.2 %. This matches our ROI finding. Source: literature-matrix #1.
+6. **Positioning slide:** grid of "common" vs "open" angles (`research-summary.md §1B–C`).
+
 ## Figures to make
 - Bar chart: accuracy on contaminated vs clean test, for each of the 3 inputs (data in EXP-000 `results.json`).
 - Diagram: image-level split vs patient-wise split (leakage illustration).
