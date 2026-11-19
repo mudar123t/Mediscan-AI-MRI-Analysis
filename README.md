@@ -20,10 +20,23 @@ The project validates an end-to-end framework through a modular strategy:
 **Classification (CNN):** A high-performance classifier trained on localized tumor features.
 
 ## 📂 Dataset
-The study uses an annotated Brain Tumor MRI Dataset.
-**Source:** Available on Kaggle.
-**Content:** MRI slices paired with ground-truth segmentation masks.
-**Note:** To protect data privacy and comply with repository size limits, the raw dataset is not included in this repository.
+The project uses the **Figshare brain tumor dataset** by Jun Cheng: 3,064 T1-weighted contrast-enhanced slices from 233 patients (meningioma 708, glioma 1,426, pituitary 930), with tumor masks and patient IDs.
+- **Source:** https://doi.org/10.6084/m9.figshare.1512427 (licence CC BY 4.0).
+- **Please cite:** J. Cheng et al., "Enhanced Performance of Brain Tumor Classification via Tumor Region Augmentation and Partition," *PLoS ONE* 10(10): e0140381, 2015, https://doi.org/10.1371/journal.pone.0140381.
+- **Not included in this repository** (size). Download the archive and extract it so that `dataset/dataset/data/1.mat … 3064.mat` and `dataset/dataset/cvind.mat` exist.
+- **Changes we make:** the semester-2 pipeline converts the `.mat` files to 256×256 arrays (area resampling for images, nearest-neighbour for masks) and uses the dataset's own patient-disjoint 5-fold split (`cvind.mat`).
+
+## ⚙️ Setup (semester 2)
+Requires Python 3.11+ and, for training, an NVIDIA GPU (developed on an RTX 3050 Laptop, 4 GB).
+```bash
+python -m venv .venv
+.venv\Scripts\activate            # Windows (Linux/macOS: source .venv/bin/activate)
+pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu128
+pip install -r requirements.txt
+pip install -e . --no-deps
+pytest                             # data/GPU tests are skipped when the data or GPU is missing
+```
+Semester-1 scripts are frozen in [`legacy/semester1/`](legacy/semester1/README.md).
 
 ## Results (Pilot Study)
 ### Visual Validation: The U-Net model demonstrated successful pixel-level localization, effectively distinguishing tumor tissue from healthy brain structures.

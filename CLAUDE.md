@@ -8,31 +8,28 @@ Graduation project (Software Engineering, 2 semesters). Brain-MRI pipeline: a U-
 - Known semester-1 issues: val/test contaminated by training images; image-level (not patient-wise) split; see `project-log/00-project-understanding.md` and `experiments/EXP-000`.
 
 ## Tech stack
-Python 3.12 · PyTorch (currently a CPU-only build is installed; CUDA build pending) · OpenCV · NumPy · scikit-learn · h5py · matplotlib.
+Python 3.12 · PyTorch 2.9.1+cu128 in `.venv` (system Python has a CPU-only build) · OpenCV · NumPy · scikit-learn · h5py · matplotlib.
 Hardware: Dell G15, RTX 3050 Laptop **4 GB VRAM**, Ryzen 5 6800H. Never assume cloud; if an idea needs Colab/Kaggle, say so and estimate cost/effort.
 
-## Key commands (current state; scripts still hold hardcoded paths, to be fixed in Phase 6)
+## Key commands (semester 2; use the `.venv`, never the system Python)
 ```bash
-pip install -r requirements.txt h5py          # setup (requirements unpinned)
-export PYTHONPATH=src                          # package is not installed
-python conv.py                                 # .mat -> PNG (edit input/output paths)
-python scripts/02_prepare_pilot_data.py        # pilot subset + splits
-python scripts/05_train_unet_pilot.py          # train U-Net
-python scripts/07_build_roi_dataset.py         # ROI sets (GT + predicted)
-python scripts/09_train_classifier.py          # train 3 CNNs
-python scripts/10_eval_classifier.py           # test accuracy + confusion matrix
-python project-log/experiments/EXP-000-semester1-checkpoint-eval/eval_semester1.py  # audit eval
+py -3.12 -m venv .venv                         # once (Python 3.12.2)
+.venv/Scripts/python -m pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu128
+.venv/Scripts/python -m pip install -r requirements.txt && .venv/Scripts/python -m pip install -e . --no-deps
+.venv/Scripts/python -m pytest                 # data/gpu tests skip when data or GPU is missing
 ```
+Semester-1 scripts are frozen in `legacy/semester1/` (hardcoded paths; reference only). Audit eval: `project-log/experiments/EXP-000-semester1-checkpoint-eval/eval_semester1.py`.
 
 ## Folder map
 ```
-src/mediscan/{preprocessing,data,segmentation,classification}/   library code
-scripts/01..10_*.py      numbered pipeline steps
-conv.py                  raw .mat -> PNG converter
+src/mediscan/            library (data, segmentation, classification, preprocessing, utils)
+configs/                 YAML configs (base.yaml + one per experiment), copied into each run
+tests/                   pytest (markers: data, gpu)
+legacy/semester1/        frozen semester-1 scripts, conv.py, notebooks
 data/pilot/splits/       semester-1 split lists (tracked); images are ignored
-dataset/, data/**, outputs/, docs/   local only (git-ignored)
+dataset/, data/**, outputs/, runs/, docs/, .venv/   local only (git-ignored)
 images/                  README figures
-project-log/             project memory (see below)
+project-log/             project memory (see below); environment.md = env record
 .claude/                 settings.json + hooks/ (tracked); state/ (ignored)
 ```
 

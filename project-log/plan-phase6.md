@@ -1,7 +1,7 @@
 # Phase 6 — Implementation Plan (Milestone 0 + Option B; extras as placeholders)
 
 - **Date:** 2026-11-19
-- **Status:** DRAFT, waiting for Kareem's approval. **No code is written before approval.**
+- **Status:** **APPROVED 2026-11-19** ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)): Q1 yes, Q2 yes, Q3 yes (256²), Q4 Gradio, Q5 yes. Execution started with M0.1.
 - **Decision basis:** [ADR-0006](decisions/ADR-0006-semester2-contribution.md), [phase5-options.md](ideas/phase5-options.md), [research-summary.md](research/research-summary.md) §4 (evaluation standard).
 - **Labels:** [V] verified · [I] inference/estimate · [U] unknown (to be measured). All effort figures are [I] estimates.
 

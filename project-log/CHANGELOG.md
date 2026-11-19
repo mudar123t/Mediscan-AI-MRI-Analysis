@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — Phase 6 plan approved; M0.1 environment and structure done
+- ADR-0007: Q1–Q5 approved (legacy move, `.venv` + CUDA torch, 256², Gradio, plan).
+- `git mv` of semester-1 scripts, `conv.py`, `notebooks/` → `legacy/semester1/` (history kept); `03_check_pilot_data,py` → `.py`.
+- New: `pyproject.toml`, `configs/base.yaml`, `src/mediscan/utils/repro.py`, package `__init__.py` files, `tests/` (pytest), `legacy/semester1/README.md`. README: Figshare dataset citation + setup. `.gitignore`: `/data/processed/`.
+- `.venv` with torch 2.9.1+cu128 (GPU verified); pinned `requirements.txt` + `requirements-lock.txt`; `project-log/environment.md` (versions + GPU probe 0.102 s/step, 863 MiB). CLAUDE.md commands/folder map updated. pytest: 6 passed.
+- *Why:* M0.1 of the approved plan (reproducible environment and structure before the data pipeline).
+
 ## 2026-11-19 — Phase 5 decision + Phase 6 plan draft (no code changes)
 - **ADR-0006:** Kareem chose Option C, built as "B first" (R1 segmentation-quality-aware routing + R3 + R7, evaluated with the R6 protocol). Extras R4/R2/R5 are decided later.
 - `plan-phase6.md`: milestones M0.1–M2, files and modules to create, experiment design EXP-001–009 with hypotheses, router definition, compute/disk budget, dependencies, risks, definition of done, and questions Q1–Q5.
