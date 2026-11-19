@@ -1,0 +1,23 @@
+# EXP-003: ResNet-18, context crop, margin 32 px.
+experiment: EXP-003
+run_name: exp003_r18_crop32
+model:
+  name: resnet18
+  kwargs: {pretrained: true}
+view: {name: context_crop, margin: 32}
+pred_masks: {seg_run: exp002c_unet_r34, threshold: 0.5, keep_largest: true}  # EXP-002c, test-time only
+seed: 0
+deterministic: true
+folds: [0, 1, 2, 3, 4]
+train:
+  epochs: 60
+  batch_size: 32
+  optimizer: adamw
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  scheduler: cosine
+  warmup_epochs: 2
+  augment: default
+  amp: true
+  early_stopping_patience: 15
+  select_metric: balanced_accuracy

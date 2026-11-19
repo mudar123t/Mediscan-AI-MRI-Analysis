@@ -1,0 +1,21 @@
+# EXP-003a: Semester-1 SimpleCNN, old recipe, full image (fair semester-1 baseline).
+experiment: EXP-003a
+run_name: exp003a_simplecnn_old
+model:
+  name: simplecnn
+  kwargs: {}
+view: {name: full}
+seed: 0
+deterministic: true
+folds: [0, 1, 2, 3, 4]
+train:                   # semester-1 recipe (legacy/semester1/scripts/09_train_classifier.py)
+  epochs: 10
+  batch_size: 8
+  optimizer: adam
+  lr: 1.0e-3
+  weight_decay: 0.0
+  scheduler: none
+  augment: none
+  amp: false
+  early_stopping_patience: null
+  select_metric: accuracy  # semester 1 kept the best val accuracy
