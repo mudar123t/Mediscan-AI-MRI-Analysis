@@ -14,3 +14,8 @@ Merge the `future.txt` and research ideas, score them 1–5 on six axes, propose
 
 ## Outcomes
 Waiting for Kareem's choice (STOP). Next: ADR-0006, then the Phase 6 plan.
+
+## Update — decision and Phase 6 plan
+- Kareem chose **Option C, built as "B first, then extras if needed (we will decide about extras)"** → ADR-0006.
+- Checked the environment (CUDA 13.3 driver support, 15.2 GB RAM, 37 GB free disk).
+- Drafted `plan-phase6.md`. STOP for approval.

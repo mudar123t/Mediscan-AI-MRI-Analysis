@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — Phase 5 decision + Phase 6 plan draft (no code changes)
+- **ADR-0006:** Kareem chose Option C, built as "B first" (R1 segmentation-quality-aware routing + R3 + R7, evaluated with the R6 protocol). Extras R4/R2/R5 are decided later.
+- `plan-phase6.md`: milestones M0.1–M2, files and modules to create, experiment design EXP-001–009 with hypotheses, router definition, compute/disk budget, dependencies, risks, definition of done, and questions Q1–Q5.
+- Environment facts checked: driver CUDA 13.3, 15.2 GB RAM, 37 GB free disk.
+- `university-requirements.md` R1/R3 updated with how they are addressed.
+
 ## 2026-11-19 — Phase 5: idea scoring and options (no code changes)
 - `ideas/idea-matrix.md`: numeric scores (N/F/T/M/D/Th, 1–5) for all ideas. R1 leads (26/30), followed by R3 (24), P0 and R7 (23), and R2 and R4 (22).
 - `ideas/phase5-options.md`: Milestone 0 (common groundwork) plus 4 options with pitch, hypotheses, evaluation, risks and effort. Options: A safe, B recommended core, C ambitious, D product.

@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 (Phase 5: options proposed, waiting for Kareem's choice)
-**Active phase:** **Phase 5 (idea selection)**. Ideas scored in [idea-matrix § Phase 5](ideas/idea-matrix.md), and 4 options written in [ideas/phase5-options.md](ideas/phase5-options.md): A safe (integrity + 'when does seg help'), **B recommended core (R1 seg-quality-aware routing)**, C ambitious (B + MedSAM second opinion + XAI diagnostic + grounded report; recommended as 'B first'), D product-centric. STOP: waiting for Kareem's choice → then ADR-0006.
-**Branch:** `research/phase5-selection`. Baseline tag: `v1.0-semester1` = `390d7a0`.
+**Last updated:** 2026-11-19 (Phase 6 plan drafted, waiting for approval)
+**Active phase:** **Phase 6, step 1: implementation plan.** Kareem chose **Option C, built as "B first"**; extras are decided later ([ADR-0006](decisions/ADR-0006-semester2-contribution.md)). The plan is in [plan-phase6.md](plan-phase6.md). **STOP: waiting for approval of the plan and answers to Q1–Q5.** No code has been written yet.
+**Branch:** `research/phase6-plan`.
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -20,15 +20,17 @@
 - **Raw data:** `dataset/dataset/` (git-ignored). Contents: `data/1..3064.mat`, `cvind.mat` (patient-disjoint folds). 233 patients, PIDs, binary masks. Licence CC BY 4.0: cite DOI 10.6084/m9.figshare.1512427 + Cheng 2015.
 - The semester-1 evaluation is invalid (contaminated directories + patient leakage).
 - The local PyTorch is **CPU-only**. The GPU is an RTX 3050 Laptop with **4 GB**.
-- Rule: no code, model or training changes until Phase 6 is approved.
+- Rule: no code, model or training changes until the Phase 6 plan is approved.
+- Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. Kareem chooses an option (or asks questions) → write ADR-0006 and update HANDOFF.
-2. Phase 6: detailed implementation plan (milestones, files, experiment design, metrics, baseline comparison, risks) → STOP for approval → Milestone 0 (leak-free strong baseline) → contribution.
+1. Kareem approves the plan and answers Q1–Q5 (legacy move, deps + `.venv` CUDA torch, 256², Gradio, overall approval).
+2. M0.1 environment and structure → M0.2 data pipeline → M0.3 segmentation → M0.4 classification → **STOP** (report vs baseline).
+3. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
 
 ## Open questions / blockers
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 
 ## Key decisions
-ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding.
+ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding · **ADR-0006 Option C, "B first" (R1 routing core; extras decided later)**.
