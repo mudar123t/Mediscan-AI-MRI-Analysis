@@ -79,3 +79,48 @@ def mean_ci(
     values = s[idx].sum(1) / n[idx].sum(1)
     lo, hi = np.percentile(values, [100 * alpha / 2, 100 * (1 - alpha / 2)])
     return {"estimate": float(df[col].mean()), "ci_low": float(lo), "ci_high": float(hi), "n_patients": len(per_pid)}
+
+
+def per_patient_confusion(pids: np.ndarray, y: np.ndarray, pred: np.ndarray, k: int = 3) -> tuple[np.ndarray, np.ndarray]:
+    """Sorted unique patient ids and their (P, k, k) confusion matrices C[true, pred]."""
+    uniq, inv = np.unique(np.asarray(pids), return_inverse=True)
+    conf = np.zeros((len(uniq), k, k), dtype=np.int64)
+    np.add.at(conf, (inv, y, pred), 1)
+    return uniq, conf
+
+
+def confusion_bootstrap(
+    confs: dict[str, np.ndarray],
+    metric: Callable[[np.ndarray], np.ndarray],
+    n_boot: int = 2000,
+    alpha: float = 0.05,
+    seed: int = 0,
+) -> dict:
+    """Patient-bootstrap CIs of a confusion-matrix metric for several systems at once.
+
+    ``confs`` maps a system name to its (P, k, k) per-patient confusion array; all
+    arrays must be over the same patients in the same order. The same patient
+    resamples are used for every system, so ``diff`` CIs are paired.
+    Returns ``{"single": {name: ci}, "diff": {"b - a": ci}}`` (``diff`` for every pair).
+    """
+    names = list(confs)
+    n_pat = len(next(iter(confs.values())))
+    if any(len(c) != n_pat for c in confs.values()):
+        raise ValueError("systems cover different patients")
+    rng = np.random.default_rng(seed)
+    idx = rng.integers(0, n_pat, size=(n_boot, n_pat))
+    boot = {n: metric(confs[n][idx].sum(1)) for n in names}
+    point = {n: float(metric(confs[n].sum(0))) for n in names}
+    q = [100 * alpha / 2, 100 * (1 - alpha / 2)]
+    out: dict = {"single": {}, "diff": {}}
+    for n in names:
+        lo, hi = np.percentile(boot[n], q)
+        out["single"][n] = {"estimate": point[n], "ci_low": float(lo), "ci_high": float(hi), "n_patients": n_pat}
+    for i, a in enumerate(names):
+        for b in names[i + 1 :]:
+            d = boot[b] - boot[a]
+            obs = point[b] - point[a]
+            lo, hi = np.percentile(d, q)
+            p = 2 * float(np.mean(d <= 0)) if obs >= 0 else 2 * float(np.mean(d >= 0))
+            out["diff"][f"{b} - {a}"] = {"diff": obs, "ci_low": float(lo), "ci_high": float(hi), "p_two_sided": min(p, 1.0)}
+    return out

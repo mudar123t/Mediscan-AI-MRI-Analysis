@@ -16,7 +16,6 @@ from __future__ import annotations
 import argparse
 import copy
 import json
-import math
 import time
 from pathlib import Path
 from typing import Any
@@ -33,6 +32,7 @@ from mediscan.data.splits import load_split
 from mediscan.metrics import seg as segm
 from mediscan.models.seg import build_seg_model
 from mediscan.segmentation.losses import BCEDiceLoss
+from mediscan.utils.optim import lr_lambda, make_optimizer
 from mediscan.utils.repro import create_run_dir, load_config, seed_everything
 
 
@@ -42,30 +42,6 @@ def _batch_dice(logits: torch.Tensor, target: torch.Tensor, thr: float) -> torch
     inter = (pred * target).sum((1, 2, 3))
     denom = pred.sum((1, 2, 3)) + target.sum((1, 2, 3))
     return torch.where(denom > 0, 2 * inter / denom.clamp(min=1e-6), torch.ones_like(denom))
-
-
-def _make_optimizer(model: torch.nn.Module, cfg: dict[str, Any]) -> torch.optim.Optimizer:
-    name, lr, wd = cfg["optimizer"], float(cfg["lr"]), float(cfg.get("weight_decay", 0.0))
-    if name == "adam":
-        return torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
-    if name == "adamw":
-        return torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=wd)
-    raise ValueError(name)
-
-
-def _lr_lambda(cfg: dict[str, Any], steps_per_epoch: int):
-    total = cfg["epochs"] * steps_per_epoch
-    warm = int(cfg.get("warmup_epochs", 0)) * steps_per_epoch
-    if cfg.get("scheduler", "none") == "none":
-        return lambda step: 1.0
-
-    def f(step: int) -> float:
-        if step < warm:
-            return (step + 1) / warm
-        progress = (step - warm) / max(1, total - warm)
-        return 0.5 * (1.0 + math.cos(math.pi * min(1.0, progress)))
-
-    return f
 
 
 @torch.no_grad()
@@ -115,8 +91,8 @@ def train_fold(cfg: dict[str, Any], arrays: FigshareArrays, fold: int, run_root:
     val_dl = DataLoader(val_ds, batch_size=16, shuffle=False)
 
     model = build_seg_model(cfg["model"]["name"], **cfg["model"].get("kwargs", {})).to(device)
-    opt = _make_optimizer(model, tcfg)
-    sched = torch.optim.lr_scheduler.LambdaLR(opt, _lr_lambda(tcfg, len(train_dl)))
+    opt = make_optimizer(model, tcfg)
+    sched = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda(tcfg, len(train_dl)))
     scaler = torch.amp.GradScaler("cuda", enabled=amp)
     loss_fn = BCEDiceLoss(bce_weight=float(tcfg.get("bce_weight", 0.5)))
     patience = tcfg.get("early_stopping_patience")

@@ -104,3 +104,30 @@ class FigshareClsDataset(Dataset):
             "label": int(self.arrays.meta.at[row, "class_index"]),
             "row": row,
         }
+
+
+def load_predicted_masks(
+    seg_fold_dir: str | Path, n_rows: int, threshold: float = 0.5, keep_largest: bool = True
+) -> tuple[np.ndarray, list[int]]:
+    """Binary predicted masks of one segmentation fold run, aligned to dataset rows.
+
+    Reads ``pred_val.npz`` and ``pred_test.npz`` (sigmoid probabilities stored as
+    uint8 0..255) written by ``scripts/train_seg.py``. Rows the segmenter did not
+    predict stay all-zero; the returned list names the rows that were filled.
+    """
+    from mediscan.metrics.seg import largest_component
+
+    d = Path(seg_fold_dir)
+    masks: np.ndarray | None = None
+    filled: list[int] = []
+    for part in ("val", "test"):
+        z = np.load(d / f"pred_{part}.npz")
+        rows, probs = z["rows"], z["probs"]
+        if masks is None:
+            masks = np.zeros((n_rows, *probs.shape[1:]), dtype=np.uint8)
+        for r, p in zip(rows, probs):
+            m = (p.astype(np.float32) / 255.0 > threshold).astype(np.uint8)
+            masks[int(r)] = largest_component(m) if keep_largest else m
+        filled.extend(int(r) for r in rows)
+    assert masks is not None
+    return masks, filled
