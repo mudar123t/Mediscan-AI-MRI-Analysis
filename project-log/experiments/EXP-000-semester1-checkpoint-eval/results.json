@@ -1,0 +1,637 @@
+{
+  "env": {
+    "python": "3.12.10",
+    "torch": "2.9.1+cpu",
+    "device": "cpu",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "segmentation": {
+    "val/dir110": {
+      "n": 110,
+      "dice_mean": 0.334078859954281,
+      "dice_std": 0.3058263307993603,
+      "dice_median": 0.2950989417034894,
+      "iou_mean": 0.24409159890840018,
+      "frac_dice_below_0.5": 0.5909090909090909
+    },
+    "val/clean50": {
+      "n": 50,
+      "dice_mean": 0.31187683991939674,
+      "dice_std": 0.29190327530412763,
+      "dice_median": 0.22195484027379206,
+      "iou_mean": 0.22351384077075098,
+      "frac_dice_below_0.5": 0.64
+    },
+    "val/leaked60": {
+      "n": 60,
+      "dice_mean": 0.3525805433166844,
+      "dice_std": 0.31577182106024165,
+      "dice_median": 0.39849384720011666,
+      "iou_mean": 0.2612397306897745,
+      "frac_dice_below_0.5": 0.55
+    },
+    "test/dir110": {
+      "n": 110,
+      "dice_mean": 0.3641697022226489,
+      "dice_std": 0.30238841840163455,
+      "dice_median": 0.37989254077926127,
+      "iou_mean": 0.26678345280053856,
+      "frac_dice_below_0.5": 0.5636363636363636
+    },
+    "test/clean50": {
+      "n": 50,
+      "dice_mean": 0.4104543073693808,
+      "dice_std": 0.31696036723068816,
+      "dice_median": 0.507097005202577,
+      "iou_mean": 0.3093619010377483,
+      "frac_dice_below_0.5": 0.48
+    },
+    "test/leaked60": {
+      "n": 60,
+      "dice_mean": 0.3255991979337054,
+      "dice_std": 0.2839804903123433,
+      "dice_median": 0.32678429158267297,
+      "iou_mean": 0.2313014126028637,
+      "frac_dice_below_0.5": 0.6333333333333333
+    }
+  },
+  "classification": {
+    "full/val/dir110": {
+      "n": 110,
+      "accuracy": 0.9363636363636364,
+      "macro_f1": 0.938301282051282,
+      "recall_per_class": {
+        "glioma": 0.9545454545454546,
+        "meningioma": 0.9090909090909091,
+        "pituitary": 0.9393939393939394
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 33,
+        "pituitary": 33
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          42,
+          2,
+          0
+        ],
+        [
+          3,
+          30,
+          0
+        ],
+        [
+          2,
+          0,
+          31
+        ]
+      ]
+    },
+    "full/val/clean50": {
+      "n": 50,
+      "accuracy": 0.86,
+      "macro_f1": 0.823529411764706,
+      "recall_per_class": {
+        "glioma": 0.9166666666666666,
+        "meningioma": 0.625,
+        "pituitary": 0.8888888888888888
+      },
+      "support": {
+        "glioma": 24,
+        "meningioma": 8,
+        "pituitary": 18
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          22,
+          2,
+          0
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          2,
+          0,
+          16
+        ]
+      ]
+    },
+    "full/val/leaked60": {
+      "n": 60,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "recall_per_class": {
+        "glioma": 1.0,
+        "meningioma": 1.0,
+        "pituitary": 1.0
+      },
+      "support": {
+        "glioma": 20,
+        "meningioma": 25,
+        "pituitary": 15
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          20,
+          0,
+          0
+        ],
+        [
+          0,
+          25,
+          0
+        ],
+        [
+          0,
+          0,
+          15
+        ]
+      ]
+    },
+    "full/test/dir110": {
+      "n": 110,
+      "accuracy": 0.9090909090909091,
+      "macro_f1": 0.9129945885164101,
+      "recall_per_class": {
+        "glioma": 0.9090909090909091,
+        "meningioma": 0.8571428571428571,
+        "pituitary": 0.967741935483871
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 35,
+        "pituitary": 31
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          40,
+          3,
+          1
+        ],
+        [
+          5,
+          30,
+          0
+        ],
+        [
+          1,
+          0,
+          30
+        ]
+      ]
+    },
+    "full/test/clean50": {
+      "n": 50,
+      "accuracy": 0.8,
+      "macro_f1": 0.8136123136123136,
+      "recall_per_class": {
+        "glioma": 0.7647058823529411,
+        "meningioma": 0.7727272727272727,
+        "pituitary": 0.9090909090909091
+      },
+      "support": {
+        "glioma": 17,
+        "meningioma": 22,
+        "pituitary": 11
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          13,
+          3,
+          1
+        ],
+        [
+          5,
+          17,
+          0
+        ],
+        [
+          1,
+          0,
+          10
+        ]
+      ]
+    },
+    "full/test/leaked60": {
+      "n": 60,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "recall_per_class": {
+        "glioma": 1.0,
+        "meningioma": 1.0,
+        "pituitary": 1.0
+      },
+      "support": {
+        "glioma": 27,
+        "meningioma": 13,
+        "pituitary": 20
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          27,
+          0,
+          0
+        ],
+        [
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          20
+        ]
+      ]
+    },
+    "roi_gt/val/dir110": {
+      "n": 110,
+      "accuracy": 0.8909090909090909,
+      "macro_f1": 0.8846347527775155,
+      "recall_per_class": {
+        "glioma": 0.9545454545454546,
+        "meningioma": 0.8181818181818182,
+        "pituitary": 0.8787878787878788
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 33,
+        "pituitary": 33
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          42,
+          0,
+          2
+        ],
+        [
+          2,
+          27,
+          4
+        ],
+        [
+          1,
+          3,
+          29
+        ]
+      ]
+    },
+    "roi_gt/val/clean50": {
+      "n": 50,
+      "accuracy": 0.82,
+      "macro_f1": 0.773148148148148,
+      "recall_per_class": {
+        "glioma": 0.9166666666666666,
+        "meningioma": 0.625,
+        "pituitary": 0.7777777777777778
+      },
+      "support": {
+        "glioma": 24,
+        "meningioma": 8,
+        "pituitary": 18
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          22,
+          0,
+          2
+        ],
+        [
+          1,
+          5,
+          2
+        ],
+        [
+          1,
+          3,
+          14
+        ]
+      ]
+    },
+    "roi_gt/val/leaked60": {
+      "n": 60,
+      "accuracy": 0.95,
+      "macro_f1": 0.9497599896211728,
+      "recall_per_class": {
+        "glioma": 1.0,
+        "meningioma": 0.88,
+        "pituitary": 1.0
+      },
+      "support": {
+        "glioma": 20,
+        "meningioma": 25,
+        "pituitary": 15
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          20,
+          0,
+          0
+        ],
+        [
+          1,
+          22,
+          2
+        ],
+        [
+          0,
+          0,
+          15
+        ]
+      ]
+    },
+    "roi_gt/test/dir110": {
+      "n": 110,
+      "accuracy": 0.8727272727272727,
+      "macro_f1": 0.8700982856014151,
+      "recall_per_class": {
+        "glioma": 0.9318181818181818,
+        "meningioma": 0.7714285714285715,
+        "pituitary": 0.9032258064516129
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 35,
+        "pituitary": 31
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          41,
+          2,
+          1
+        ],
+        [
+          6,
+          27,
+          2
+        ],
+        [
+          0,
+          3,
+          28
+        ]
+      ]
+    },
+    "roi_gt/test/clean50": {
+      "n": 50,
+      "accuracy": 0.74,
+      "macro_f1": 0.7464551508029769,
+      "recall_per_class": {
+        "glioma": 0.8235294117647058,
+        "meningioma": 0.6363636363636364,
+        "pituitary": 0.8181818181818182
+      },
+      "support": {
+        "glioma": 17,
+        "meningioma": 22,
+        "pituitary": 11
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          14,
+          2,
+          1
+        ],
+        [
+          6,
+          14,
+          2
+        ],
+        [
+          0,
+          2,
+          9
+        ]
+      ]
+    },
+    "roi_gt/test/leaked60": {
+      "n": 60,
+      "accuracy": 0.9833333333333333,
+      "macro_f1": 0.9791073124406457,
+      "recall_per_class": {
+        "glioma": 1.0,
+        "meningioma": 1.0,
+        "pituitary": 0.95
+      },
+      "support": {
+        "glioma": 27,
+        "meningioma": 13,
+        "pituitary": 20
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          27,
+          0,
+          0
+        ],
+        [
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          1,
+          19
+        ]
+      ]
+    },
+    "roi_pred/val/dir110": {
+      "n": 110,
+      "accuracy": 0.7272727272727273,
+      "macro_f1": 0.7200807225846901,
+      "recall_per_class": {
+        "glioma": 0.9090909090909091,
+        "meningioma": 0.5454545454545454,
+        "pituitary": 0.6666666666666666
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 33,
+        "pituitary": 33
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          40,
+          2,
+          2
+        ],
+        [
+          12,
+          18,
+          3
+        ],
+        [
+          11,
+          0,
+          22
+        ]
+      ]
+    },
+    "roi_pred/val/clean50": {
+      "n": 50,
+      "accuracy": 0.66,
+      "macro_f1": 0.5694444444444444,
+      "recall_per_class": {
+        "glioma": 0.875,
+        "meningioma": 0.25,
+        "pituitary": 0.5555555555555556
+      },
+      "support": {
+        "glioma": 24,
+        "meningioma": 8,
+        "pituitary": 18
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          21,
+          2,
+          1
+        ],
+        [
+          3,
+          2,
+          3
+        ],
+        [
+          8,
+          0,
+          10
+        ]
+      ]
+    },
+    "roi_pred/val/leaked60": {
+      "n": 60,
+      "accuracy": 0.7833333333333333,
+      "macro_f1": 0.7942429004121974,
+      "recall_per_class": {
+        "glioma": 0.95,
+        "meningioma": 0.64,
+        "pituitary": 0.8
+      },
+      "support": {
+        "glioma": 20,
+        "meningioma": 25,
+        "pituitary": 15
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          19,
+          0,
+          1
+        ],
+        [
+          9,
+          16,
+          0
+        ],
+        [
+          3,
+          0,
+          12
+        ]
+      ]
+    },
+    "roi_pred/test/dir110": {
+      "n": 110,
+      "accuracy": 0.7090909090909091,
+      "macro_f1": 0.6977734908769392,
+      "recall_per_class": {
+        "glioma": 0.9090909090909091,
+        "meningioma": 0.4,
+        "pituitary": 0.7741935483870968
+      },
+      "support": {
+        "glioma": 44,
+        "meningioma": 35,
+        "pituitary": 31
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          40,
+          3,
+          1
+        ],
+        [
+          19,
+          14,
+          2
+        ],
+        [
+          7,
+          0,
+          24
+        ]
+      ]
+    },
+    "roi_pred/test/clean50": {
+      "n": 50,
+      "accuracy": 0.46,
+      "macro_f1": 0.456484348125215,
+      "recall_per_class": {
+        "glioma": 0.7647058823529411,
+        "meningioma": 0.22727272727272727,
+        "pituitary": 0.45454545454545453
+      },
+      "support": {
+        "glioma": 17,
+        "meningioma": 22,
+        "pituitary": 11
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          13,
+          3,
+          1
+        ],
+        [
+          15,
+          5,
+          2
+        ],
+        [
+          6,
+          0,
+          5
+        ]
+      ]
+    },
+    "roi_pred/test/leaked60": {
+      "n": 60,
+      "accuracy": 0.9166666666666666,
+      "macro_f1": 0.9025983432763094,
+      "recall_per_class": {
+        "glioma": 1.0,
+        "meningioma": 0.6923076923076923,
+        "pituitary": 0.95
+      },
+      "support": {
+        "glioma": 27,
+        "meningioma": 13,
+        "pituitary": 20
+      },
+      "confusion_matrix_rows_true_cols_pred": [
+        [
+          27,
+          0,
+          0
+        ],
+        [
+          4,
+          9,
+          0
+        ],
+        [
+          1,
+          0,
+          19
+        ]
+      ]
+    }
+  },
+  "runtime_s": 69.3
+}
