@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-19 (end of Phase 4, before Kareem's approval)
-**Active phase:** Phase 4 done → waiting at the STOP gate (present the research summary). Next: **Phase 5 (idea selection)** after approval.
-**Branch:** `research/phase4-sota` (fast-forward into `main` after commit). Baseline tag: `v1.0-semester1` = `390d7a0`.
+**Last updated:** 2026-11-19 (Phase 5: options proposed, waiting for Kareem's choice)
+**Active phase:** **Phase 5 (idea selection)**. Ideas scored in [idea-matrix § Phase 5](ideas/idea-matrix.md), and 4 options written in [ideas/phase5-options.md](ideas/phase5-options.md): A safe (integrity + 'when does seg help'), **B recommended core (R1 seg-quality-aware routing)**, C ambitious (B + MedSAM second opinion + XAI diagnostic + grounded report; recommended as 'B first'), D product-centric. STOP: waiting for Kareem's choice → then ADR-0006.
+**Branch:** `research/phase5-selection`. Baseline tag: `v1.0-semester1` = `390d7a0`.
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -23,12 +23,11 @@
 - Rule: no code, model or training changes until Phase 6 is approved.
 
 ## Next steps
-1. Kareem reviews the Phase 4 summary.
-2. Phase 5: score all ideas (future.txt + R1–R7) on N/F/T/M/D/Th. Propose 3–5 options (at least one ambitious and one safe). Discuss. Record the choice as an ADR.
-3. Phase 6: plan → groundwork milestone (new leak-free baseline) → contribution.
+1. Kareem chooses an option (or asks questions) → write ADR-0006 and update HANDOFF.
+2. Phase 6: detailed implementation plan (milestones, files, experiment design, metrics, baseline comparison, risks) → STOP for approval → Milestone 0 (leak-free strong baseline) → contribution.
 
 ## Open questions / blockers
-- Semester-1 ref [12]: T4 thinks the real source is Abdusalomov et al. 2023 (*Cancers* 15:4172). Kareem should confirm before we replace it.
+- Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 
 ## Key decisions

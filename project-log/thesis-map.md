@@ -6,7 +6,7 @@ Maps log entries and findings to the semester-2 thesis sections. Semester-1 thes
 |---|---|---|---|
 | 1 Introduction — motivation for the semester-2 contribution | `university-requirements.md` | Committee asked for a creative addition to a common pipeline | pending |
 | 2 Literature review | `research/literature-matrix.md`, `research/research-summary.md`, `research/topics/T1–T4` | Verified SOTA (116 refs), trends, novelty landscape | ready |
-| References (all chapters) | `research/references.bib`, `research/topics/T4 §6` | **Rebuild the reference list**: 0/12 semester-1 refs correct as cited; fix [2]–[10], remove/replace [11], [12] | ready |
+| References (all chapters) | `research/references.bib`, `research/topics/T4 §6` | **Rebuild the reference list**: 0/12 semester-1 refs correct as cited; fix [2]–[10]; remove [11] (not found); **replace [12] with Abdusalomov et al. 2023, *Cancers* 15:4172, doi:10.3390/cancers15164172** (Kareem does not know the original source; verified by T4 via PMC10453020; its numbers match the claim) | ready |
 | 3 Methodology — evaluation standard | `research-summary.md §4`, T4 §5 (Metrics Reloaded, CLAIM 2024) | Metrics, CIs, external test, CLAIM appendix | ready |
 | 3 Methodology — datasets | T4 §1–3 | Figshare CC BY 4.0 citation; BDNeuro-MRI external test; why not Kaggle merges | ready |
 | 3 Methodology — data | `00-project-understanding.md §3` | Correct dataset: Figshare / Cheng et al., 3,064 slices, 233 patients (fix wrong Kaggle citation) | ready |

@@ -142,3 +142,38 @@ Source: [research/research-summary.md](../research/research-summary.md) and the 
 | R5 | Grounded uncertainty-aware 2D report with a number-consistency check | T3 gap 4 | 2D version appears open | yes (template; LLM optional) | 3–6 | Demo layer |
 | R6 | Integrity-first benchmark (patient-disjoint + pHash audit + BDNeuro-MRI external test) | T1/T4 | Rare for a full pipeline | yes | 3–5 | Evaluation backbone |
 | R7 | Conformal referral (prediction sets) | T2 §1c | Moderately fresh for this task | yes | 1–2 | Add-on to R1 |
+
+---
+
+## Phase 5 — numeric scores (2026-11-19)
+Scale 1–5, 5 = best. **T**: 5 = cheapest. **M**: how clearly a gain can be *measured* against the leak-free baseline. All scores are my judgement [I], grounded in the Phase 3 and Phase 4 evidence cited above. **Total** = unweighted sum (max 30). *Kind*: G = groundwork (mandatory, not presented as novelty); C = contribution candidate; X = ablation or add-on.
+
+| ID | Idea | Kind | N | F | T | M | D | Th | Total | Cloud? | Short justification |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **R1** | Segmentation-quality-aware routing: (dilated) ROI / full / refer | C | **5** | 4 | 3 | 4 | **5** | **5** | **26** | no | Not found in literature; directly fixes our measured failure (0.46); clinically framed; strong demo |
+| P0 | Patient-wise leak-free protocol | G | 1 | 5 | 4 | 5 | 3 | 5 | 23 | no | Makes every result valid; strong thesis story (EXP-000) |
+| R3 | When does segmentation help classification (mask quality × context) | C | 3 | 5 | 4 | 3 | 4 | 5 | 24 | no | Clean analysis, motivates R1; Cheng 2015 only did hand-crafted features |
+| R7 | Conformal referral (prediction sets) | X | 3 | 5 | 5 | 3 | 3 | 4 | 23 | no | Cheap; gives a coverage guarantee to R1's referral |
+| R2 | U-Net vs MedSAM disagreement as gate signal | C | 4 | 3 | 3 | 3 | 5 | 4 | 22 | no (inference only) | Fresh combo; SAM weak with poor boxes; integration effort |
+| R4 | XAI-as-diagnostic linked to correctness/routing | C | 3 | 5 | 4 | 2 | 4 | 4 | 22 | no | XAI-vs-mask already done; the linkage is new; good visuals |
+| B4 | Longer training + scheduler + early stopping | G | 1 | 5 | 5 | 5 | 2 | 3 | 21 | no | U-Net underfit → biggest cheap gain |
+| R6 | Integrity benchmark (patient-disjoint + pHash audit + BDNeuro-MRI external) | C/G | 3 | 4 | 3 | 3 | 3 | 5 | 21 | no | Rare for a full pipeline; required by CLAIM; supports publication |
+| D11 | Image + ROI + mask channels | X | 2 | 5 | 5 | 4 | 2 | 3 | 21 | no | Common (Zaman 2025), but a needed baseline/ablation for R1 |
+| A1 | Full dataset | G | 1 | 5 | 5 | 4 | 2 | 3 | 20 | no | Mandatory |
+| D10 | Pretrained ResNet-18 / EfficientNet | G | 1 | 5 | 5 | 4 | 2 | 3 | 20 | no | Mandatory classifier baseline |
+| E4 | Calibration (ECE, temperature scaling) | G | 2 | 5 | 5 | 2 | 2 | 4 | 20 | no | Expected; needed by R1/R7 |
+| E14 | Clinical per-class evaluation | G | 1 | 5 | 5 | 2 | 2 | 4 | 19 | no | Mandatory reporting |
+| R5 | Grounded uncertainty-aware 2D report + number check | C | 3 | 4 | 3 | 1 | 5 | 3 | 19 | no (template) / optional local LLM | Strong demo; hard to measure; BTReport is 3D |
+| A2 | Stratified patient split + class weighting | G | 1 | 5 | 5 | 3 | 1 | 3 | 18 | no | Mandatory |
+| A3 | Augmentation | G | 1 | 5 | 4 | 3 | 2 | 3 | 18 | no | Standard |
+| E1–E3, E5, E6 | Boundary/area/AUC metrics (NSD/HD95 etc.) | G | 1 | 5 | 4 | 2 | 2 | 4 | 18 | no | Metrics Reloaded requires a boundary metric |
+| B7 | nnU-Net / attention U-Net reference | G/X | 1 | 3 | 3 | 3 | 2 | 4 | 16 | no ([U] on Windows/4 GB) | Credible segmentation reference |
+| D12 | Multi-task shared encoder | X | 2 | 4 | 3 | 2 | 2 | 3 | 16 | no | Very common, no reliable gain (Ferreira 2024) |
+| B5 | Tversky / Focal-Tversky | X | 1 | 5 | 5 | 2 | 1 | 2 | 16 | no | Small ablation |
+| C8 | Adaptive threshold | X | 1 | 5 | 5 | 2 | 1 | 2 | 16 | no | Small ablation |
+| C9 | Morphological refinement | X | 1 | 5 | 5 | 2 | 1 | 2 | 16 | no | Small ablation |
+| B6 | Sub-region segmentation | — | — | 1 | — | — | — | — | — | — | Dropped (ADR-0005) |
+| E13 | (merged into R1) | — | — | — | — | — | — | — | — | — | R1 is the refined form of E13 |
+| GAN/diffusion aug. | Synthetic data | X | 1 | 2 | 2 | 2 | 3 | 2 | 12 | diffusion: yes (~20–60 T4 GPU-h, T3 estimate) | Common, mixed results |
+
+Options built from these scores: [phase5-options.md](phase5-options.md).

@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-19 — Phase 5: idea scoring and options (no code changes)
+- `ideas/idea-matrix.md`: numeric scores (N/F/T/M/D/Th, 1–5) for all ideas. R1 leads (26/30), followed by R3 (24), P0 and R7 (23), and R2 and R4 (22).
+- `ideas/phase5-options.md`: Milestone 0 (common groundwork) plus 4 options with pitch, hypotheses, evaluation, risks and effort. Options: A safe, B recommended core, C ambitious, D product.
+- Ref [12] decision: replace with Abdusalomov et al. 2023 (Kareem does not know the original source).
+- *Why:* Phase 5 of the plan. The choice is pending, and an ADR will follow it.
+
 ## 2026-11-19 — Phase 4: state-of-the-art research (no code changes)
 - 4 parallel research subagents (approved): T1 SOTA seg/cls + multi-task (25 verified), T2 uncertainty/XAI/HITL (38), T3 foundation/generative/edge/reports (27), T4 datasets/evaluation/semester-1 reference check (33 bib). Output in `research/topics/`, plus 13 notes in `research/papers/`.
 - Main agent spot-checked 4 key sources via an independent fetch (Sharma 2026, Vangala 2026, Figshare API licence, Cheng 2015). All confirmed; caveats logged in `literature-matrix.md`.
