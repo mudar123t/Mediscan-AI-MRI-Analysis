@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M0.4 done: EXP-003 results logged (STOP gate)
+- EXP-003 (40 runs, 4.1 h, 5-fold patient-disjoint, 3,064 slices): fair semester-1 baseline SimpleCNN bal. acc 0.733 [0.703, 0.765]; ResNet-18 full 0.928; best automatic pipeline ResNet-18 crop 32 px + predicted masks 0.941 [0.916, 0.961] (acc 0.948); masked ROI (semester-1 view) −0.079 vs full; crop 32 beats full with GT masks (+0.026) but not with predicted masks (+0.013, n.s.).
+- New: `experiments/EXP-003-classification.md` + `results.json`; session log `sessions/2026-11-20-m0-4-classification.md`. Updated results-summary, thesis-map, presentation-bank (beats 10–12), environment (classifier epoch times), HANDOFF.
+- *Why:* close M0.4 and report at the STOP gate.
+
 ## 2026-11-20 — M0.4 code; EXP-003 training started
 - `18e6fe1` feat: classifier views (full, masked ROI, context crop), cls model factory (SimpleCNN, ResNet-18, EfficientNet-B0), cls metrics (bal. acc, macro-F1, MCC, AUROC, ECE, Brier, NLL), temperature scaling, paired confusion-matrix patient bootstrap; optimizer/schedule helpers moved to `utils/optim.py` (train_seg behaviour unchanged). 37 tests pass.
 - `7cf0f70` exp: `scripts/train_cls.py`, `scripts/eval_cls.py`, 8 EXP-003 configs (SimpleCNN old recipe; ResNet-18 × 6 views; EfficientNet-B0 full).

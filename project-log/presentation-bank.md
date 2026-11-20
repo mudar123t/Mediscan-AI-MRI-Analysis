@@ -16,9 +16,14 @@ The strongest results, figures and "wow" points for the final presentation, coll
 8. **"Same network, +0.25 Dice."** The semester-1 U-Net with only a new training recipe goes from Dice 0.508 to 0.759 on the same patient-disjoint folds (paired Δ +0.250 [0.228, 0.273]). A pretrained ResNet-34 encoder adds +0.027 and cuts boundary error from 25.0 to 14.4 px HD95. Source: EXP-002.
 9. **Glioma is the hard case.** Dice 0.685 for glioma vs 0.893 for meningioma (EXP-002c). Sets up the router: hard cases should go to a radiologist.
 
+10. **"Context is the missing ingredient."** Balanced accuracy climbs with crop margin: masked ROI 0.870 → crop 0 px 0.881 → 8 px 0.928 → 16 px 0.939 → 32 px 0.954 (GT masks). Semester 1's masked ROI is significantly worse than the full image (−0.079 with predicted masks). Source: EXP-003.
+11. **"Segmentation helps only when it is good."** Crop 32 beats the full image with GT masks (+0.026, p 0.005) but not with predicted masks (+0.013, CI crosses 0). The bridge to R1, quality-aware routing. Source: EXP-003.
+12. **Baseline → now:** classification 0.733 → 0.941 balanced accuracy (+0.207 [0.172, 0.244]); segmentation Dice 0.508 → 0.786. Same patients, same folds. Sources: EXP-002, EXP-003.
+
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
 - Bar chart: accuracy on contaminated vs clean test, for each of the 3 inputs (data in EXP-000 `results.json`).
 - Diagram: image-level split vs patient-wise split (leakage illustration).
 - Before/after repo hygiene: 225 MB → 210 KB (ADR-0001), as an optional engineering slide.
 - EXP-002: bar chart of Dice/HD95 for arms a/b/c with patient CIs; per-class Dice bars (data in `experiments/EXP-002-segmentation/results.json`).
+- EXP-003: balanced accuracy vs crop margin (masked, 0, 8, 16, 32, full) for GT and predicted masks, with CIs (data in `experiments/EXP-003-classification/results.json`).

@@ -24,3 +24,4 @@ Semester-1 `UNet` (7.76 M params), random tensors, batch 8, 1×256×256, Adam, A
 - Semester-1 UNet, AMP, batch 8, with augmentation: 33.5 s/epoch (fold 0 median), peak ~900 MiB.
 - ResNet-34 U-Net, AMP, batch 8, with augmentation: 29.9–30.9 s/epoch (folds 0–3 medians), peak 990–1,087 MiB.
 - Full EXP-002 (15 folds): about 6.1 h sequential.
+- EXP-003 classifiers (256², ~1,800 training slices): SimpleCNN fp32 batch 8 ≈ 4.4 s/epoch, 643 MiB; ResNet-18 AMP batch 32 ≈ 9 s/epoch, 757–795 MiB; EfficientNet-B0 AMP batch 32 ≈ 10 s/epoch, 1,915 MiB. Full EXP-003 (40 runs): 4.1 h.
