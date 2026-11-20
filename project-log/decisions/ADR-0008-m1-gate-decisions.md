@@ -26,4 +26,4 @@
     - fit τ1 on the pooled val frames of all folds except the test fold;
     - or a fixed quantile / Dice-proxy rule.
 - **(d)** is the paired patient bootstrap of the min and mean over the 13 EXP-008 conditions (same resamples across conditions). No new inference; CPU only, about 30 min [I].
-- Branch `exp/m1-uncertainty` is pushed to `origin` at this gate. `main` is not updated yet.
+- Branch `exp/m1-uncertainty` is pushed to `origin` at this gate. `main` was fast-forwarded to the branch at this gate.

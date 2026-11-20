@@ -3,7 +3,7 @@
 Newest first. Each entry: date, what changed, why, commits.
 
 ## 2026-11-20 — M1.4 gate decision
-- Kareem chose (b) stabilise τ1 + (d) CIs for the EXP-008 summary, not run yet ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)). Branch `exp/m1-uncertainty` pushed.
+- Kareem chose (b) stabilise τ1 + (d) CIs for the EXP-008 summary, not run yet ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)). Branch `exp/m1-uncertainty` pushed, then fast-forwarded into `main` and pushed (plan §1: merge when green; Kareem: "do what is better").
 
 ## 2026-11-20 — M1 complete (EXP-008/009 final), STOP at M1.4
 - EXP-008/009 inference re-run with det+ens (16:07–16:46) for the frozen score `ens:disagree`; final analysis in `experiments/EXP-008-shift/`, `EXP-009-external/`.
