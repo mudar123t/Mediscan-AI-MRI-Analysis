@@ -132,7 +132,7 @@ def main() -> None:
         sub = dfB[dfB.view == run]
         ax.plot(centers, sub.bal_acc_view_estimate, "-o", color=col, lw=1.5, ms=4, label=VIEW_LABEL[run])
     ax.plot(centers, dfB[dfB.view == view_runs[0]].bal_acc_full, "--o", color=GREY, lw=1.5, ms=4, label="full image (no mask)")
-    ax.set_title("Real predicted masks (EXP-002c), by Dice bin", fontsize=10)
+    ax.set_title("Real predicted masks, by Dice bin", fontsize=10)
     ax.set_xlabel("predicted-mask Dice (bin centre)")
     ax.invert_xaxis()
     axes[0].set_ylabel("balanced accuracy (test, 5 folds)")

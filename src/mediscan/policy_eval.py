@@ -61,6 +61,11 @@ def load_fold_frames(k: int, runs: Path, methods: list[str]) -> dict[str, pd.Dat
     return out
 
 
+def _combined_features(p: np.ndarray, u: np.ndarray, used: np.ndarray) -> np.ndarray:
+    """[-log(1 - MSP), u, used-crop]; the log spreads MSP values that crowd near 1."""
+    return np.column_stack([-np.log1p(-np.clip(p.max(1), 0, 1 - 1e-7)), u, used.astype(float)])
+
+
 def fit_params(va: pd.DataFrame, score: str) -> dict[str, Any]:
     """Fit every policy parameter on one fold's validation frame."""
     fill = float(va[score].max())
@@ -71,7 +76,7 @@ def fit_params(va: pd.DataFrame, score: str) -> dict[str, Any]:
     tau1 = fit_tau1(P["crop32"], P["full"], u, y)
     p_r, used = route(P["crop32"], P["full"], u, tau1)
     lr = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
-    lr.fit(np.column_stack([p_r.max(1), u, used]), (p_r.argmax(1) == y).astype(int))
+    lr.fit(_combined_features(p_r, u, used), (p_r.argmax(1) == y).astype(int))
     q = {}
     for alpha in ALPHAS:
         for name, p in (("router", p_r), ("crop32", P["crop32"]), ("full", P["full"])):
@@ -90,7 +95,7 @@ def apply_params(params: dict[str, Any], df: pd.DataFrame) -> pd.DataFrame:
     p_r, used = route(P["crop32"], P["full"], u, params["tau1"])
     df["u"], df["used_crop"] = u, used
     df["pred_router"], df["conf_router"] = p_r.argmax(1), p_r.max(1)
-    df["conf_combined"] = params["lr"].predict_proba(np.column_stack([p_r.max(1), u, used]))[:, 1]
+    df["conf_combined"] = params["lr"].predict_proba(_combined_features(p_r, u, used))[:, 1]
     y = df.y.to_numpy()
     crop_ok, full_ok = P["crop32"].argmax(1) == y, P["full"].argmax(1) == y
     p_or = np.where((crop_ok | ~full_ok)[:, None], P["crop32"], P["full"])

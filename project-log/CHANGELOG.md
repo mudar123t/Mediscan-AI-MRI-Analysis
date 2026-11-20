@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — EXP-004 results; EXP-005 analysis fix; EXP-006 criterion
+- EXP-004 inference + analysis done (`experiments/EXP-004-mask-quality/`: controlled.csv, predicted_by_dice.csv, results.json, figure).
+- EXP-005 det/mc/tta scores done; analysis: per-fold regression pooling artefact found and fixed (−log(1−MSP) features, mean within-fold AUROC) in `scripts/eval_exp005.py` and `policy_eval._combined_features`.
+- EXP-006 score-selection criterion changed to val AUROC for "crop wrong, full right" (reason in HANDOFF); preliminary EXP-006 running.
+
 ## 2026-11-20 — M0.4 pushed; M1 started
 - Pushed `exp/m0-classification`; `main` fast-forwarded to `1361e81` (Kareem approved). Kareem: keep the EXP-002c segmenter, start M1, do M1.4 without asking.
 - Branch `exp/m1-uncertainty` (+ `exp/m1-r3-seg-helps`): `b7ac0ee` seed configs; `8fab45b` EXP-004 degradation study; EXP-005 uncertainty sampling/scores; `3f6187e` selective metrics, router, conformal, BDNeuro prep + duplicate audit; `9e8b014` policy evaluation, corruptions, end-to-end pipeline.

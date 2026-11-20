@@ -1,6 +1,6 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 09:30 (M1 in progress)
+**Last updated:** 2026-11-20 10:20 (M1 in progress: EXP-004 done, EXP-005/006 analysis running)
 **Active phase:** **Phase 6 execution, M1 (M1.1–M1.4) in progress.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
 **Branch:** `exp/m1-uncertainty` (M1 work, from `main` `1361e81`; contains `exp/m1-r3-seg-helps`; not pushed). `main` = `origin/main` = `1361e81` (M0.4 pushed).
 
@@ -34,6 +34,9 @@
   - Background jobs (started ~08:52–09:00): seed run `runs/run_exp005_seeds.sh` (EXP-002c recipe, seeds 1, 2 × 5 folds; ~4.6 h alone, slower while GPU is shared; resumable); EXP-004 `scripts/run_exp004.py` (inference, ~50 min); EXP-005 scores `scripts/run_exp005.py --methods det mc tta` (~30 min). `ens` scores need the seed run.
   - Code: `degrade.py` (EXP-004), `uncertainty.py`, `metrics/selective.py`, `router.py`, `policy_eval.py`, `corrupt.py`, `pipeline.py` (verified: reproduces EXP-003 logits/EXP-005 scores on clean images), scripts `run_exp004/eval_exp004`, `run_exp005/eval_exp005`, `eval_exp006` (EXP-006+007), `run_shift_external` (EXP-008/009), `prepare_bdneuro`.
   - **BDNeuro-MRI finding (EXP-009 data, V):** of 5,154 tumor images, **1,682 are pixel duplicates of Figshare slices** (64² correlation ≥ 0.96; different Figshare patients never exceed 0.952), covering 215/233 Figshare patients, label agreement 99.5 %; 442 ambiguous (0.90–0.96); **3,030 clean** used as external test. Even BDNeuro's own test folder is 33 % Figshare duplicates. `data/processed/bdneuro_256/` (report.json). Zip in `dataset/external/bdneuro_v7/` (SHA-256 verified).
+  - **EXP-004 done** (inference + `eval_exp004.py` → `experiments/EXP-004-mask-quality/`): context crops tolerate erode/dilate/shift (crop32 0.933 at Dice 0.3 erosion) but a false-positive blob breaks all crops (crop32 0.636 already at Dice 0.9); real predicted masks with Dice < 0.3 (224 slices): crop32 0.641 vs full 0.889 (−0.248); Dice 0.5–0.7: crop32 +0.082 [0.019, 0.161].
+  - **EXP-005 (det/mc/tta):** seg uncertainty predicts seg failure (Dice < 0.7) with AUROC ≈ 0.84–0.85 and Dice < 0.3 with 0.87–0.90, but **not** crop-32 classifier error (≈ 0.43–0.50); MSP does (0.897). Most crop errors occur on good masks. Fix applied: "adds to MSP" now uses −log(1−MSP) features and mean within-fold AUROC (pooling per-fold regressions gave an artefact, 0.746 vs 0.897); analysis re-running.
+  - **EXP-006 criterion change (documented):** the router's score is chosen on pooled val by AUROC for "crop wrong while full right" (not "any crop error"); fixed after the EXP-004/005 analyses, before EXP-006 ran. Preliminary EXP-006 (det/mc/tta) running; final run adds `ens` after the seed run.
   - Order after jobs: `eval_exp004` → `eval_exp005` → `eval_exp006` (chooses uncertainty score on val) → EXP-008 shift + EXP-009 external runs (long; announce) → analysis → logs → STOP.
 
 ## Where things stand

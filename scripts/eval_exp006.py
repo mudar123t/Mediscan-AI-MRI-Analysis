@@ -2,7 +2,7 @@
 
 No training: EXP-003 view logits + EXP-005 uncertainty scores. Per fold, everything is
 fitted on that fold's val slices (``mediscan.policy_eval``). The uncertainty score that
-drives the router is chosen on **pooled val** data (AUROC for crop-32 classifier error),
+drives the router is chosen on **pooled val** data (AUROC for "crop-32 wrong, full right"),
 never on test, and is then frozen for EXP-008/009.
 
 Usage:
@@ -44,13 +44,19 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     frames = {k: pe.load_fold_frames(k, runs, args.methods) for k in range(5)}
 
-    # 1. choose the uncertainty score on pooled val (crop-32 error AUROC; each fold's own temperature is irrelevant to AUROC)
+    # 1. choose the uncertainty score on pooled val. The routing decision needs a signal for
+    #    "crop view wrong while the full view is right" (a broken mask), not for any crop error:
+    #    EXP-004/005 showed most crop errors occur on good masks, where the full view errs too.
+    #    (Criterion fixed after the EXP-004/005 analyses, before EXP-006 was run.)
     val = pd.concat([frames[k]["val"] for k in range(5)], ignore_index=True)
     score_cols = [c for c in val if ":" in c]
-    err = (clsm.softmax(pe.logits(val, "crop32")).argmax(1) != val.y).astype(int)
-    val_auc = {c: float(roc_auc_score(err, val[c].fillna(val[c].max()))) for c in score_cols}
+    crop_ok = clsm.softmax(pe.logits(val, "crop32")).argmax(1) == val.y
+    full_ok = clsm.softmax(pe.logits(val, "full")).argmax(1) == val.y
+    target = (~crop_ok & full_ok).astype(int)
+    val_auc = {c: float(roc_auc_score(target, val[c].fillna(val[c].max()))) for c in score_cols}
     score = args.score or max(val_auc, key=val_auc.get)
-    print(f"uncertainty score: {score} (pooled val AUROC for crop-32 error {val_auc[score]:.3f})")
+    print(f"uncertainty score: {score} (pooled val AUROC for 'crop wrong, full right' {val_auc[score]:.3f}, "
+          f"n positives {int(target.sum())} of {len(target)})")
 
     # 2. fit per fold on val, apply to test
     tests, fitted = [], {}
@@ -70,7 +76,7 @@ def main() -> None:
                "median_dice_when_crop": float(te.loc[te.used_crop, "dice_lcc"].median()),
                "median_dice_when_full": float(te.loc[~te.used_crop, "dice_lcc"].median()) if (~te.used_crop).any() else None}
 
-    results = {"score": score, "val_auroc_crop32_error": val_auc, "fitted_per_fold": fitted, "routing": routing,
+    results = {"score": score, "val_auroc_crop_wrong_full_right": val_auc, "fitted_per_fold": fitted, "routing": routing,
                "policies": boot, "conformal": cp, "n_test": int(len(te)), "n_patients": int(len(np.unique(pids)))}
     (out_dir / "results.json").write_text(json.dumps(results, indent=1, default=float), encoding="utf-8")
     te.drop(columns=[c for c in te if c.startswith("l_")]).to_csv(out_dir / "test_routed.csv", index=False)

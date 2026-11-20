@@ -9,8 +9,10 @@ Scores are oriented so that higher = more suspicious (``maxprob_ring`` is negate
 Missing values (empty reference mask) get the most suspicious value.
 
 "Adds to MSP" (H for EXP-005): per fold, a logistic regression on the fold's **val** slices
-predicts crop-32 classifier error from [MSP] or [MSP, score]; it is applied to the fold's
-test slices. Test AUROCs of the two are compared with a paired patient bootstrap.
+predicts crop-32 classifier error from [-log(1-MSP)] or [-log(1-MSP), score]; it is applied
+to the fold's test slices. The criterion is the mean of the per-fold test AUROCs (each fold
+has its own model, so pooled AUROC would mix differently scaled outputs); the two are
+compared with a paired patient bootstrap.
 
 Usage:
     .venv/Scripts/python scripts/eval_exp005.py --config configs/exp005_uncertainty.yaml \
@@ -41,6 +43,15 @@ CLS_RUN, FULL_RUN = "exp003_r18_crop32", "exp003_r18_full"
 
 def _auc(y: np.ndarray, s: np.ndarray) -> float:
     return float(roc_auc_score(y, s)) if 0 < y.sum() < len(y) else float("nan")
+
+
+def _features(d: pd.DataFrame, cols: list[str]) -> np.ndarray:
+    """Regression inputs; MSP is mapped to -log(1 - MSP), which spreads the values near 1."""
+    x = d[cols].to_numpy(dtype=float).copy()
+    for j, c in enumerate(cols):
+        if c.startswith("msp"):
+            x[:, j] = -np.log1p(-np.clip(x[:, j], 0, 1 - 1e-7))
+    return x
 
 
 def load_table(cfg: dict, runs: Path, meta: pd.DataFrame, methods: list[str]) -> pd.DataFrame:
@@ -124,16 +135,23 @@ def main() -> None:
         mk = (te.fold == k).to_numpy()
         for name, cols in combos.items():
             lr = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
-            lr.fit(va[cols].to_numpy(), va.err_crop32.astype(int).to_numpy())
-            preds[name][mk] = lr.predict_proba(te.loc[mk, cols].to_numpy())[:, 1]
+            lr.fit(_features(va, cols), va.err_crop32.astype(int).to_numpy())
+            preds[name][mk] = lr.predict_proba(_features(te.loc[mk], cols))[:, 1]
     y = targets["cls_err_crop32"]
 
+    fold_of = te.fold.to_numpy()
+
+    def fold_mean_auc(idx: np.ndarray, pred: np.ndarray) -> float:
+        """Mean of the per-fold AUROCs: each fold has its own val-fitted model, so folds are not pooled."""
+        vals = [_auc(y[idx][fold_of[idx] == k], pred[idx][fold_of[idx] == k]) for k in cfg["folds"]]
+        return float(np.nanmean(vals))
+
     def stat_combo(idx: np.ndarray) -> dict[str, float]:
-        base = _auc(y[idx], preds["MSP only"][idx])
+        base = fold_mean_auc(idx, preds["MSP only"])
         out = {"MSP only": base}
         for name in combos:
             if name != "MSP only":
-                a = _auc(y[idx], preds[name][idx])
+                a = fold_mean_auc(idx, preds[name])
                 out[name] = a
                 out[f"{name} minus MSP"] = a - base
         return out
