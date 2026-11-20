@@ -38,6 +38,25 @@ pytest                             # data/GPU tests are skipped when the data or
 ```
 Semester-1 scripts are frozen in [`legacy/semester1/`](legacy/semester1/README.md).
 
+## 🖥️ Local demo (semester 2, M2)
+A Gradio app runs the full pipeline on one uploaded slice:
+- the predicted tumour mask;
+- the segmentation-uncertainty map, from an ensemble of 3 U-Nets;
+- the **routing decision**: if the mask is trusted, the classifier sees a 32 px context crop around it; otherwise it sees the full image. The reason is shown;
+- the calibrated class probabilities;
+- a conformal **"refer to a radiologist"** flag.
+
+It is a research prototype and **not a medical device**.
+
+![Demo outputs: predicted mask, uncertainty map and classifier input for an uncertain (top) and a confident (bottom) case](images/demo_outputs.png)
+
+The model weights are not in git, so they must be in `runs/` first (trained with the scripts in `scripts/`). Then:
+```bash
+python scripts/export_demo_params.py --config configs/demo.yaml   # policy parameters + example slices
+python app/demo_app.py                                            # open http://127.0.0.1:7860 (add --device cpu without a GPU)
+```
+The demo uses the models of one cross-validation fold (`configs/demo.yaml`). Its example slices come from that fold's test patients. Example images: Figshare brain tumour dataset (Cheng et al., CC BY 4.0).
+
 ## Results (Pilot Study)
 ### Visual Validation: The U-Net model demonstrated successful pixel-level localization, effectively distinguishing tumor tissue from healthy brain structures.
 ![Segmentation Comparison](images/segmentation_results1.png)

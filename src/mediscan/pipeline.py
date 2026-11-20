@@ -37,7 +37,65 @@ def _cls(run_dir: Path, device: str) -> tuple[torch.nn.Module, object]:
     return m.to(device).eval(), build_view(cfg["view"]["name"], cfg["view"].get("margin"))
 
 
-@torch.no_grad()
+class FoldModels:
+    """All models of one fold, loaded once (batch runs and the M2 demo)."""
+
+    def __init__(self, fold: int, runs: Path, methods: list[str], ensemble_runs: list[str],
+                 device: str | None = None, mc_samples: int = 20) -> None:
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.amp = self.device == "cuda"
+        self.methods, self.mc_samples = list(methods), mc_samples
+        self.seg = _seg(runs / "exp002c_unet_r34" / f"fold{fold}", self.device)
+        self.mc_model = None
+        if "mc" in methods:
+            self.mc_model = _seg(runs / "exp002c_unet_r34" / f"fold{fold}", self.device)
+            enable_mc_dropout(self.mc_model)
+        self.ens = [_seg(runs / r / f"fold{fold}", self.device) for r in ensemble_runs] if "ens" in methods else []
+        self.classifiers = {v: _cls(runs / r / f"fold{fold}", self.device) for v, r in CLS_RUNS.items()}
+
+    @torch.no_grad()
+    def infer(self, imgs: np.ndarray) -> tuple[list[dict], dict[str, np.ndarray]]:
+        """Records (logits, scores, predicted area) and arrays for one batch of uint8 (N, H, W) images.
+
+        Arrays: ``prob`` (N, H, W) deterministic probability, ``ref`` reference mask
+        (0.5 + largest component), and ``samples_<method>`` (T, N, H, W).
+        """
+        dev, amp = self.device, self.amp
+        x = torch.from_numpy(imgs.astype(np.float32) / 255.0)[:, None].to(dev)
+        with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
+            p0 = torch.sigmoid(self.seg(x).float())[:, 0]
+        p0 = p0.cpu().numpy()
+        ref = np.stack([largest_component((p > 0.5).astype(np.uint8)) for p in p0])
+        samples = {"det": p0[None]}
+        if self.mc_model is not None:
+            samples["mc"] = mc_dropout_samples(self.mc_model, x, self.mc_samples, amp).cpu().numpy()
+        if "tta" in self.methods:
+            samples["tta"] = tta_samples(self.seg, x, amp).cpu().numpy()
+        if self.ens:
+            outs = []
+            for m in self.ens:
+                with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
+                    outs.append(torch.sigmoid(m(x).float())[:, 0])
+            samples["ens"] = torch.stack(outs).cpu().numpy()
+        logit = {}
+        for v, (model, view) in self.classifiers.items():
+            xv = np.stack([view(im, mk) for im, mk in zip(imgs, ref)]).astype(np.float32) / 255.0
+            with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
+                logit[v] = model(torch.from_numpy(xv)[:, None].to(dev)).float().cpu().numpy()
+        recs: list[dict] = []
+        for j in range(len(imgs)):
+            r: dict = {"pred_area": int(ref[j].sum())}
+            for m in self.methods:
+                sc = image_scores(samples[m][:, j], ref[j])
+                sc["maxprob_ring"] = -sc["maxprob_ring"]  # higher = less trustworthy, as in policy_eval
+                r.update({f"{m}:{k}": sc[k] for k in SCORE_NAMES})
+            for v in CLS_RUNS:
+                r.update({f"l_{v}_{c}": float(logit[v][j, c]) for c in range(3)})
+            recs.append(r)
+        arrays = {"prob": p0, "ref": ref, **{f"samples_{m}": s for m, s in samples.items()}}
+        return recs, arrays
+
+
 def run_fold(
     images: np.ndarray,
     fold: int,
@@ -49,51 +107,15 @@ def run_fold(
     gt_masks: np.ndarray | None = None,
 ) -> pd.DataFrame:
     """Frame with logits, uncertainty scores (and Dice vs ``gt_masks`` if given) for ``images`` (N, H, W) uint8."""
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    amp = device == "cuda"
-    seg = _seg(runs / "exp002c_unet_r34" / f"fold{fold}", device)
-    mc_model = None
-    if "mc" in methods:
-        mc_model = _seg(runs / "exp002c_unet_r34" / f"fold{fold}", device)
-        enable_mc_dropout(mc_model)
-    ens = [_seg(runs / r / f"fold{fold}", device) for r in ensemble_runs] if "ens" in methods else []
-    classifiers = {v: _cls(runs / r / f"fold{fold}", device) for v, r in CLS_RUNS.items()}
-
-    recs: list[dict] = []
+    models = FoldModels(fold, runs, methods, ensemble_runs, mc_samples=mc_samples)
+    out: list[dict] = []
     for i in range(0, len(images), batch):
-        imgs = images[i : i + batch]
-        x = torch.from_numpy(imgs.astype(np.float32) / 255.0)[:, None].to(device)
-        with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
-            p0 = torch.sigmoid(seg(x).float())[:, 0]
-        p0 = p0.cpu().numpy()
-        ref = np.stack([largest_component((p > 0.5).astype(np.uint8)) for p in p0])
-        samples = {"det": p0[None]}
-        if mc_model is not None:
-            samples["mc"] = mc_dropout_samples(mc_model, x, mc_samples, amp).cpu().numpy()
-        if "tta" in methods:
-            samples["tta"] = tta_samples(seg, x, amp).cpu().numpy()
-        if ens:
-            outs = []
-            for m in ens:
-                with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
-                    outs.append(torch.sigmoid(m(x).float())[:, 0])
-            samples["ens"] = torch.stack(outs).cpu().numpy()
-        logit = {}
-        for v, (model, view) in classifiers.items():
-            xv = np.stack([view(im, mk) for im, mk in zip(imgs, ref)]).astype(np.float32) / 255.0
-            with torch.autocast("cuda", dtype=torch.float16, enabled=amp):
-                logit[v] = model(torch.from_numpy(xv)[:, None].to(device)).float().cpu().numpy()
-        for j in range(len(imgs)):
-            r: dict = {"idx": i + j, "pred_area": int(ref[j].sum())}
-            for m in methods:
-                sc = image_scores(samples[m][:, j], ref[j])
-                sc["maxprob_ring"] = -sc["maxprob_ring"]  # higher = less trustworthy, as in policy_eval
-                r.update({f"{m}:{k}": sc[k] for k in SCORE_NAMES})
-            for v in CLS_RUNS:
-                r.update({f"l_{v}_{c}": float(logit[v][j, c]) for c in range(3)})
+        recs, arrays = models.infer(images[i : i + batch])
+        for j, r in enumerate(recs):
+            r = {"idx": i + j, **r}
             if gt_masks is not None:
                 from mediscan.metrics.seg import dice
 
-                r["dice_lcc"] = dice(ref[j], gt_masks[i + j])
-            recs.append(r)
-    return pd.DataFrame(recs)
+                r["dice_lcc"] = dice(arrays["ref"][j], gt_masks[i + j])
+            out.append(r)
+    return pd.DataFrame(out)

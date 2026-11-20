@@ -64,3 +64,6 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# M2 demo example slices (exported locally from the processed data; see configs/demo.yaml)
+/app/examples/

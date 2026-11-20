@@ -28,4 +28,5 @@ matplotlib==3.11.2
 tqdm==4.70.1
 pytest==9.2.0
 
-# Demo (M2, added later): gradio
+# Demo (M2)
+gradio==6.32.0
