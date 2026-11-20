@@ -4,6 +4,7 @@ Newest first. Each entry: date, what changed, why, commits.
 
 ## 2026-11-20 — EXP-006b results
 - (b) pre-specified pooled-val τ1 does not stabilise the router (flat objective); reported as a negative result, frozen results stay primary.
+- Pushed `exp/m1-tau1-robustness` and fast-forwarded `main` to `7c7754d`.
 - (d) robustness summary CIs: frozen router worst case and mean AURC significantly better than both fixed views.
 - Updated EXP-008 log (CI pointer), results-summary, thesis-map, presentation-bank, session log, HANDOFF.
 

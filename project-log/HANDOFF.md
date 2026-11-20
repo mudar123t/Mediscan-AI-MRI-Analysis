@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-11-20 17:55 (EXP-006b (b)+(d) done; next M2 demo)
 **Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). Next: M2 demo.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `exp/m1-tau1-robustness` (from `main` `fa29301`; not pushed): `f547997` pre-specification of EXP-006b, `9ced2ce` code (`policy_eval.pooled_val_tau1`, `fit_params(tau1=)`, `scripts/eval_exp006b.py`, 2 tests; 64 tests pass). `main` = `origin/main` = `fa29301`.
+**Branch:** `main` = `origin/main` = `7c7754d` (EXP-006b merged by fast-forward from `exp/m1-tau1-robustness`, pushed). Next: `feature/m2-demo` from `main`.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
