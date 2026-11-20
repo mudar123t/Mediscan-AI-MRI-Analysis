@@ -20,6 +20,11 @@ The strongest results, figures and "wow" points for the final presentation, coll
 11. **"Segmentation helps only when it is good."** Crop 32 beats the full image with GT masks (+0.026, p 0.005) but not with predicted masks (+0.013, CI crosses 0). The bridge to R1, quality-aware routing. Source: EXP-003.
 12. **Baseline → now:** classification 0.733 → 0.941 balanced accuracy (+0.207 [0.172, 0.244]); segmentation Dice 0.508 → 0.786. Same patients, same folds. Sources: EXP-002, EXP-003.
 
+13. **"The crop forgives bad masks, except false positives."** Crop 32 keeps 0.933 balanced accuracy with masks eroded to Dice 0.3, but drops to 0.636 when a false-positive blob is added at Dice 0.9. Source: EXP-004.
+14. **"The router never collapses."** Over 13 synthetic shifts, its worst balanced accuracy is 0.607, against 0.535 for the crop and 0.581 for the full image. At blur s3 it beats the crop by +0.145 [+0.103, +0.186]. Source: EXP-008.
+15. **"A public 'external' test set is one-third our own training data."** 1,682 BDNeuro-MRI images duplicate Figshare slices (215 of 233 patients), including 33 % of BDNeuro's own test split. On the 3,030 clean images the pipeline still scores 0.931. Source: EXP-009.
+16. **Honest negative result:** segmentation uncertainty detects broken masks (AUROC 0.899) but does not predict classifier errors (≈ 0.5), and in-distribution routing ties the crop. The oracle head-room (0.974) shows what better routing could gain. Sources: EXP-005/006.
+
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
 - Bar chart: accuracy on contaminated vs clean test, for each of the 3 inputs (data in EXP-000 `results.json`).
@@ -27,3 +32,6 @@ The strongest results, figures and "wow" points for the final presentation, coll
 - Before/after repo hygiene: 225 MB → 210 KB (ADR-0001), as an optional engineering slide.
 - EXP-002: bar chart of Dice/HD95 for arms a/b/c with patient CIs; per-class Dice bars (data in `experiments/EXP-002-segmentation/results.json`).
 - EXP-003: balanced accuracy vs crop margin (masked, 0, 8, 16, 32, full) for GT and predicted masks, with CIs (data in `experiments/EXP-003-classification/results.json`).
+- EXP-004: `experiments/EXP-004-mask-quality/accuracy_vs_mask_quality.png` (ready).
+- EXP-006: `experiments/EXP-006-router/risk_coverage.png` (ready).
+- EXP-008: `experiments/EXP-008-shift/accuracy_vs_severity.png` (ready).

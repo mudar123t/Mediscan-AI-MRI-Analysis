@@ -1,7 +1,7 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 10:40 (M1: EXP-006 preliminary done; EXP-008/009 runs going)
-**Active phase:** **Phase 6 execution, M1 (M1.1–M1.4) in progress.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Last updated:** 2026-11-20 17:10 (M1 complete; **at the M1.4 STOP gate**, waiting for Kareem)
+**Active phase:** **Phase 6 execution — M1 done; STOP after M1.4 (H-B1..H-B3 report given 2026-11-20, waiting for Kareem's decision).** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
 **Branch:** `exp/m1-uncertainty` (M1 work, from `main` `1361e81`; contains `exp/m1-r3-seg-helps`; not pushed). `main` = `origin/main` = `1361e81` (M0.4 pushed).
 
 ## Milestone status
@@ -30,16 +30,14 @@
     - Crop32 vs full: GT +0.026 (p 0.005); pred +0.013 [−0.005, +0.029] (n.s.) → motivates R1.
     - Temperature scaling lowers ECE everywhere (crop32 pred 0.033 → 0.005).
 
-- **M1 in progress (2026-11-20):**
-  - Background jobs (started ~08:52–09:00): seed run `runs/run_exp005_seeds.sh` (EXP-002c recipe, seeds 1, 2 × 5 folds; ~4.6 h alone, slower while GPU is shared; resumable); EXP-004 `scripts/run_exp004.py` (inference, ~50 min); EXP-005 scores `scripts/run_exp005.py --methods det mc tta` (~30 min). `ens` scores need the seed run.
-  - Code: `degrade.py` (EXP-004), `uncertainty.py`, `metrics/selective.py`, `router.py`, `policy_eval.py`, `corrupt.py`, `pipeline.py` (verified: reproduces EXP-003 logits/EXP-005 scores on clean images), scripts `run_exp004/eval_exp004`, `run_exp005/eval_exp005`, `eval_exp006` (EXP-006+007), `run_shift_external` (EXP-008/009), `prepare_bdneuro`.
-  - **BDNeuro-MRI finding (EXP-009 data, V):** of 5,154 tumor images, **1,682 are pixel duplicates of Figshare slices** (64² correlation ≥ 0.96; different Figshare patients never exceed 0.952), covering 215/233 Figshare patients, label agreement 99.5 %; 442 ambiguous (0.90–0.96); **3,030 clean** used as external test. Even BDNeuro's own test folder is 33 % Figshare duplicates. `data/processed/bdneuro_256/` (report.json). Zip in `dataset/external/bdneuro_v7/` (SHA-256 verified).
-  - **EXP-004 done** (inference + `eval_exp004.py` → `experiments/EXP-004-mask-quality/`): context crops tolerate erode/dilate/shift (crop32 0.933 at Dice 0.3 erosion) but a false-positive blob breaks all crops (crop32 0.636 already at Dice 0.9); real predicted masks with Dice < 0.3 (224 slices): crop32 0.641 vs full 0.889 (−0.248); Dice 0.5–0.7: crop32 +0.082 [0.019, 0.161].
-  - **EXP-005 (det/mc/tta):** seg uncertainty predicts seg failure (Dice < 0.7) with AUROC ≈ 0.84–0.85 and Dice < 0.3 with 0.87–0.90, but **not** crop-32 classifier error (≈ 0.43–0.50); MSP does (0.897). Most crop errors occur on good masks. Fix applied: "adds to MSP" now uses −log(1−MSP) features and mean within-fold AUROC (pooling per-fold regressions gave an artefact, 0.746 vs 0.897); analysis re-running.
-  - **EXP-006 criterion change (documented):** the router's score is chosen on pooled val by AUROC for "crop wrong while full right" (not "any crop error"); fixed after the EXP-004/005 analyses, before EXP-006 ran. Preliminary EXP-006 (det/mc/tta) running; final run adds `ens` after the seed run.
-  - **EXP-006/007 preliminary (det/mc/tta; `runs/eval_exp006_prelim.log`):** val-chosen score `tta:disagree` (val AUROC 0.593 for "crop wrong, full right", 96 positives). Router bal. acc 0.935 vs crop32+MSP 0.941 (Δ −0.006 [−0.019, +0.008]); AURC Δ −0.0003 n.s.; vs full+MSP: AURC −0.011 [−0.032, −0.0002]. Oracle router 0.974 (headroom). Conformal α 0.05: coverage 0.939–0.950; α 0.1: 0.882–0.902. → H-B1/H-B2 not supported in-distribution so far.
-  - **Running (started ~10:35):** `runs/exp008_009.log` = EXP-009 external (5 fold model sets × 3,030 clean BDNeuro) then EXP-008 shift (13 conditions × 5 folds), methods det+tta; estimate [I] ~1.5 h. Then `scripts/eval_shift_external.py --exp006 ... --out-shift project-log/experiments/EXP-008-shift --out-external project-log/experiments/EXP-009-external`.
-  - Order after jobs: `eval_exp004` → `eval_exp005` → `eval_exp006` (chooses uncertainty score on val) → EXP-008 shift + EXP-009 external runs (long; announce) → analysis → logs → STOP.
+- **M1 done (2026-11-20)**, branch `exp/m1-uncertainty`, not pushed. Logs: [EXP-004](experiments/EXP-004-mask-quality.md), [EXP-005](experiments/EXP-005-uncertainty.md), [EXP-006/007](experiments/EXP-006-router.md), [EXP-008](experiments/EXP-008-shift.md), [EXP-009](experiments/EXP-009-external.md); session [2026-11-20-m1-routing-shift-external](sessions/2026-11-20-m1-routing-shift-external.md).
+  - EXP-004: crop32 tolerant to eroded/dilated/shifted masks (0.933 at Dice 0.3), broken by false-positive blobs (0.636 at Dice 0.9); real Dice < 0.3 (224 slices, 172 zero overlap): crop32 −0.248 vs full.
+  - EXP-005: `ens:disagree` best seg-failure detector (AUROC 0.899); no seg score predicts classifier error or adds to MSP (0.909).
+  - EXP-006/007 (frozen score `ens:disagree`): router 0.935 vs crop32 0.941 (n.s.); AURC vs full −0.0115 [−0.0327, −0.0006]; τ1 unstable (val crop share 0.00–0.94); oracle 0.974. CP marginal coverage ≈ 1−α; meningioma 0.75 at α 0.1.
+  - EXP-008: router − crop32 grows with noise/blur severity (+0.072 / +0.145 at s3); router − full +0.05..+0.09 under gamma; best worst-case (0.607) and mean AURC (0.072) over 13 conditions. CP coverage collapses under shift, referral rises.
+  - EXP-009: BDNeuro 1,682/5,154 duplicates of Figshare (33 % of its test split); clean 3,030: crop32 0.931, router 0.922, full 0.904; router outcome set by each fold's τ1.
+  - **Hypotheses:** H-B1 not supported; H-B2 supported vs full-image MSP gate only; H-B3 partly supported (synthetic noise/blur yes; external no).
+  - Run notes: seed run crashed once (transient CUDA error), resumed; `runs/run_exp005_seeds.sh` now `set -eo pipefail`; seeded training not bit-exact. Preliminary det+tta outputs in `runs/*_prelim_tta/`.
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -60,11 +58,13 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. Finish M1 (see M1 block above), then **STOP after M1.4**. Re-run aggregation any time: `.venv/Scripts/python scripts/eval_cls.py --runs exp003a_simplecnn_old exp003_r18_full exp003_r18_masked exp003_r18_crop0 exp003_r18_crop8 exp003_r18_crop16 exp003_r18_crop32 exp003_effb0_full --out project-log/experiments/EXP-003-classification/results.json`.
-2. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
+1. **Wait for Kareem at the M1.4 STOP.** Then commit the M1 logs/outputs (if not done) and show what will be pushed before pushing `exp/m1-uncertainty`.
+2. Options to discuss (not decided): (a) accept M1 as is and go to M2 demo; (b) stabilise τ1 (e.g. fit on pooled val of all other folds, or a fixed Dice-based rule) — needs Kareem's OK as it changes the frozen protocol; (c) class-conditional (Mondrian) CP for the meningioma gap; (d) CIs for the worst-case/mean-over-conditions summary in EXP-008.
+3. Then M2 demo → STOP → decide extras.
 
 ## Open questions / blockers
-- Segmentation below the planned target (0.786 vs 0.85–0.93): accept for M1, or 1–2 validation-only tuning runs (extra seeds, 384², loss, threshold)? To be decided at the M0.4 STOP.
+- Segmentation below target (0.786): Kareem decided 2026-11-20 to keep EXP-002c (no tuning).
+- M1.4 STOP: which of options (a)–(d) above, if any?
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 

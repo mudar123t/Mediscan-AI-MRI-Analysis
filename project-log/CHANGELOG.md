@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M1 complete (EXP-008/009 final), STOP at M1.4
+- EXP-008/009 inference re-run with det+ens (16:07–16:46) for the frozen score `ens:disagree`; final analysis in `experiments/EXP-008-shift/`, `EXP-009-external/`.
+- Added `EXP-008-shift.md`, `EXP-009-external.md`, session log `sessions/2026-11-20-m1-routing-shift-external.md`; updated results-summary, thesis-map, presentation-bank.
+- H-B1 not supported; H-B2 vs full only; H-B3 partly (synthetic noise/blur).
+
+## 2026-11-20 — Final EXP-005/006 with seed ensemble; M1 logs
+- Seed run finished 16:04; ensemble scores computed. EXP-006 frozen score is now `ens:disagree`; conclusions unchanged (router ≈ crop32; better AURC than full). EXP-008/009 re-run with det+ens started 16:07.
+- Added `experiments/EXP-004-mask-quality.md`, `EXP-005-uncertainty.md`, `EXP-006-router.md` (with EXP-007).
+
+## 2026-11-20 — Seed run crash and resume
+- Seed 2 fold 2 crashed (CUDA unknown error, transient); run script now uses `set -eo pipefail` so failures are not masked by the log filter; resumed 14:02, ETA ~15:45–16:30. Noted that seeded training is not bit-exact on this GPU.
+
+## 2026-11-20 — EXP-008/009 inference done
+- EXP-009 external (3,030 clean BDNeuro × 5 fold model sets) and EXP-008 shift (13 conditions × 5 folds) pipeline outputs in `runs/` (git-ignored); preliminary analysis running. Seed-run finish re-estimated to ~14:30–15:00.
+- Preliminary EXP-008/009 analysis: router protects against the crop collapsing under noise/blur s3 (+0.073 / +0.142 bal. acc vs crop32) and against the full view collapsing under gamma (+0.089 vs full at s2); on the external set crop32 is best (0.931) and the router is in between (0.922).
+
 ## 2026-11-20 — EXP-006 preliminary; EXP-008/009 runs started
 - Preliminary EXP-006/007 (no ensemble): router ≈ crop32 in-distribution (Δ bal. acc −0.006, n.s.), better AURC than full image; oracle headroom 0.974.
 - `cfe8429` exp: `scripts/eval_shift_external.py` (frozen policies on shift/external).

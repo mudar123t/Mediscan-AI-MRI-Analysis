@@ -18,6 +18,11 @@ Maps log entries and findings to the semester-2 thesis sections. Semester-1 thes
 | 4 Experiments — segmentation baseline | `experiments/EXP-002-segmentation.md`, `results.json` | Recipe vs encoder ablation (a/b/c), pooled 5-fold OOF Dice/IoU/HD95/NSD with patient CIs, paired tests, per class, LCC ablation, training cost | ready |
 | 4 Experiments — classification baseline and views | `experiments/EXP-003-classification.md`, `results.json` | SimpleCNN old vs ResNet-18/EffNet-B0; views full / masked ROI / crop 0–32 px × GT vs predicted masks; paired patient bootstrap; temperature scaling | ready |
 | 6 Discussion — why semester-1 seg-guided classification failed | EXP-003 conclusions 3–4 | Masked ROI −0.079 vs full; context rises with margin; predicted masks cost 1–2 points → motivates R1 | ready |
+| 4 Experiments — when segmentation helps (R3) | `experiments/EXP-004-mask-quality.md`, `controlled.csv`, `predicted_by_dice.csv`, figure | Controlled mask degradation × context margin; real masks by Dice bin | ready |
+| 4 Experiments — uncertainty signals | `experiments/EXP-005-uncertainty.md`, `auroc_table.csv` | MC/TTA/ensemble scores; seg-failure vs classification-error AUROC; "adds to MSP" (pooling fix noted) | ready |
+| 4/5 Contribution — routing and conformal referral (R1, R7) | `experiments/EXP-006-router.md`, `risk_coverage.png` | Router vs fixed views, risk–coverage, oracle head-room, τ1 instability, class-conditional CP gap | ready |
+| 5 Results — robustness to shift / external (H-B3) | `experiments/EXP-008-shift.md`, `EXP-009-external.md`, `accuracy_vs_severity.png` | Severity curves, worst-case summary, external test, BDNeuro duplicate audit | ready |
+| 6 Discussion — negative results and limits | EXP-005/006 conclusions, EXP-009 limitation | Seg uncertainty ≠ classifier error; router value is robustness, not in-distribution gain; image-level CIs on BDNeuro | ready |
 | 5 Results | `experiments/results-summary.md` | Master table | ongoing |
 | 6 Discussion — limitations of semester 1 | `00-project-understanding.md §8`, `EXP-000` conclusions | Leakage inflated accuracy by 0.11 (full image); predicted-ROI pipeline ≈ majority class | ready |
 | Appendix — reproducibility / engineering | `decisions/ADR-0001..0004`, `CHANGELOG.md` | Repo cleanup, workflow, logging, hooks | ready |
