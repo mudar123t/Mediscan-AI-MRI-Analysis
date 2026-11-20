@@ -38,10 +38,13 @@ def _cls(run_dir: Path, device: str) -> tuple[torch.nn.Module, object]:
 
 
 class FoldModels:
-    """All models of one fold, loaded once (batch runs and the M2 demo)."""
+    """All models of one fold, loaded once (batch runs and the M2 demo).
+
+    ``views`` limits the classifiers loaded (the demo needs only crop32 and full).
+    """
 
     def __init__(self, fold: int, runs: Path, methods: list[str], ensemble_runs: list[str],
-                 device: str | None = None, mc_samples: int = 20) -> None:
+                 device: str | None = None, mc_samples: int = 20, views: tuple[str, ...] = tuple(CLS_RUNS)) -> None:
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.amp = self.device == "cuda"
         self.methods, self.mc_samples = list(methods), mc_samples
@@ -51,7 +54,7 @@ class FoldModels:
             self.mc_model = _seg(runs / "exp002c_unet_r34" / f"fold{fold}", self.device)
             enable_mc_dropout(self.mc_model)
         self.ens = [_seg(runs / r / f"fold{fold}", self.device) for r in ensemble_runs] if "ens" in methods else []
-        self.classifiers = {v: _cls(runs / r / f"fold{fold}", self.device) for v, r in CLS_RUNS.items()}
+        self.classifiers = {v: _cls(runs / CLS_RUNS[v] / f"fold{fold}", self.device) for v in views}
 
     @torch.no_grad()
     def infer(self, imgs: np.ndarray) -> tuple[list[dict], dict[str, np.ndarray]]:
@@ -89,7 +92,7 @@ class FoldModels:
                 sc = image_scores(samples[m][:, j], ref[j])
                 sc["maxprob_ring"] = -sc["maxprob_ring"]  # higher = less trustworthy, as in policy_eval
                 r.update({f"{m}:{k}": sc[k] for k in SCORE_NAMES})
-            for v in CLS_RUNS:
+            for v in self.classifiers:
                 r.update({f"l_{v}_{c}": float(logit[v][j, c]) for c in range(3)})
             recs.append(r)
         arrays = {"prob": p0, "ref": ref, **{f"samples_{m}": s for m, s in samples.items()}}

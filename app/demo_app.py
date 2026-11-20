@@ -95,7 +95,7 @@ def main() -> None:
     cfg = load_config(args.config)
     params = load_params(Path(cfg["params_out"]))
     models = FoldModels(int(cfg["fold"]), Path("runs"), [params["score"].split(":")[0]], params["ensemble_runs"],
-                        device=args.device)
+                        device=args.device, views=("crop32", "full"))
     examples = sorted(Path(cfg["examples_dir"]).glob("*.png"))
     print(f"models of fold {cfg['fold']} loaded on {models.device}; {len(examples)} examples")
     build_app(models, params, float(cfg["alpha_default"]), examples).launch(server_name="127.0.0.1",

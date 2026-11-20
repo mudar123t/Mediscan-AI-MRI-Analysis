@@ -50,11 +50,13 @@ It is a research prototype and **not a medical device**.
 
 ![Demo outputs: predicted mask, uncertainty map and classifier input for an uncertain (top) and a confident (bottom) case](images/demo_outputs.png)
 
-The model weights are not in git, so they must be in `runs/` first (trained with the scripts in `scripts/`). Then:
+The model weights are not in git. They are published as a release asset: [`demo-weights-fold3-v1`](https://github.com/mudar123t/Mediscan-AI-MRI-Analysis/releases/tag/demo-weights-fold3-v1), 356 MB, SHA-256 `da2c6928b294cf7a14e4df5c18b6dca1914684970f3cc9e363c2e248db1cf8eb`. After the setup above:
 ```bash
-python scripts/export_demo_params.py --config configs/demo.yaml   # policy parameters + example slices
-python app/demo_app.py                                            # open http://127.0.0.1:7860 (add --device cpu without a GPU)
+gh release download demo-weights-fold3-v1 --repo mudar123t/Mediscan-AI-MRI-Analysis   # or download the zip from the release page
+unzip mediscan-demo-weights-fold3.zip      # restores runs/<run>/fold3/ and app/examples/ (Windows: Expand-Archive)
+python app/demo_app.py                     # open http://127.0.0.1:7860 (add --device cpu without a GPU)
 ```
+For the provided examples, untick "Apply intensity normalisation", because they are already preprocessed. If you trained the models yourself, `python scripts/export_demo_params.py --config configs/demo.yaml` refits the policy parameters and re-exports the examples.
 The demo uses the models of one cross-validation fold (`configs/demo.yaml`). Its example slices come from that fold's test patients. Example images: Figshare brain tumour dataset (Cheng et al., CC BY 4.0).
 
 ## Results (Pilot Study)
