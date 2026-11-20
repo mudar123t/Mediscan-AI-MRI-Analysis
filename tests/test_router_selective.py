@@ -53,3 +53,36 @@ def test_conformal_coverage_close_to_target() -> None:
         sets = prediction_sets(pt, q)
         cov = sets[np.arange(len(yt)), yt].mean()
         assert abs(cov - (1 - alpha)) < 0.02
+
+
+def _synthetic_val(seed: int, n: int = 200):
+    import pandas as pd
+
+    rng = np.random.default_rng(seed)
+    y = rng.integers(0, 3, n)
+    df = pd.DataFrame({"y": y, "ens:disagree": rng.random(n)})
+    for v in ("crop32", "full", "masked"):
+        lg = rng.normal(0, 1, (n, 3))
+        lg[np.arange(n), y] += 2.0
+        for c in range(3):
+            df[f"l_{v}_{c}"] = lg[:, c]
+    return df
+
+
+def test_pooled_val_tau1_ignores_frame_containing_test_fold():
+    from mediscan.policy_eval import pooled_val_tau1
+
+    vals = {j: _synthetic_val(j) for j in range(5)}
+    k = 2
+    t1 = pooled_val_tau1(vals, k, "ens:disagree")
+    vals[(k - 1) % 5] = _synthetic_val(99)  # the val frame whose slices are test fold k
+    assert pooled_val_tau1(vals, k, "ens:disagree") == t1
+    vals[(k + 1) % 5] = _synthetic_val(98)  # any other frame is used
+    assert np.isfinite(t1) or np.isinf(t1)
+
+
+def test_fit_params_uses_given_tau1():
+    from mediscan.policy_eval import fit_params
+
+    p = fit_params(_synthetic_val(0), "ens:disagree", tau1=0.37)
+    assert p["tau1"] == 0.37

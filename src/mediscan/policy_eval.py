@@ -66,14 +66,19 @@ def _combined_features(p: np.ndarray, u: np.ndarray, used: np.ndarray) -> np.nda
     return np.column_stack([-np.log1p(-np.clip(p.max(1), 0, 1 - 1e-7)), u, used.astype(float)])
 
 
-def fit_params(va: pd.DataFrame, score: str) -> dict[str, Any]:
-    """Fit every policy parameter on one fold's validation frame."""
+def fit_params(va: pd.DataFrame, score: str, tau1: float | None = None) -> dict[str, Any]:
+    """Fit every policy parameter on one fold's validation frame.
+
+    ``tau1`` given: use it instead of fitting it on ``va`` (EXP-006b pooled-val rule);
+    the combined regression and conformal thresholds are then fitted with that tau1.
+    """
     fill = float(va[score].max())
     u = va[score].fillna(fill).to_numpy()
     y = va.y.to_numpy()
     temps = {v: fit_temperature(logits(va, v), y) for v in VIEWS}
     P = {v: clsm.softmax(logits(va, v) / temps[v]) for v in VIEWS}
-    tau1 = fit_tau1(P["crop32"], P["full"], u, y)
+    if tau1 is None:
+        tau1 = fit_tau1(P["crop32"], P["full"], u, y)
     p_r, used = route(P["crop32"], P["full"], u, tau1)
     lr = make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))
     lr.fit(_combined_features(p_r, u, used), (p_r.argmax(1) == y).astype(int))
@@ -83,6 +88,24 @@ def fit_params(va: pd.DataFrame, score: str) -> dict[str, Any]:
             q[f"{name}@{alpha}"] = conformal_threshold(p, y, alpha)
     return {"score": score, "fill": fill, "temps": temps, "tau1": tau1, "lr": lr, "q": q,
             "frac_crop_val": float(used.mean())}
+
+
+def pooled_val_tau1(vals: dict[int, pd.DataFrame], k: int, score: str, n_folds: int = 5) -> float:
+    """EXP-006b: tau1 for test fold k fitted on the pooled val frames of models j != k-1.
+
+    Model j's val fold is (j + 1) mod n_folds, so excluding j = k - 1 keeps every slice of
+    test fold k out of the fit. Each frame uses its own temperature-scaled probabilities.
+    """
+    pc, pf, us, ys = [], [], [], []
+    for j, va in vals.items():
+        if j == (k - 1) % n_folds:
+            continue
+        y = va.y.to_numpy()
+        for v, acc in (("crop32", pc), ("full", pf)):
+            acc.append(clsm.softmax(logits(va, v) / fit_temperature(logits(va, v), y)))
+        us.append(va[score].fillna(float(va[score].max())).to_numpy())
+        ys.append(y)
+    return fit_tau1(np.concatenate(pc), np.concatenate(pf), np.concatenate(us), np.concatenate(ys))
 
 
 def apply_params(params: dict[str, Any], df: pd.DataFrame) -> pd.DataFrame:
