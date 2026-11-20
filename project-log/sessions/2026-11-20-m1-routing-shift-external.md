@@ -48,4 +48,4 @@ STOP after M1.4 with the H-B1..H-B3 report.
    - The router's result follows each fold's τ1, not per-image decisions.
 
 ## Outcome
-M1 experiments are complete. The STOP report on H-B1..H-B3 goes to Kareem. Nothing is pushed yet.
+M1 experiments are complete. The STOP report on H-B1..H-B3 was given. **Kareem's decision (17:20):** options (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2; nothing to be run yet (ADR-0008). Branch `exp/m1-uncertainty` pushed.

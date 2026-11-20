@@ -1,7 +1,7 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 17:10 (M1 complete; **at the M1.4 STOP gate**, waiting for Kareem)
-**Active phase:** **Phase 6 execution — M1 done; STOP after M1.4 (H-B1..H-B3 report given 2026-11-20, waiting for Kareem's decision).** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Last updated:** 2026-11-20 17:30 (M1.4 gate passed: Kareem chose (b)+(d), not run yet; branch pushed)
+**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem: do not run anything until he says so.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
 **Branch:** `exp/m1-uncertainty` (M1 work, from `main` `1361e81`; contains `exp/m1-r3-seg-helps`; not pushed). `main` = `origin/main` = `1361e81` (M0.4 pushed).
 
 ## Milestone status
@@ -30,7 +30,7 @@
     - Crop32 vs full: GT +0.026 (p 0.005); pred +0.013 [−0.005, +0.029] (n.s.) → motivates R1.
     - Temperature scaling lowers ECE everywhere (crop32 pred 0.033 → 0.005).
 
-- **M1 done (2026-11-20)**, branch `exp/m1-uncertainty`, not pushed. Logs: [EXP-004](experiments/EXP-004-mask-quality.md), [EXP-005](experiments/EXP-005-uncertainty.md), [EXP-006/007](experiments/EXP-006-router.md), [EXP-008](experiments/EXP-008-shift.md), [EXP-009](experiments/EXP-009-external.md); session [2026-11-20-m1-routing-shift-external](sessions/2026-11-20-m1-routing-shift-external.md).
+- **M1 done (2026-11-20)**, branch `exp/m1-uncertainty`, pushed to `origin` 2026-11-20 (`main` not updated). Logs: [EXP-004](experiments/EXP-004-mask-quality.md), [EXP-005](experiments/EXP-005-uncertainty.md), [EXP-006/007](experiments/EXP-006-router.md), [EXP-008](experiments/EXP-008-shift.md), [EXP-009](experiments/EXP-009-external.md); session [2026-11-20-m1-routing-shift-external](sessions/2026-11-20-m1-routing-shift-external.md).
   - EXP-004: crop32 tolerant to eroded/dilated/shifted masks (0.933 at Dice 0.3), broken by false-positive blobs (0.636 at Dice 0.9); real Dice < 0.3 (224 slices, 172 zero overlap): crop32 −0.248 vs full.
   - EXP-005: `ens:disagree` best seg-failure detector (AUROC 0.899); no seg score predicts classifier error or adds to MSP (0.909).
   - EXP-006/007 (frozen score `ens:disagree`): router 0.935 vs crop32 0.941 (n.s.); AURC vs full −0.0115 [−0.0327, −0.0006]; τ1 unstable (val crop share 0.00–0.94); oracle 0.974. CP marginal coverage ≈ 1−α; meningioma 0.75 at α 0.1.
@@ -58,15 +58,15 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **Wait for Kareem at the M1.4 STOP.** Then commit the M1 logs/outputs (if not done) and show what will be pushed before pushing `exp/m1-uncertainty`.
-2. Options to discuss (not decided): (a) accept M1 as is and go to M2 demo; (b) stabilise τ1 (e.g. fit on pooled val of all other folds, or a fixed Dice-based rule) — needs Kareem's OK as it changes the frozen protocol; (c) class-conditional (Mondrian) CP for the meningioma gap; (d) CIs for the worst-case/mean-over-conditions summary in EXP-008.
-3. Then M2 demo → STOP → decide extras.
+1. **Wait for Kareem's go** (he said: don't run anything now).
+2. Then (ADR-0008): (b) EXP-006b stabilised τ1 — write the val-only fitting rule down first, report as a separate labelled analysis, keep frozen results primary; (d) paired patient-bootstrap CIs for worst-case/mean over the 13 EXP-008 conditions (CPU, ~30 min).
+3. Then M2 demo → STOP → decide extras. Ask Kareem whether to merge `exp/m1-uncertainty` into `main`.
 
 ## Open questions / blockers
 - Segmentation below target (0.786): Kareem decided 2026-11-20 to keep EXP-002c (no tuning).
-- M1.4 STOP: which of options (a)–(d) above, if any?
+- Merge `exp/m1-uncertainty` into `main`: not asked yet.
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 
 ## Key decisions
-ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding · ADR-0006 Option C, "B first" · **ADR-0007 Phase 6 plan approved**.
+ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding · ADR-0006 Option C, "B first" · **ADR-0007 Phase 6 plan approved** · **ADR-0008 M1 gate: (b)+(d)**.
