@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 04:30 (M0.4 done → **STOP gate**)
-**Active phase:** **Phase 6 execution, M0.4 done. STOP gate (report vs baseline): waiting for Kareem's decisions before M1.** Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `exp/m0-classification` (from `main` `1f9377c`; commits `18e6fe1`, `7cf0f70`, docs; not pushed). `origin/main` = `cf69bb2`; local `main` has 1 unpushed docs commit `1f9377c`.
+**Last updated:** 2026-11-20 09:30 (M1 in progress)
+**Active phase:** **Phase 6 execution, M1 (M1.1–M1.4) in progress.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `exp/m1-uncertainty` (M1 work, from `main` `1361e81`; contains `exp/m1-r3-seg-helps`; not pushed). `main` = `origin/main` = `1361e81` (M0.4 pushed).
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -30,6 +30,12 @@
     - Crop32 vs full: GT +0.026 (p 0.005); pred +0.013 [−0.005, +0.029] (n.s.) → motivates R1.
     - Temperature scaling lowers ECE everywhere (crop32 pred 0.033 → 0.005).
 
+- **M1 in progress (2026-11-20):**
+  - Background jobs (started ~08:52–09:00): seed run `runs/run_exp005_seeds.sh` (EXP-002c recipe, seeds 1, 2 × 5 folds; ~4.6 h alone, slower while GPU is shared; resumable); EXP-004 `scripts/run_exp004.py` (inference, ~50 min); EXP-005 scores `scripts/run_exp005.py --methods det mc tta` (~30 min). `ens` scores need the seed run.
+  - Code: `degrade.py` (EXP-004), `uncertainty.py`, `metrics/selective.py`, `router.py`, `policy_eval.py`, `corrupt.py`, `pipeline.py` (verified: reproduces EXP-003 logits/EXP-005 scores on clean images), scripts `run_exp004/eval_exp004`, `run_exp005/eval_exp005`, `eval_exp006` (EXP-006+007), `run_shift_external` (EXP-008/009), `prepare_bdneuro`.
+  - **BDNeuro-MRI finding (EXP-009 data, V):** of 5,154 tumor images, **1,682 are pixel duplicates of Figshare slices** (64² correlation ≥ 0.96; different Figshare patients never exceed 0.952), covering 215/233 Figshare patients, label agreement 99.5 %; 442 ambiguous (0.90–0.96); **3,030 clean** used as external test. Even BDNeuro's own test folder is 33 % Figshare duplicates. `data/processed/bdneuro_256/` (report.json). Zip in `dataset/external/bdneuro_v7/` (SHA-256 verified).
+  - Order after jobs: `eval_exp004` → `eval_exp005` → `eval_exp006` (chooses uncertainty score on val) → EXP-008 shift + EXP-009 external runs (long; announce) → analysis → logs → STOP.
+
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
 - Phase 3 idea analysis: [ideas/idea-matrix.md](ideas/idea-matrix.md). Now includes the Phase 4 verdicts and research ideas R1–R7.
@@ -49,7 +55,7 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **STOP (M0.4 gate):** Kareem decides (a) push `exp/m0-classification` + update `main`; (b) accept EXP-002c segmenter or tune it; (c) go to M1. Re-run aggregation any time: `.venv/Scripts/python scripts/eval_cls.py --runs exp003a_simplecnn_old exp003_r18_full exp003_r18_masked exp003_r18_crop0 exp003_r18_crop8 exp003_r18_crop16 exp003_r18_crop32 exp003_effb0_full --out project-log/experiments/EXP-003-classification/results.json`.
+1. Finish M1 (see M1 block above), then **STOP after M1.4**. Re-run aggregation any time: `.venv/Scripts/python scripts/eval_cls.py --runs exp003a_simplecnn_old exp003_r18_full exp003_r18_masked exp003_r18_crop0 exp003_r18_crop8 exp003_r18_crop16 exp003_r18_crop32 exp003_effb0_full --out project-log/experiments/EXP-003-classification/results.json`.
 2. M1 (R3, uncertainty, router, conformal, shift/external) → STOP → M2 demo → STOP → decide extras.
 
 ## Open questions / blockers

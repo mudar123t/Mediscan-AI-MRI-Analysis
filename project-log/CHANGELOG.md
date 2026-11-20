@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M0.4 pushed; M1 started
+- Pushed `exp/m0-classification`; `main` fast-forwarded to `1361e81` (Kareem approved). Kareem: keep the EXP-002c segmenter, start M1, do M1.4 without asking.
+- Branch `exp/m1-uncertainty` (+ `exp/m1-r3-seg-helps`): `b7ac0ee` seed configs; `8fab45b` EXP-004 degradation study; EXP-005 uncertainty sampling/scores; `3f6187e` selective metrics, router, conformal, BDNeuro prep + duplicate audit; `9e8b014` policy evaluation, corruptions, end-to-end pipeline.
+- BDNeuro-MRI downloaded (112 MB, SHA-256 verified): 1,682 / 5,154 tumor images are Figshare duplicates → only 3,030 clean images used.
+- Long runs started: segmenter seeds 1–2 (~4.6 h+), EXP-004 and EXP-005 inference.
+
 ## 2026-11-20 — M0.4 done: EXP-003 results logged (STOP gate)
 - EXP-003 (40 runs, 4.1 h, 5-fold patient-disjoint, 3,064 slices): fair semester-1 baseline SimpleCNN bal. acc 0.733 [0.703, 0.765]; ResNet-18 full 0.928; best automatic pipeline ResNet-18 crop 32 px + predicted masks 0.941 [0.916, 0.961] (acc 0.948); masked ROI (semester-1 view) −0.079 vs full; crop 32 beats full with GT masks (+0.026) but not with predicted masks (+0.013, n.s.).
 - New: `experiments/EXP-003-classification.md` + `results.json`; session log `sessions/2026-11-20-m0-4-classification.md`. Updated results-summary, thesis-map, presentation-bank (beats 10–12), environment (classifier epoch times), HANDOFF.
