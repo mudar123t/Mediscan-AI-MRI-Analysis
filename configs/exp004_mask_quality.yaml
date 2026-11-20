@@ -1,0 +1,9 @@
+# EXP-004 (M1.1, R3): classifier output vs controlled mask quality x context. Inference only.
+experiment: EXP-004
+run_name: exp004_mask_quality
+view_runs: [exp003_r18_masked, exp003_r18_crop0, exp003_r18_crop8, exp003_r18_crop16, exp003_r18_crop32]
+reference_run: exp003_r18_full          # mask-free reference (its EXP-003 test logits)
+kinds: [erode, dilate, shift, blob]
+targets: [0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]
+seed: 0
+folds: [0, 1, 2, 3, 4]
