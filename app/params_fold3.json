@@ -1,0 +1,31 @@
+{
+ "fold": 3,
+ "score": "ens:disagree",
+ "fill": 0.7744868797090153,
+ "tau1": 0.25400895872113943,
+ "temps": {
+  "full": 2.3689116841791145,
+  "crop32": 1.6810864533994385,
+  "masked": 1.2829279552322101
+ },
+ "q": {
+  "router@0.05": 0.5571938753128052,
+  "crop32@0.05": 0.6926199197769165,
+  "full@0.05": 0.7779796719551086,
+  "router@0.1": 0.26339733600616455,
+  "crop32@0.1": 0.3361080288887024,
+  "full@0.1": 0.35608941316604614
+ },
+ "frac_crop_val": 0.8989113530326595,
+ "class_names": [
+  "meningioma",
+  "glioma",
+  "pituitary"
+ ],
+ "ensemble_runs": [
+  "exp002c_unet_r34",
+  "exp002c_unet_r34_s1",
+  "exp002c_unet_r34_s2"
+ ],
+ "source": "EXP-006 frozen protocol, fitted on val fold 4 by scripts/export_demo_params.py"
+}

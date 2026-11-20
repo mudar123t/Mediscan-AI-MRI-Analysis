@@ -1,0 +1,11 @@
+# M2 demo (plan §3.5). Policy parameters are the EXP-006 frozen-protocol values of one fold,
+# refitted on that fold's val data by scripts/export_demo_params.py (checked against EXP-006).
+# Fold 3 is used because its fitted tau1 (0.254) actually routes: crop by default, full image when
+# the mask is uncertain. Fold 0's tau1 is -inf (always full image), which would hide the router.
+fold: 3
+exp006_results: project-log/experiments/EXP-006-router/results.json
+ensemble_runs: [exp002c_unet_r34, exp002c_unet_r34_s1, exp002c_unet_r34_s2]
+alpha_default: 0.1
+params_out: app/params_fold3.json
+examples_dir: app/examples          # git-ignored; slices from test fold 3 (never seen by fold-3 models)
+routed_csv: project-log/experiments/EXP-006-router/test_routed.csv
