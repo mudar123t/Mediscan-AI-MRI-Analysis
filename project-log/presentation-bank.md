@@ -36,4 +36,4 @@ The strongest results, figures and "wow" points for the final presentation, coll
 - EXP-004: `experiments/EXP-004-mask-quality/accuracy_vs_mask_quality.png` (ready).
 - EXP-006: `experiments/EXP-006-router/risk_coverage.png` (ready).
 - EXP-008: `experiments/EXP-008-shift/accuracy_vs_severity.png` (ready).
-- M2 demo: `images/demo_outputs.png` (mask / uncertainty / classifier input for an uncertain and a confident case; ready). A live screenshot of the app UI is still to be taken by Kareem.
+- M2 demo: `images/demo_outputs.png` (mask / uncertainty / classifier input for an uncertain and a confident case; ready). App UI screenshots: `images/demo_ui_referred.png` (meningioma misclassified as pituitary at 0.54 → empty conformal set → REFER: the safety net catching an error) and `images/demo_ui_confident.png` (pituitary 0.99, crop view, no referral).

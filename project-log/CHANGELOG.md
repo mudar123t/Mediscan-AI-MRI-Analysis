@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M2 approved; demo weights released
+- Kareem approved the demo ("looks good"; screenshots saved to `images/demo_ui_*.png`) and chose option (a) ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)).
+- `00eeaf6` demo loads only the crop32/full classifiers; README download instructions. `e2e062f` screenshots. `main` fast-forwarded to `e2e062f` and pushed.
+- GitHub Release `demo-weights-fold3-v1` with `mediscan-demo-weights-fold3.zip` (355.6 MB, SHA-256 da2c6928…). Fresh-clone check passed.
+
 ## 2026-11-20 — M2 local demo (STOP: demo review)
 - Branch `feature/m2-demo`: Gradio 6.32.0 pinned; `pipeline.FoldModels` refactor (output identical); `mediscan/demo.py`; `scripts/export_demo_params.py`, `configs/demo.yaml`, `app/params_fold3.json`; `app/demo_app.py`; `tests/test_demo.py` (70 tests pass); README demo section + figure; environment.md.
 - Fold 3 used (fold 0's τ1 = −∞ would hide routing). Demo reproduces EXP-006 decisions on test-fold examples.

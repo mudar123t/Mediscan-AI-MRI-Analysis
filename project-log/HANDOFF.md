@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 18:10 (M2 demo built; **at the M2 STOP: demo review**)
-**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo built → STOP: demo review (waiting for Kareem).** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `feature/m2-demo` (from `main`; M2 demo). `main` = `origin/main` includes M1 + EXP-006b.
+**Last updated:** 2026-11-20 18:30 (M2 approved and merged; weights released; next: M3 extras decision)
+**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). Next: decide M3 extras with Kareem.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `main` = `origin/main` includes M1, EXP-006b and M2 (`feature/m2-demo` fast-forwarded). Next work on a new branch from `main`.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -41,7 +41,8 @@
   - Run notes: seed run crashed once (transient CUDA error), resumed; `runs/run_exp005_seeds.sh` now `set -eo pipefail`; seeded training not bit-exact. Preliminary det+tta outputs in `runs/*_prelim_tta/`.
 
 - **M2 demo built (2026-11-20)**, session [2026-11-20-m2-demo](sessions/2026-11-20-m2-demo.md). `app/demo_app.py` (Gradio 6.32.0, local 127.0.0.1:7860), `src/mediscan/demo.py`, `pipeline.FoldModels` (load once; verified identical to stored EXP-009 output), `scripts/export_demo_params.py` + `configs/demo.yaml` → `app/params_fold3.json` (fold 3: τ1 0.254 actually routes; fold 0 is always-full). Examples (test fold 3, git-ignored) reproduce EXP-006 decisions exactly via the HTTP API. ~140 ms/slice GPU, ~2 s per web request. 70 tests pass. README demo section + `images/demo_outputs.png`.
-  - Run: `.venv/Scripts/python scripts/export_demo_params.py --config configs/demo.yaml` (once), then `.venv/Scripts/python app/demo_app.py` → http://127.0.0.1:7860. Untick "normalisation" for the provided examples.
+  - **Approved by Kareem; weights released** (`demo-weights-fold3-v1`, 355.6 MB zip, SHA-256 da2c6928…; fresh-clone check passed [V]). Screenshots: `images/demo_ui_{referred,confident}.png`. `FoldModels(views=...)` loads only crop32/full in the demo.
+  - Run: `.venv/Scripts/python scripts/export_demo_params.py --config configs/demo.yaml` (once, local data), then `.venv/Scripts/python app/demo_app.py` → http://127.0.0.1:7860. Untick "normalisation" for the provided examples.
 
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
@@ -62,16 +63,15 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **M2 STOP — Kareem reviews the demo** (run it locally; give feedback).
-2. Decide how a fresh clone gets the fold-3 weights (409 MB; see open questions), then merge `feature/m2-demo` into `main`.
-3. Then decide M3 extras (R4/R2/R5, ADR-0006); thesis/presentation continuous.
+1. **Decide M3 extras with Kareem** (R4 / R2 / R5, ADR-0006; see `ideas/idea-matrix.md`) — present options with effort and value, Kareem chooses.
+2. Thesis & presentation (continuous): final figures, CLAIM checklist, rebuilt references (replace ref [12] with Abdusalomov 2023).
 
 ## Open questions / blockers
-- M2: weights for a fresh clone (plan §5 criterion): GitHub Release asset (5–6 files, 409 MB incl. unused masked classifier), cloud link, or "train first" in README?
+- Repository has no LICENSE; code and released weights are public — which licence (e.g. MIT for code; weights trained on CC BY 4.0 data)?
 - [I] A non-AURC τ1 criterion (fixed target crop share or Dice-proxy) might be stable; not pre-specified, not tried — discuss only if Kareem wants it.
 - Segmentation below target (0.786): Kareem decided 2026-11-20 to keep EXP-002c (no tuning).
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
 
 ## Key decisions
-ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding · ADR-0006 Option C, "B first" · **ADR-0007 Phase 6 plan approved** · **ADR-0008 M1 gate: (b)+(d)**.
+ADR-0001 history rewrite · ADR-0002 docs local · ADR-0003 git workflow · ADR-0004 logging + hooks · ADR-0005 drop B6, groundwork vs contribution, time not binding · ADR-0006 Option C, "B first" · **ADR-0007 Phase 6 plan approved** · **ADR-0008 M1 gate: (b)+(d)** · **ADR-0009 M2 approved; weights released**.
