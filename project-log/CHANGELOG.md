@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — EXP-006 preliminary; EXP-008/009 runs started
+- Preliminary EXP-006/007 (no ensemble): router ≈ crop32 in-distribution (Δ bal. acc −0.006, n.s.), better AURC than full image; oracle headroom 0.974.
+- `cfe8429` exp: `scripts/eval_shift_external.py` (frozen policies on shift/external).
+- Long run started ~10:35: EXP-009 external + EXP-008 shift pipeline (det+tta), ~1.5 h.
+
 ## 2026-11-20 — EXP-004 results; EXP-005 analysis fix; EXP-006 criterion
 - EXP-004 inference + analysis done (`experiments/EXP-004-mask-quality/`: controlled.csv, predicted_by_dice.csv, results.json, figure).
 - EXP-005 det/mc/tta scores done; analysis: per-fold regression pooling artefact found and fixed (−log(1−MSP) features, mean within-fold AUROC) in `scripts/eval_exp005.py` and `policy_eval._combined_features`.

@@ -1,6 +1,6 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 10:20 (M1 in progress: EXP-004 done, EXP-005/006 analysis running)
+**Last updated:** 2026-11-20 10:40 (M1: EXP-006 preliminary done; EXP-008/009 runs going)
 **Active phase:** **Phase 6 execution, M1 (M1.1–M1.4) in progress.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M1.4 (report H-B1..H-B3). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
 **Branch:** `exp/m1-uncertainty` (M1 work, from `main` `1361e81`; contains `exp/m1-r3-seg-helps`; not pushed). `main` = `origin/main` = `1361e81` (M0.4 pushed).
 
@@ -37,6 +37,8 @@
   - **EXP-004 done** (inference + `eval_exp004.py` → `experiments/EXP-004-mask-quality/`): context crops tolerate erode/dilate/shift (crop32 0.933 at Dice 0.3 erosion) but a false-positive blob breaks all crops (crop32 0.636 already at Dice 0.9); real predicted masks with Dice < 0.3 (224 slices): crop32 0.641 vs full 0.889 (−0.248); Dice 0.5–0.7: crop32 +0.082 [0.019, 0.161].
   - **EXP-005 (det/mc/tta):** seg uncertainty predicts seg failure (Dice < 0.7) with AUROC ≈ 0.84–0.85 and Dice < 0.3 with 0.87–0.90, but **not** crop-32 classifier error (≈ 0.43–0.50); MSP does (0.897). Most crop errors occur on good masks. Fix applied: "adds to MSP" now uses −log(1−MSP) features and mean within-fold AUROC (pooling per-fold regressions gave an artefact, 0.746 vs 0.897); analysis re-running.
   - **EXP-006 criterion change (documented):** the router's score is chosen on pooled val by AUROC for "crop wrong while full right" (not "any crop error"); fixed after the EXP-004/005 analyses, before EXP-006 ran. Preliminary EXP-006 (det/mc/tta) running; final run adds `ens` after the seed run.
+  - **EXP-006/007 preliminary (det/mc/tta; `runs/eval_exp006_prelim.log`):** val-chosen score `tta:disagree` (val AUROC 0.593 for "crop wrong, full right", 96 positives). Router bal. acc 0.935 vs crop32+MSP 0.941 (Δ −0.006 [−0.019, +0.008]); AURC Δ −0.0003 n.s.; vs full+MSP: AURC −0.011 [−0.032, −0.0002]. Oracle router 0.974 (headroom). Conformal α 0.05: coverage 0.939–0.950; α 0.1: 0.882–0.902. → H-B1/H-B2 not supported in-distribution so far.
+  - **Running (started ~10:35):** `runs/exp008_009.log` = EXP-009 external (5 fold model sets × 3,030 clean BDNeuro) then EXP-008 shift (13 conditions × 5 folds), methods det+tta; estimate [I] ~1.5 h. Then `scripts/eval_shift_external.py --exp006 ... --out-shift project-log/experiments/EXP-008-shift --out-external project-log/experiments/EXP-009-external`.
   - Order after jobs: `eval_exp004` → `eval_exp005` → `eval_exp006` (chooses uncertainty score on val) → EXP-008 shift + EXP-009 external runs (long; announce) → analysis → logs → STOP.
 
 ## Where things stand
