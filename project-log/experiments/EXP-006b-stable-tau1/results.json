@@ -1,0 +1,2547 @@
+{
+ "score": "ens:disagree",
+ "tau1": {
+  "0": {
+   "frozen": -Infinity,
+   "pooled": 0.025592170654208532,
+   "val_crop_frozen": 0.0,
+   "val_crop_pooled": 0.26804123711340205
+  },
+  "1": {
+   "frozen": 0.017982025091628277,
+   "pooled": 0.02563965087323638,
+   "val_crop_frozen": 0.18006993006993008,
+   "val_crop_pooled": 0.36713286713286714
+  },
+  "2": {
+   "frozen": 0.010284711342692222,
+   "pooled": 0.032942196969522004,
+   "val_crop_frozen": 0.020700636942675158,
+   "val_crop_pooled": 0.28503184713375795
+  },
+  "3": {
+   "frozen": 0.25400895872113943,
+   "pooled": 0.25530559221407917,
+   "val_crop_frozen": 0.8989113530326595,
+   "val_crop_pooled": 0.9004665629860031
+  },
+  "4": {
+   "frozen": 0.44679943412645556,
+   "pooled": -Infinity,
+   "val_crop_frozen": 0.9391143911439115,
+   "val_crop_pooled": 0.0
+  }
+ },
+ "in_distribution": {
+  "full+MSP|bal_acc": {
+   "estimate": 0.9283937264099862,
+   "ci_low": 0.9031438196176383,
+   "ci_high": 0.9484809212162729
+  },
+  "full+MSP|aurc": {
+   "estimate": 0.02030894441882575,
+   "ci_low": 0.0057594636834341776,
+   "ci_high": 0.04908804075473267
+  },
+  "crop32+MSP|bal_acc": {
+   "estimate": 0.9409152859327582,
+   "ci_low": 0.9161621141399786,
+   "ci_high": 0.9606256548412891
+  },
+  "crop32+MSP|aurc": {
+   "estimate": 0.009749243572837924,
+   "ci_low": 0.0037176017339799958,
+   "ci_high": 0.019772958861314915
+  },
+  "masked+MSP|bal_acc": {
+   "estimate": 0.8491588814668662,
+   "ci_low": 0.8204308758768096,
+   "ci_high": 0.8747525544034742
+  },
+  "masked+MSP|aurc": {
+   "estimate": 0.04752702038901497,
+   "ci_low": 0.0337287582262562,
+   "ci_high": 0.0647459444569699
+  },
+  "router|bal_acc": {
+   "estimate": 0.9352145915378379,
+   "ci_low": 0.9123524464955524,
+   "ci_high": 0.953278975885557
+  },
+  "router|aurc": {
+   "estimate": 0.008854455403202049,
+   "ci_low": 0.003865772660116621,
+   "ci_high": 0.01707333398421413
+  },
+  "router(pooled)|bal_acc": {
+   "estimate": 0.9331320670993097,
+   "ci_low": 0.9093696570974266,
+   "ci_high": 0.9522961147214352
+  },
+  "router(pooled)|aurc": {
+   "estimate": 0.01997624685456587,
+   "ci_low": 0.00496866946904536,
+   "ci_high": 0.048711830922167076
+  },
+  "oracle-router|bal_acc": {
+   "estimate": 0.9736365005031655,
+   "ci_low": 0.9541216651017231,
+   "ci_high": 0.9879540031036314
+  },
+  "oracle-router|aurc": {
+   "estimate": 0.006766451113049972,
+   "ci_low": 0.001536282467216769,
+   "ci_high": 0.016002457675344684
+  },
+  "router - crop32+MSP|bal_acc": {
+   "estimate": -0.005700694394920269,
+   "ci_low": -0.019209133766548963,
+   "ci_high": 0.007842718802375248
+  },
+  "router - crop32+MSP|aurc": {
+   "estimate": -0.0008947881696358753,
+   "ci_low": -0.004205942929592677,
+   "ci_high": 0.0019145811685522202
+  },
+  "router - full+MSP|bal_acc": {
+   "estimate": 0.0068208651278517385,
+   "ci_low": -0.0017451590783946896,
+   "ci_high": 0.01665844702194646
+  },
+  "router - full+MSP|aurc": {
+   "estimate": -0.011454489015623702,
+   "ci_low": -0.032654054413771,
+   "ci_high": -0.0006130673247358009
+  },
+  "router(pooled) - crop32+MSP|bal_acc": {
+   "estimate": -0.0077832188334484576,
+   "ci_low": -0.01924766433838613,
+   "ci_high": 0.0037049397166137375
+  },
+  "router(pooled) - crop32+MSP|aurc": {
+   "estimate": 0.010227003281727945,
+   "ci_low": -0.0004669621945243665,
+   "ci_high": 0.030217085092071543
+  },
+  "router(pooled) - full+MSP|bal_acc": {
+   "estimate": 0.00473834068932355,
+   "ci_low": -0.005408122776042926,
+   "ci_high": 0.015888472651147765
+  },
+  "router(pooled) - full+MSP|aurc": {
+   "estimate": -0.00033269756425988173,
+   "ci_low": -0.0026624588336425273,
+   "ci_high": 0.002295281919791069
+  },
+  "router(pooled) - router|bal_acc": {
+   "estimate": -0.0020825244385281882,
+   "ci_low": -0.01200632479920039,
+   "ci_high": 0.008323894869001768
+  },
+  "router(pooled) - router|aurc": {
+   "estimate": 0.01112179145136382,
+   "ci_low": -0.00019918838295481106,
+   "ci_high": 0.0332153388319662
+  }
+ },
+ "in_distribution_crop_share_test": {
+  "frozen": 0.40535248041775457,
+  "pooled": 0.37630548302872063
+ },
+ "in_distribution_conformal_pooled": {
+  "router@alpha=0.05": {
+   "coverage": 0.9370104438642297,
+   "coverage_per_class": {
+    "meningioma": 0.8615819209039548,
+    "glioma": 0.9523141654978962,
+    "pituitary": 0.9709677419354839
+   },
+   "mean_set_size": 0.9885770234986945,
+   "frac_singleton": 0.9748694516971279,
+   "frac_empty": 0.018276762402088774,
+   "referral_rate": 0.025130548302872063,
+   "acc_on_singletons": 0.9541345831938399
+  },
+  "crop32@alpha=0.05": {
+   "coverage": 0.9497389033942559,
+   "coverage_per_class": {
+    "meningioma": 0.8940677966101694,
+    "glioma": 0.9719495091164095,
+    "pituitary": 0.9580645161290322
+   },
+   "mean_set_size": 1.0045691906005223,
+   "frac_singleton": 0.9823759791122716,
+   "frac_empty": 0.006527415143603133,
+   "referral_rate": 0.01762402088772846,
+   "acc_on_singletons": 0.9561461794019933
+  },
+  "full@alpha=0.05": {
+   "coverage": 0.9304830287206266,
+   "coverage_per_class": {
+    "meningioma": 0.8488700564971752,
+    "glioma": 0.9495091164095372,
+    "pituitary": 0.9634408602150538
+   },
+   "mean_set_size": 0.9934725848563969,
+   "frac_singleton": 0.9693211488250653,
+   "frac_empty": 0.01860313315926893,
+   "referral_rate": 0.030678851174934726,
+   "acc_on_singletons": 0.9481481481481482
+  },
+  "router@alpha=0.1": {
+   "coverage": 0.8838120104438643,
+   "coverage_per_class": {
+    "meningioma": 0.769774011299435,
+    "glioma": 0.9025245441795231,
+    "pituitary": 0.9419354838709677
+   },
+   "mean_set_size": 0.9118798955613577,
+   "frac_singleton": 0.9118798955613577,
+   "frac_empty": 0.0881201044386423,
+   "referral_rate": 0.0881201044386423,
+   "acc_on_singletons": 0.9692197566213314
+  },
+  "crop32@alpha=0.1": {
+   "coverage": 0.9017624020887729,
+   "coverage_per_class": {
+    "meningioma": 0.8107344632768362,
+    "glioma": 0.9270687237026648,
+    "pituitary": 0.932258064516129
+   },
+   "mean_set_size": 0.9259138381201044,
+   "frac_singleton": 0.9259138381201044,
+   "frac_empty": 0.07408616187989556,
+   "referral_rate": 0.07408616187989556,
+   "acc_on_singletons": 0.973916108565386
+  },
+  "full@alpha=0.1": {
+   "coverage": 0.8818537859007833,
+   "coverage_per_class": {
+    "meningioma": 0.7528248587570622,
+    "glioma": 0.9116409537166901,
+    "pituitary": 0.9344086021505377
+   },
+   "mean_set_size": 0.9141644908616188,
+   "frac_singleton": 0.9141644908616188,
+   "frac_empty": 0.0858355091383812,
+   "referral_rate": 0.0858355091383812,
+   "acc_on_singletons": 0.964655480185648
+  }
+ },
+ "shift_summary": {
+  "full+MSP|bal_acc@worst": {
+   "estimate": 0.5814148329516671,
+   "ci_low": 0.5425808897797108,
+   "ci_high": 0.6111771632718559
+  },
+  "full+MSP|bal_acc@mean": {
+   "estimate": 0.7924942892280711,
+   "ci_low": 0.7733805478015203,
+   "ci_high": 0.8112235838436197
+  },
+  "full+MSP|aurc@worst": {
+   "estimate": 0.2421117217463218,
+   "ci_low": 0.18496792318334304,
+   "ci_high": 0.3186334648761643
+  },
+  "full+MSP|aurc@mean": {
+   "estimate": 0.08954673032616034,
+   "ci_low": 0.0667490251491748,
+   "ci_high": 0.11621538257503883
+  },
+  "crop32+MSP|bal_acc@worst": {
+   "estimate": 0.5346288856665161,
+   "ci_low": 0.5011180632972249,
+   "ci_high": 0.5536699927451687
+  },
+  "crop32+MSP|bal_acc@mean": {
+   "estimate": 0.8008424798129318,
+   "ci_low": 0.7814146274778953,
+   "ci_high": 0.8185625663133954
+  },
+  "crop32+MSP|aurc@worst": {
+   "estimate": 0.3234755118080299,
+   "ci_low": 0.2871812079967636,
+   "ci_high": 0.38993977560997584
+  },
+  "crop32+MSP|aurc@mean": {
+   "estimate": 0.08976981681115709,
+   "ci_low": 0.07608726363607847,
+   "ci_high": 0.10574272874970131
+  },
+  "masked+MSP|bal_acc@worst": {
+   "estimate": 0.3723560035181972,
+   "ci_low": 0.33934327184722396,
+   "ci_high": 0.4066432838936485
+  },
+  "masked+MSP|bal_acc@mean": {
+   "estimate": 0.7090612777053455,
+   "ci_low": 0.6860240714993505,
+   "ci_high": 0.73031417919804
+  },
+  "masked+MSP|aurc@worst": {
+   "estimate": 0.46029152384450184,
+   "ci_low": 0.3921338763938266,
+   "ci_high": 0.5393648444636974
+  },
+  "masked+MSP|aurc@mean": {
+   "estimate": 0.1538821005466554,
+   "ci_low": 0.13074432649622014,
+   "ci_high": 0.18078905884006363
+  },
+  "router|bal_acc@worst": {
+   "estimate": 0.6066038832233236,
+   "ci_low": 0.5834094487578327,
+   "ci_high": 0.6303009947256188
+  },
+  "router|bal_acc@mean": {
+   "estimate": 0.8128392456559429,
+   "ci_low": 0.7939051285868901,
+   "ci_high": 0.8304170432843995
+  },
+  "router|aurc@worst": {
+   "estimate": 0.1923595987722585,
+   "ci_low": 0.1714961005552142,
+   "ci_high": 0.2582679045728278
+  },
+  "router|aurc@mean": {
+   "estimate": 0.07157605382362332,
+   "ci_low": 0.05645285573180336,
+   "ci_high": 0.08942474140900888
+  },
+  "router(pooled)|bal_acc@worst": {
+   "estimate": 0.6019401589527816,
+   "ci_low": 0.5697105897603423,
+   "ci_high": 0.6221694014239847
+  },
+  "router(pooled)|bal_acc@mean": {
+   "estimate": 0.8043225712990613,
+   "ci_low": 0.7849405560619195,
+   "ci_high": 0.8224000936963485
+  },
+  "router(pooled)|aurc@worst": {
+   "estimate": 0.2176244231677165,
+   "ci_low": 0.18106656138623792,
+   "ci_high": 0.2925864091971806
+  },
+  "router(pooled)|aurc@mean": {
+   "estimate": 0.08497925759537693,
+   "ci_low": 0.06354928577721156,
+   "ci_high": 0.11087604738873291
+  },
+  "oracle-router|bal_acc@worst": {
+   "estimate": 0.6809078374973258,
+   "ci_low": 0.6619484673674407,
+   "ci_high": 0.7031153195693021
+  },
+  "oracle-router|bal_acc@mean": {
+   "estimate": 0.8856296294941788,
+   "ci_low": 0.870784842672531,
+   "ci_high": 0.8990036157060528
+  },
+  "oracle-router|aurc@worst": {
+   "estimate": 0.1524123831100584,
+   "ci_low": 0.12314709282565861,
+   "ci_high": 0.20044685722154956
+  },
+  "oracle-router|aurc@mean": {
+   "estimate": 0.04683832150874592,
+   "ci_low": 0.03661351735770551,
+   "ci_high": 0.060197180384274504
+  },
+  "router - crop32+MSP|bal_acc@worst": {
+   "estimate": 0.07197499755680747,
+   "ci_low": 0.05075706950298222,
+   "ci_high": 0.10962011732821828
+  },
+  "router - crop32+MSP|aurc@worst": {
+   "estimate": -0.13111591303577141,
+   "ci_low": -0.18191854669710478,
+   "ci_high": -0.06979878102056189
+  },
+  "router - full+MSP|bal_acc@worst": {
+   "estimate": 0.02518905027165652,
+   "ci_low": 0.001336718640919199,
+   "ci_high": 0.0627058304108746
+  },
+  "router - full+MSP|aurc@worst": {
+   "estimate": -0.04975212297406331,
+   "ci_low": -0.08578022970191404,
+   "ci_high": 0.010614065018358638
+  },
+  "router(pooled) - crop32+MSP|bal_acc@worst": {
+   "estimate": 0.06731127328626552,
+   "ci_low": 0.038130896695479914,
+   "ci_high": 0.10122875377801227
+  },
+  "router(pooled) - crop32+MSP|aurc@worst": {
+   "estimate": -0.10585108864031342,
+   "ci_low": -0.18116902645629976,
+   "ci_high": -0.035116444269717426
+  },
+  "router(pooled) - full+MSP|bal_acc@worst": {
+   "estimate": 0.020525326001114563,
+   "ci_low": -0.0025844568408273203,
+   "ci_high": 0.03892818370177148
+  },
+  "router(pooled) - full+MSP|aurc@worst": {
+   "estimate": -0.02448729857860532,
+   "ci_low": -0.03996233728447265,
+   "ci_high": 0.010028385208101492
+  },
+  "router(pooled) - router|bal_acc@worst": {
+   "estimate": -0.004663724270541958,
+   "ci_low": -0.03430001309506865,
+   "ci_high": 0.0015204392734532721
+  },
+  "router(pooled) - router|aurc@worst": {
+   "estimate": 0.02526482439545799,
+   "ci_low": -0.018288149333218807,
+   "ci_high": 0.06064260923946992
+  },
+  "router - crop32+MSP|bal_acc@mean": {
+   "estimate": 0.011996765843011126,
+   "ci_low": -0.0007674055771309222,
+   "ci_high": 0.024831252319990425
+  },
+  "router - crop32+MSP|aurc@mean": {
+   "estimate": -0.018193762987533765,
+   "ci_low": -0.030464014515229083,
+   "ci_high": -0.005756555664245469
+  },
+  "router - full+MSP|bal_acc@mean": {
+   "estimate": 0.02034495642787182,
+   "ci_low": 0.010859087531920403,
+   "ci_high": 0.030216241690613415
+  },
+  "router - full+MSP|aurc@mean": {
+   "estimate": -0.017970676502537017,
+   "ci_low": -0.03241118266824488,
+   "ci_high": -0.0063438003541186555
+  },
+  "router(pooled) - crop32+MSP|bal_acc@mean": {
+   "estimate": 0.0034800914861294885,
+   "ci_low": -0.008848333865012725,
+   "ci_high": 0.015302469616886439
+  },
+  "router(pooled) - crop32+MSP|aurc@mean": {
+   "estimate": -0.004790559215780157,
+   "ci_low": -0.020434214416582674,
+   "ci_high": 0.012377060644771168
+  },
+  "router(pooled) - full+MSP|bal_acc@mean": {
+   "estimate": 0.011828282070990181,
+   "ci_low": 0.00409621736945443,
+   "ci_high": 0.020041374058007832
+  },
+  "router(pooled) - full+MSP|aurc@mean": {
+   "estimate": -0.004567472730783409,
+   "ci_low": -0.009947977566239647,
+   "ci_high": 0.0004550297119365716
+  },
+  "router(pooled) - router|bal_acc@mean": {
+   "estimate": -0.008516674356881637,
+   "ci_low": -0.019399311515381407,
+   "ci_high": 0.0029358006991373822
+  },
+  "router(pooled) - router|aurc@mean": {
+   "estimate": 0.013403203771753608,
+   "ci_low": 0.0018666020547607744,
+   "ci_high": 0.02845992983703411
+  }
+ },
+ "shift_per_condition": {
+  "clean_s0": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9283937264099862,
+    "ci_low": 0.9031438196176383,
+    "ci_high": 0.9484809212162729
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.02030279846230193,
+    "ci_low": 0.005756172797133671,
+    "ci_high": 0.04907427428542654
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9409152859327582,
+    "ci_low": 0.9161621141399786,
+    "ci_high": 0.9606256548412891
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.00974728443920658,
+    "ci_low": 0.003715528210442289,
+    "ci_high": 0.019765122480565372
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8491588814668662,
+    "ci_low": 0.8204308758768096,
+    "ci_high": 0.8747525544034742
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.04753249812703978,
+    "ci_low": 0.033739627745544384,
+    "ci_high": 0.06475321266059417
+   },
+   "router|bal_acc": {
+    "estimate": 0.9352145915378379,
+    "ci_low": 0.9123524464955524,
+    "ci_high": 0.953278975885557
+   },
+   "router|aurc": {
+    "estimate": 0.008853266681421005,
+    "ci_low": 0.0038696482666607406,
+    "ci_high": 0.017072938646660527
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9331320670993097,
+    "ci_low": 0.9093696570974266,
+    "ci_high": 0.9522961147214352
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.019971054496300728,
+    "ci_low": 0.0049653856636229345,
+    "ci_high": 0.04869821754279277
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9736365005031655,
+    "ci_low": 0.9541216651017231,
+    "ci_high": 0.9879540031036314
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.006764911265360778,
+    "ci_low": 0.0015350223685821215,
+    "ci_high": 0.01600133660231265
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.005700694394920269,
+    "ci_low": -0.019209133766548963,
+    "ci_high": 0.007842718802375248
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.0008940177577855743,
+    "ci_low": -0.004206486196192641,
+    "ci_high": 0.0019107401430196156
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.0068208651278517385,
+    "ci_low": -0.0017451590783946896,
+    "ci_high": 0.01665844702194646
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.011449531780880925,
+    "ci_low": -0.03262864862794454,
+    "ci_high": -0.0006134618743396964
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.0077832188334484576,
+    "ci_low": -0.01924766433838613,
+    "ci_high": 0.0037049397166137375
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.010223770057094149,
+    "ci_low": -0.00046272513903230855,
+    "ci_high": 0.03020184306751291
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.00473834068932355,
+    "ci_low": -0.005408122776042926,
+    "ci_high": 0.015888472651147765
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.00033174396600120157,
+    "ci_low": -0.002659288984058206,
+    "ci_high": 0.002296058781172418
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.0020825244385281882,
+    "ci_low": -0.01200632479920039,
+    "ci_high": 0.008323894869001768
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.011117787814879723,
+    "ci_low": -0.00019633625740877897,
+    "ci_high": 0.03319970293804676
+   }
+  },
+  "noise_s1": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.7717647509396386,
+    "ci_low": 0.7434255324173956,
+    "ci_high": 0.7997019660875394
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.06248432507808198,
+    "ci_low": 0.03396267037841165,
+    "ci_high": 0.10344474876667949
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.7997770751948611,
+    "ci_low": 0.7681039054395951,
+    "ci_high": 0.8292315194464678
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.05917329161252496,
+    "ci_low": 0.03969965977571953,
+    "ci_high": 0.08527166229140376
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.7797782901878749,
+    "ci_low": 0.7443820668927671,
+    "ci_high": 0.8131964284791643
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.08340283710905504,
+    "ci_low": 0.061036835569564116,
+    "ci_high": 0.11185353197962589
+   },
+   "router|bal_acc": {
+    "estimate": 0.8021605745332181,
+    "ci_low": 0.773899208939166,
+    "ci_high": 0.8298783787417979
+   },
+   "router|aurc": {
+    "estimate": 0.044190909927110424,
+    "ci_low": 0.027122742925751432,
+    "ci_high": 0.06642985349769844
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.7948788044468745,
+    "ci_low": 0.7652789696979196,
+    "ci_high": 0.8237057273381257
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.06136335625410915,
+    "ci_low": 0.0331070600178814,
+    "ci_high": 0.10246138477608198
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.8555978161821223,
+    "ci_low": 0.8259969470907959,
+    "ci_high": 0.8841474654417453
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.04180485736805804,
+    "ci_low": 0.024524821796057465,
+    "ci_high": 0.0651022144728496
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.00238349933835702,
+    "ci_low": -0.013343288577924908,
+    "ci_high": 0.01712320465340648
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.014982381685414534,
+    "ci_low": -0.02605812782114313,
+    "ci_high": -0.004895741695068881
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.030395823593579507,
+    "ci_low": 0.011336827196971239,
+    "ci_high": 0.04947264023968885
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.018293415150971555,
+    "ci_low": -0.04170090566182646,
+    "ci_high": -0.0018107185965967698
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.004898270747986544,
+    "ci_low": -0.021028501992944364,
+    "ci_high": 0.010694844903116873
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.002190064641584194,
+    "ci_low": -0.014913146107568095,
+    "ci_high": 0.023819446142609318
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.023114053507235943,
+    "ci_low": 0.006470206960738834,
+    "ci_high": 0.040632604039560635
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0011209688239728274,
+    "ci_low": -0.007509777535517722,
+    "ci_high": 0.005336893147340261
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.007281770086343564,
+    "ci_low": -0.023001603527017113,
+    "ci_high": 0.00887846928899684
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.017172446326998728,
+    "ci_low": 0.0009849323179571272,
+    "ci_high": 0.04277334201682876
+   }
+  },
+  "noise_s2": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.6784955481071201,
+    "ci_low": 0.6526329301872623,
+    "ci_high": 0.706431132778466
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.12633157530417938,
+    "ci_low": 0.08248105383174449,
+    "ci_high": 0.18070331969541606
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.6660252295940602,
+    "ci_low": 0.6386456338116081,
+    "ci_high": 0.695195872357131
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.12586210009698445,
+    "ci_low": 0.0931047585200763,
+    "ci_high": 0.1641771347353375
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.5998390134256728,
+    "ci_low": 0.5632014790377733,
+    "ci_high": 0.638214912600464
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.2285122402093367,
+    "ci_low": 0.1750743216013851,
+    "ci_high": 0.2931665790281881
+   },
+   "router|bal_acc": {
+    "estimate": 0.6895447209874196,
+    "ci_low": 0.6640719275471209,
+    "ci_high": 0.7168480536791526
+   },
+   "router|aurc": {
+    "estimate": 0.1054557201597285,
+    "ci_low": 0.07185179331826343,
+    "ci_high": 0.14618193879171754
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.6802697020361698,
+    "ci_low": 0.6550238732518936,
+    "ci_high": 0.7068807056089323
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.12265541469100522,
+    "ci_low": 0.08007686504518687,
+    "ci_high": 0.17518482116851355
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.7448346949178956,
+    "ci_low": 0.7204652221498578,
+    "ci_high": 0.7736520479322858
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.08393432622647037,
+    "ci_low": 0.056052394061260384,
+    "ci_high": 0.11814908010365194
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.023519491393359404,
+    "ci_low": 0.006723504397582689,
+    "ci_high": 0.04051816136611513
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.020406379937255956,
+    "ci_low": -0.044584582593987745,
+    "ci_high": 0.004188929854719045
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.011049172880299496,
+    "ci_low": -0.001081890267677013,
+    "ci_high": 0.02436311395014353
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.02087585514445088,
+    "ci_low": -0.045341462206078285,
+    "ci_high": -0.002944716395530984
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": 0.01424447244210958,
+    "ci_low": -0.0048764336351735495,
+    "ci_high": 0.03309015761867992
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.003206685405979237,
+    "ci_low": -0.029403664009030925,
+    "ci_high": 0.025904456113374465
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.001774153929049671,
+    "ci_low": -0.006515865738041152,
+    "ci_high": 0.010305901946394186
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.003676160613174162,
+    "ci_low": -0.01289684291772064,
+    "ci_high": 0.005083474396516892
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.009275018951249825,
+    "ci_low": -0.021661253208115978,
+    "ci_high": 0.0020942436495235655
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.01719969453127672,
+    "ci_low": -0.0006541384894789268,
+    "ci_high": 0.04220462252503367
+   }
+  },
+  "noise_s3": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.5998642377371547,
+    "ci_low": 0.5748825098280208,
+    "ci_high": 0.625369134452398
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.20670369731804109,
+    "ci_low": 0.1457644955233838,
+    "ci_high": 0.27532549897068787
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.5346288856665161,
+    "ci_low": 0.5088427218253854,
+    "ci_high": 0.5624280951279509
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.3036018482772811,
+    "ci_low": 0.2513922913702224,
+    "ci_high": 0.3600227943568934
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.3723560035181972,
+    "ci_low": 0.33934327184722396,
+    "ci_high": 0.4066432838936485
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.46029152384450184,
+    "ci_low": 0.3921338763938266,
+    "ci_high": 0.5393648444636974
+   },
+   "router|bal_acc": {
+    "estimate": 0.6066038832233236,
+    "ci_low": 0.5834094487578327,
+    "ci_high": 0.6304060573109244
+   },
+   "router|aurc": {
+    "estimate": 0.1923595987722585,
+    "ci_low": 0.14113393420158193,
+    "ci_high": 0.2525191169652835
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.6019401589527816,
+    "ci_low": 0.5786325209212319,
+    "ci_high": 0.6265904739087688
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.20960709201885155,
+    "ci_low": 0.14945749264811736,
+    "ci_high": 0.27705252901167665
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.6809078374973258,
+    "ci_low": 0.6619484673674407,
+    "ci_high": 0.7031153195693021
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.1524123831100584,
+    "ci_low": 0.11121483655132441,
+    "ci_high": 0.20022929068140288
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.07197499755680747,
+    "ci_low": 0.04772530156269451,
+    "ci_high": 0.09606787932256264
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.1112422495050226,
+    "ci_low": -0.15965488873923406,
+    "ci_high": -0.06306933833765459
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.006739645486168899,
+    "ci_low": -0.0035992236280391276,
+    "ci_high": 0.017479519674646612
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.014344098545782585,
+    "ci_low": -0.045559001255923014,
+    "ci_high": 0.009610341826588438
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": 0.06731127328626552,
+    "ci_low": 0.0415132935179964,
+    "ci_high": 0.0925149752991516
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.09399475625842954,
+    "ci_low": -0.1455507975822564,
+    "ci_high": -0.04118609596343886
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.0020759212156269413,
+    "ci_low": -0.005914420939234319,
+    "ci_high": 0.010617911148840213
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": 0.002903394700810469,
+    "ci_low": -0.00720381591579586,
+    "ci_high": 0.012730338700162146
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.004663724270541958,
+    "ci_low": -0.01210291750671102,
+    "ci_high": 0.002415268569177628
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.017247493246593054,
+    "ci_low": -0.0034858917209348575,
+    "ci_high": 0.04602588314637768
+   }
+  },
+  "blur_s1": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.898402284186866,
+    "ci_low": 0.8731632000293306,
+    "ci_high": 0.9227506541369189
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.02487596328918346,
+    "ci_low": 0.013744955980295579,
+    "ci_high": 0.03813272082626902
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9070956912649927,
+    "ci_low": 0.880372645063132,
+    "ci_high": 0.9306429464802819
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.01916330694528051,
+    "ci_low": 0.0118541236419346,
+    "ci_high": 0.02885126307373029
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.821766863970967,
+    "ci_low": 0.7946583733567265,
+    "ci_high": 0.8481085231603336
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.06726632351676866,
+    "ci_low": 0.05077201909006233,
+    "ci_high": 0.08851124711776673
+   },
+   "router|bal_acc": {
+    "estimate": 0.8924740427307759,
+    "ci_low": 0.8642719708676122,
+    "ci_high": 0.9184836008904188
+   },
+   "router|aurc": {
+    "estimate": 0.021423687767727184,
+    "ci_low": 0.012179929363806385,
+    "ci_high": 0.03366312972794321
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9062503466692023,
+    "ci_low": 0.8817308583186605,
+    "ci_high": 0.9284311536787414
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.01882853526028937,
+    "ci_low": 0.011152786076154634,
+    "ci_high": 0.02871162141727918
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9725172542214403,
+    "ci_low": 0.9618727900716856,
+    "ci_high": 0.9821890568416318
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.0056825591844282194,
+    "ci_low": 0.0030065293904309137,
+    "ci_high": 0.00905755642289081
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.014621648534216769,
+    "ci_low": -0.036384150278572024,
+    "ci_high": 0.006119632484273324
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.0022603808224466726,
+    "ci_low": -0.005669173769659379,
+    "ci_high": 0.011550551832260203
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": -0.005928241456090055,
+    "ci_low": -0.024429290314710035,
+    "ci_high": 0.01005974576964382
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.003452275521456275,
+    "ci_low": -0.009796353978738402,
+    "ci_high": 0.0030041023881223765
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.0008453445957903316,
+    "ci_low": -0.014571543270139731,
+    "ci_high": 0.014365629060997328
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.00033477168499114127,
+    "ci_low": -0.006666310019303685,
+    "ci_high": 0.005988039252696074
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.007848062482336382,
+    "ci_low": -0.015501419652224149,
+    "ci_high": 0.030784032122414127
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.006047428028894089,
+    "ci_low": -0.016197884994991276,
+    "ci_high": 0.002751996378160333
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.013776303938426437,
+    "ci_low": -0.002248927576534182,
+    "ci_high": 0.03157650616604047
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.002595152507437814,
+    "ci_low": -0.011440929114501097,
+    "ci_high": 0.0049921656960612345
+   }
+  },
+  "blur_s2": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.7774378438628325,
+    "ci_low": 0.7459345194078727,
+    "ci_high": 0.8093402348602856
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.09071771543733995,
+    "ci_low": 0.06909305094332213,
+    "ci_high": 0.11810937915010644
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.7483606838825895,
+    "ci_low": 0.7141110936955737,
+    "ci_high": 0.7821880114727044
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.11501144877668089,
+    "ci_low": 0.08738081840122021,
+    "ci_high": 0.14865046619365266
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.6977364151895258,
+    "ci_low": 0.6645656398903399,
+    "ci_high": 0.7291576409941638
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.16894889749681055,
+    "ci_low": 0.13425601438503643,
+    "ci_high": 0.21122817949888656
+   },
+   "router|bal_acc": {
+    "estimate": 0.7743467431584007,
+    "ci_low": 0.7436080447487399,
+    "ci_high": 0.8043576136191476
+   },
+   "router|aurc": {
+    "estimate": 0.08827601644799828,
+    "ci_low": 0.06520125190496777,
+    "ci_high": 0.11482597072058984
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.7932405448451281,
+    "ci_low": 0.7642915621665652,
+    "ci_high": 0.8211099710882808
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.08031245100597859,
+    "ci_low": 0.060616472529576707,
+    "ci_high": 0.10447411394507938
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9132731383533675,
+    "ci_low": 0.8924419418666598,
+    "ci_high": 0.9319477254089755
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.04100471777875332,
+    "ci_low": 0.026808132598549424,
+    "ci_high": 0.058654300205814844
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.025986059275811213,
+    "ci_low": -0.004028065997447144,
+    "ci_high": 0.05547210554292854
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.026735432328682612,
+    "ci_low": -0.04935091773378777,
+    "ci_high": -0.006177916474325836
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": -0.0030911007044318595,
+    "ci_low": -0.02759600422531364,
+    "ci_high": 0.021574101517023745
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.00244169898934167,
+    "ci_low": -0.017940038925057883,
+    "ci_high": 0.013711920496283465
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": 0.0448798609625386,
+    "ci_low": 0.01806337197728906,
+    "ci_high": 0.07371238930220811
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.0346989977707023,
+    "ci_low": -0.058106097512975054,
+    "ci_high": -0.013895576632741966
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.015802700982295526,
+    "ci_low": -0.007849305950047536,
+    "ci_high": 0.039574134778173516
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.01040526443136136,
+    "ci_low": -0.025174512854973352,
+    "ci_high": 0.0031010698751472005
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.018893801686727385,
+    "ci_low": -0.0004405698645835173,
+    "ci_high": 0.038928430054766795
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.00796356544201969,
+    "ci_low": -0.02142443554675806,
+    "ci_high": 0.005272290182772061
+   }
+  },
+  "blur_s3": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.7009638064146348,
+    "ci_low": 0.6653791491052767,
+    "ci_high": 0.7365364575354736
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.17763222418057753,
+    "ci_low": 0.1432516820306046,
+    "ci_high": 0.21588045823920068
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.5392664611743699,
+    "ci_low": 0.5029613583311612,
+    "ci_high": 0.5748795352521
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.3234755118080299,
+    "ci_low": 0.26076764931472485,
+    "ci_high": 0.3885419440147915
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.6137555698185171,
+    "ci_low": 0.5794038689300548,
+    "ci_high": 0.6470818421291893
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.2547845674583707,
+    "ci_low": 0.20450839903718074,
+    "ci_high": 0.3117386305041494
+   },
+   "router|bal_acc": {
+    "estimate": 0.683791597002665,
+    "ci_low": 0.6472137975526534,
+    "ci_high": 0.7212446041008801
+   },
+   "router|aurc": {
+    "estimate": 0.1923196462187912,
+    "ci_low": 0.15513757275642617,
+    "ci_high": 0.23446876314484952
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.7025282419843477,
+    "ci_low": 0.6704830484413559,
+    "ci_high": 0.7349446832986953
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.18147650334194074,
+    "ci_low": 0.14699269460757625,
+    "ci_high": 0.22098725141111533
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.8328741452127955,
+    "ci_low": 0.8067608437044002,
+    "ci_high": 0.8588622799432734
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.1264510047009679,
+    "ci_low": 0.09331527738721365,
+    "ci_high": 0.1646125570364935
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.14452513582829507,
+    "ci_low": 0.10310574026202443,
+    "ci_high": 0.18569011622513618
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.13115586558923872,
+    "ci_low": -0.18420734215546816,
+    "ci_high": -0.08347733222130296
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": -0.01717220941196984,
+    "ci_low": -0.042782827165141535,
+    "ci_high": 0.008942102121804393
+   },
+   "router - full+MSP|aurc": {
+    "estimate": 0.01468742203821366,
+    "ci_low": -0.011777226684258424,
+    "ci_high": 0.042087950490886976
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": 0.16326178080997777,
+    "ci_low": 0.12462400180164943,
+    "ci_high": 0.20369435222602733
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.14199900846608918,
+    "ci_low": -0.1981913887782056,
+    "ci_high": -0.09016926076511642
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.0015644355697128631,
+    "ci_low": -0.018926384917361032,
+    "ci_high": 0.023939015690884514
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": 0.0038442791613632066,
+    "ci_low": -0.017536836668207108,
+    "ci_high": 0.026078697083370732
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.018736644981682704,
+    "ci_low": -0.004829452977237094,
+    "ci_high": 0.043854773269556495
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.010843142876850453,
+    "ci_low": -0.03897107586257306,
+    "ci_high": 0.0178856031306186
+   }
+  },
+  "gamma_s1": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.8543178474549858,
+    "ci_low": 0.8218589847837011,
+    "ci_high": 0.8841113212502809
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.03735579789818289,
+    "ci_low": 0.02139253335081058,
+    "ci_high": 0.057448015819714496
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9254172576551163,
+    "ci_low": 0.9007790067194384,
+    "ci_high": 0.9463562549667145
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.013492650972291527,
+    "ci_low": 0.0061998897157682685,
+    "ci_high": 0.023975499176652783
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.7865180677385019,
+    "ci_low": 0.7539409474698755,
+    "ci_high": 0.8183429496981818
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.07184691788600116,
+    "ci_low": 0.051238382408190994,
+    "ci_high": 0.09663670434155344
+   },
+   "router|bal_acc": {
+    "estimate": 0.9042176105313482,
+    "ci_low": 0.8768123949372149,
+    "ci_high": 0.9276727055788427
+   },
+   "router|aurc": {
+    "estimate": 0.01716120194960714,
+    "ci_low": 0.009287262150361861,
+    "ci_high": 0.026990672051131297
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.8710479050615024,
+    "ci_low": 0.8391443143661186,
+    "ci_high": 0.9005337326525933
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.03368583080052073,
+    "ci_low": 0.018489072047694177,
+    "ci_high": 0.05331373807852741
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9602530883273507,
+    "ci_low": 0.9391411986446191,
+    "ci_high": 0.9773166191374006
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.009591502720443106,
+    "ci_low": 0.0032065690648688094,
+    "ci_high": 0.019354576240327645
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.021199647123768095,
+    "ci_low": -0.037795666158325525,
+    "ci_high": -0.005524689374267117
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.0036685509773156134,
+    "ci_low": -0.000813687524114631,
+    "ci_high": 0.00854581210342302
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.04989976307636235,
+    "ci_low": 0.026560389625088117,
+    "ci_high": 0.07756629794867882
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.020194595948575752,
+    "ci_low": -0.03561395740319883,
+    "ci_high": -0.009193638909922862
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.05436935259361386,
+    "ci_low": -0.08149059063971129,
+    "ci_high": -0.03193775881387133
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.020193179828229206,
+    "ci_low": 0.008736185461603811,
+    "ci_high": 0.03597548882151966
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.01673005760651658,
+    "ci_low": 0.0030416013129374725,
+    "ci_high": 0.03189159144826352
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0036699670976621593,
+    "ci_low": -0.0073924940501472435,
+    "ci_high": -0.0005759638794518444
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.03316970546984577,
+    "ci_low": -0.061952369378233334,
+    "ci_high": -0.005176217997153894
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.016524628850913593,
+    "ci_low": 0.005214403741412346,
+    "ci_high": 0.03201809141941097
+   }
+  },
+  "gamma_s2": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.7385550299390126,
+    "ci_low": 0.6988137596492691,
+    "ci_high": 0.7752345543564583
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.11169514031558775,
+    "ci_low": 0.07105820573507864,
+    "ci_high": 0.16067110038216031
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.8604878989337115,
+    "ci_low": 0.8317764766345114,
+    "ci_high": 0.8873454965842328
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.031431471369565825,
+    "ci_low": 0.01925832752698529,
+    "ci_high": 0.04739814694571887
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.6920186844795208,
+    "ci_low": 0.6606988578105534,
+    "ci_high": 0.7234303164169097
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.13309729417094882,
+    "ci_low": 0.09994693507257342,
+    "ci_high": 0.1725713490572251
+   },
+   "router|bal_acc": {
+    "estimate": 0.8289630562885133,
+    "ci_low": 0.7980002383278703,
+    "ci_high": 0.8566929226613609
+   },
+   "router|aurc": {
+    "estimate": 0.0521775113946681,
+    "ci_low": 0.03156455522651589,
+    "ci_high": 0.07781633758756082
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.7698022730934514,
+    "ci_low": 0.728671348810544,
+    "ci_high": 0.8067671065341778
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.09738141523471042,
+    "ci_low": 0.05943665581315457,
+    "ci_high": 0.143706938428073
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9039192769206794,
+    "ci_low": 0.8776680754087047,
+    "ci_high": 0.9275270876852856
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.023263873959390967,
+    "ci_low": 0.012474737020137378,
+    "ci_high": 0.037030226518994624
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.03152484264519817,
+    "ci_low": -0.05368457576695878,
+    "ci_high": -0.010714664482714365
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.020746040025102275,
+    "ci_low": 0.005592818020404529,
+    "ci_high": 0.03893610432118366
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.09040802634950074,
+    "ci_low": 0.057961496938699314,
+    "ci_high": 0.12491411429005438
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.05951762892091965,
+    "ci_low": -0.09986175313063965,
+    "ci_high": -0.028223573002356766
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.09068562584026008,
+    "ci_low": -0.1289613837846648,
+    "ci_high": -0.05580716722806485
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.06594994386514459,
+    "ci_low": 0.031864641887689345,
+    "ci_high": 0.10835203403701962
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.03124724315443883,
+    "ci_low": 0.016929373986481443,
+    "ci_high": 0.045714696940108115
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.014313725080877332,
+    "ci_low": -0.025049254053471953,
+    "ci_high": -0.005652497131569227
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.059160783195061906,
+    "ci_low": -0.09674651404262741,
+    "ci_high": -0.023082920112380192
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.04520390384004232,
+    "ci_low": 0.012894558867807781,
+    "ci_high": 0.08537363489087255
+   }
+  },
+  "gamma_s3": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.5814148329516671,
+    "ci_low": 0.5425808897797108,
+    "ci_high": 0.6184715592639286
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.2421117217463218,
+    "ci_low": 0.17734481636766417,
+    "ci_high": 0.31746007572040097
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.6639983042923591,
+    "ci_low": 0.6305821512552305,
+    "ci_high": 0.6980046534727515
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.13662356245300314,
+    "ci_low": 0.10048975514844026,
+    "ci_high": 0.18064144883718003
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.49010678732075547,
+    "ci_low": 0.46113434094260153,
+    "ci_high": 0.5212230644229444
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.3323342391654702,
+    "ci_low": 0.27584707791972285,
+    "ci_high": 0.39338301375576334
+   },
+   "router|bal_acc": {
+    "estimate": 0.6417174454507756,
+    "ci_low": 0.6118286787017201,
+    "ci_high": 0.6731423769535159
+   },
+   "router|aurc": {
+    "estimate": 0.1804699239500822,
+    "ci_low": 0.13163556317121772,
+    "ci_high": 0.24006373176060167
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.610644263252008,
+    "ci_low": 0.5709013180788263,
+    "ci_high": 0.6480048948100569
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.2176244231677165,
+    "ci_low": 0.1589543617685913,
+    "ci_high": 0.28842593227346086
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.7504451892879876,
+    "ci_low": 0.7183601601947526,
+    "ci_high": 0.7820988195853611
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.0989466856124501,
+    "ci_low": 0.06918818480872609,
+    "ci_high": 0.13598269588960674
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.022280858841583484,
+    "ci_low": -0.05590411819235272,
+    "ci_high": 0.009034185993529516
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.04384636149707907,
+    "ci_low": 0.003953017359510836,
+    "ci_high": 0.08859929809981283
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.06030261249910851,
+    "ci_low": 0.03542599669916624,
+    "ci_high": 0.08751558574869536
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.0616417977962396,
+    "ci_low": -0.09386820674649837,
+    "ci_high": -0.03380553529563406
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.05335404104035102,
+    "ci_low": -0.09118804609220611,
+    "ci_high": -0.016603454268690896
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.08100086071471335,
+    "ci_low": 0.03960774426494903,
+    "ci_high": 0.12928411424366634
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.029229430300340975,
+    "ci_low": 0.014955551895600657,
+    "ci_high": 0.04389246505574456
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.02448729857860532,
+    "ci_low": -0.04165422053865111,
+    "ci_high": -0.010273645924914275
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.031073182198767535,
+    "ci_low": -0.05944280452026579,
+    "ci_high": -0.004240845438727636
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.03715449921763428,
+    "ci_low": 0.006305147289438397,
+    "ci_high": 0.0704730832412835
+   }
+  },
+  "bias_s1": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9265081100783671,
+    "ci_low": 0.9007942738406967,
+    "ci_high": 0.9473199105292044
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.020428978013390744,
+    "ci_low": 0.005983390222049137,
+    "ci_high": 0.04899759883767795
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9450302823802241,
+    "ci_low": 0.9217975670903495,
+    "ci_high": 0.9638977808420115
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.009314903703751288,
+    "ci_low": 0.0035370619019246996,
+    "ci_high": 0.018666193648038787
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.846274989897069,
+    "ci_low": 0.8173043134173826,
+    "ci_high": 0.8722982638808673
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.045164214849061225,
+    "ci_low": 0.03156993614854095,
+    "ci_high": 0.06153358501756815
+   },
+   "router|bal_acc": {
+    "estimate": 0.9363753060593815,
+    "ci_low": 0.9137033560446391,
+    "ci_high": 0.9538643338733969
+   },
+   "router|aurc": {
+    "estimate": 0.008714332054507529,
+    "ci_low": 0.003944836445170744,
+    "ci_high": 0.016602620786831467
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9327868506060438,
+    "ci_low": 0.9093840723836755,
+    "ci_high": 0.9519033815228787
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.020091102958478626,
+    "ci_low": 0.005270791107860865,
+    "ci_high": 0.04898203274227379
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9754073528207649,
+    "ci_low": 0.9572938410402141,
+    "ci_high": 0.9889505299283827
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.006482611155115778,
+    "ci_low": 0.0016036766287555208,
+    "ci_high": 0.01503099358018527
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.008654976320842667,
+    "ci_low": -0.021696589734849468,
+    "ci_high": 0.0046806878392147274
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.0006005716492437588,
+    "ci_low": -0.00378193054905331,
+    "ci_high": 0.0022124796955194843
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.009867195981014376,
+    "ci_low": 0.0003365575751238581,
+    "ci_high": 0.020556347816774154
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.011714645958883215,
+    "ci_low": -0.03280310808979786,
+    "ci_high": -0.0009615943088600235
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.012243431774180302,
+    "ci_low": -0.0247777249416875,
+    "ci_high": 0.00044294354761152926
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.010776199254727338,
+    "ci_low": -0.00015557376936104077,
+    "ci_high": 0.03110940736193781
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.0062787405276767405,
+    "ci_low": -0.0037958061664097654,
+    "ci_high": 0.01698741985844368
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0003378750549121179,
+    "ci_low": -0.0025946437713436953,
+    "ci_high": 0.0021762246831827543
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.0035884554533376356,
+    "ci_low": -0.014630811878308914,
+    "ci_high": 0.007387288782306305
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.011376770903971097,
+    "ci_low": 6.0755248299017696e-05,
+    "ci_high": 0.03404993218403744
+   }
+  },
+  "bias_s2": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9265114116898175,
+    "ci_low": 0.9019429483595254,
+    "ci_high": 0.9470410107718995
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.020680084472835685,
+    "ci_low": 0.006335347032785258,
+    "ci_high": 0.048417431521839346
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9409030039381622,
+    "ci_low": 0.9179229568789439,
+    "ci_high": 0.9594177236270873
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.01005626608274226,
+    "ci_low": 0.004321518192176995,
+    "ci_high": 0.019093329601504862
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8358363510061991,
+    "ci_low": 0.8054637851201237,
+    "ci_high": 0.8625064229797108
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.05010429889374357,
+    "ci_low": 0.03579777546723901,
+    "ci_high": 0.0675053548701413
+   },
+   "router|bal_acc": {
+    "estimate": 0.9399415746837717,
+    "ci_low": 0.9184491619184117,
+    "ci_high": 0.9569378765545684
+   },
+   "router|aurc": {
+    "estimate": 0.009019628191914101,
+    "ci_low": 0.00417128799164527,
+    "ci_high": 0.016629512727900267
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9328959358483688,
+    "ci_low": 0.9092089912544102,
+    "ci_high": 0.9523876273795925
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.0200819690895304,
+    "ci_low": 0.005324218296776813,
+    "ci_high": 0.0484363209282483
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9761119167043052,
+    "ci_low": 0.9580775655537329,
+    "ci_high": 0.9889811915668613
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.006378434737374255,
+    "ci_low": 0.0015798884929546352,
+    "ci_high": 0.01445750009372283
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.0009614292543904668,
+    "ci_low": -0.014538381396142427,
+    "ci_high": 0.013010359536259203
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.0010366378908281595,
+    "ci_low": -0.004292311217271473,
+    "ci_high": 0.0019739743179747935
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.013430162993954164,
+    "ci_low": 0.0038907873289964674,
+    "ci_high": 0.02407118513972047
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.011660456280921584,
+    "ci_low": -0.03277405302885465,
+    "ci_high": -0.0007366988719102098
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.008007068089793346,
+    "ci_low": -0.021364038209144787,
+    "ci_high": 0.004466929796334788
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.010025703006788138,
+    "ci_low": -0.0011907494200007658,
+    "ci_high": 0.030556604791353886
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.006384524158551286,
+    "ci_low": -0.003649386174271063,
+    "ci_high": 0.01732564142632483
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0005981153833052866,
+    "ci_low": -0.0031492023157533755,
+    "ci_high": 0.0021149442824537202
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.007045638835402879,
+    "ci_low": -0.017900032871594633,
+    "ci_high": 0.0033260157274347594
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.011062340897616298,
+    "ci_low": -0.0005233842533384826,
+    "ci_high": 0.03324942604601952
+   }
+  },
+  "bias_s3": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9197963301928405,
+    "ci_low": 0.89563705343293,
+    "ci_high": 0.9409391936072412
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.022787472724060162,
+    "ci_low": 0.008086001823382179,
+    "ci_high": 0.05029194948959009
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9390461776583915,
+    "ci_low": 0.9163512129140938,
+    "ci_high": 0.9575779103664582
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.01005397200769969,
+    "ci_low": 0.004173037522351802,
+    "ci_high": 0.019888196550108452
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8326506921498243,
+    "ci_low": 0.8049337759572958,
+    "ci_high": 0.8583925219580609
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.057181454379412286,
+    "ci_low": 0.0426945738892895,
+    "ci_high": 0.07536050571215411
+   },
+   "router|bal_acc": {
+    "estimate": 0.9315590473398255,
+    "ci_low": 0.9089422516130768,
+    "ci_high": 0.9503311996370946
+   },
+   "router|aurc": {
+    "estimate": 0.010067256191288882,
+    "ci_low": 0.004959615148064265,
+    "ci_high": 0.01833430325433141
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9267763329926071,
+    "ci_low": 0.9033443768125385,
+    "ci_high": 0.9462560431474086
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.021651200420467795,
+    "ci_low": 0.006503754646351632,
+    "ci_high": 0.04970730866144624
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9734069724751256,
+    "ci_low": 0.9547332067359378,
+    "ci_high": 0.9860303343528553
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.006180311794825964,
+    "ci_low": 0.0014642564208725908,
+    "ci_high": 0.01470298091371233
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.00748713031856596,
+    "ci_low": -0.021489256663175204,
+    "ci_high": 0.0054331424388158875
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 1.3284183589193019e-05,
+    "ci_low": -0.003242264619132394,
+    "ci_high": 0.0029685382911190665
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.011762717146985069,
+    "ci_low": 0.0008558596930689473,
+    "ci_high": 0.02350952177738528
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.01272021653277128,
+    "ci_low": -0.033469302930615265,
+    "ci_high": -0.0018597797152353618
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.012269844665784402,
+    "ci_low": -0.025242222536390985,
+    "ci_high": 0.0003219473994026427
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.011597228412768106,
+    "ci_low": 0.0006647167210665009,
+    "ci_high": 0.031061503151669976
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.006980002799766627,
+    "ci_low": -0.003888469099196387,
+    "ci_high": 0.017979479503536573
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0011362723035923672,
+    "ci_low": -0.0036428070361410416,
+    "ci_high": 0.0014596701075993773
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.004782714347218442,
+    "ci_low": -0.016719626891206797,
+    "ci_high": 0.007582152435939348
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.011583944229178912,
+    "ci_low": 9.328800836389857e-05,
+    "ci_high": 0.033068889531885616
+   }
+  }
+ },
+ "shift_crop_share": {
+  "clean_s0": {
+   "frozen": 0.40535248041775457,
+   "pooled": 0.37630548302872063
+  },
+  "noise_s1": {
+   "frozen": 0.36357702349869453,
+   "pooled": 0.337467362924282
+  },
+  "noise_s2": {
+   "frozen": 0.28100522193211486,
+   "pooled": 0.2154046997389034
+  },
+  "noise_s3": {
+   "frozen": 0.19386422976501305,
+   "pooled": 0.12597911227154046
+  },
+  "blur_s1": {
+   "frozen": 0.38609660574412535,
+   "pooled": 0.35900783289817234
+  },
+  "blur_s2": {
+   "frozen": 0.29765013054830286,
+   "pooled": 0.24804177545691905
+  },
+  "blur_s3": {
+   "frozen": 0.23857702349869453,
+   "pooled": 0.17330287206266318
+  },
+  "gamma_s1": {
+   "frozen": 0.39654046997389036,
+   "pooled": 0.3518276762402089
+  },
+  "gamma_s2": {
+   "frozen": 0.3661879895561358,
+   "pooled": 0.3005874673629243
+  },
+  "gamma_s3": {
+   "frozen": 0.2950391644908616,
+   "pooled": 0.2137728459530026
+  },
+  "bias_s1": {
+   "frozen": 0.4043733681462141,
+   "pooled": 0.37826370757180156
+  },
+  "bias_s2": {
+   "frozen": 0.40567885117493474,
+   "pooled": 0.375
+  },
+  "bias_s3": {
+   "frozen": 0.4030678851174935,
+   "pooled": 0.3766318537859008
+  }
+ },
+ "external": {
+  "fold0": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9110969410179902,
+    "ci_low": 0.9003452270620953,
+    "ci_high": 0.921089750352601
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.01820023185755582,
+    "ci_low": 0.014460350067642685,
+    "ci_high": 0.022754797086505744
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9333255726398915,
+    "ci_low": 0.9237384868595881,
+    "ci_high": 0.9427012216020392
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.016218200939776498,
+    "ci_low": 0.012543493877924876,
+    "ci_high": 0.02029403818177861
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8669453005957243,
+    "ci_low": 0.8543161676071562,
+    "ci_high": 0.8789884228539259
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.053659962104462895,
+    "ci_low": 0.04504683446067103,
+    "ci_high": 0.06290958968333259
+   },
+   "router|bal_acc": {
+    "estimate": 0.9110969410179902,
+    "ci_low": 0.9003452270620953,
+    "ci_high": 0.921089750352601
+   },
+   "router|aurc": {
+    "estimate": 0.01820023185755582,
+    "ci_low": 0.014460350067642685,
+    "ci_high": 0.022754797086505744
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9223463648690022,
+    "ci_low": 0.9122857873790273,
+    "ci_high": 0.9317789317631521
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.017761104569321007,
+    "ci_low": 0.013742711809477401,
+    "ci_high": 0.022603764345902094
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9594981186861511,
+    "ci_low": 0.9519203570103443,
+    "ci_high": 0.9667664118633941
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.012163928304424596,
+    "ci_low": 0.00887307678126105,
+    "ci_high": 0.015806499304785608
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.02222863162190125,
+    "ci_low": -0.03291500971410563,
+    "ci_high": -0.012590655627637426
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.0019820309177793205,
+    "ci_low": -0.0022324136425337037,
+    "ci_high": 0.006751176143638687
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+   },
+   "router - full+MSP|aurc": {
+    "estimate": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.010979207770889232,
+    "ci_low": -0.01920350712099955,
+    "ci_high": -0.002920490348542695
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.0015429036295445085,
+    "ci_low": -0.002445013853924999,
+    "ci_high": 0.006200045516290212
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.01124942385101202,
+    "ci_low": 0.005424671241532381,
+    "ci_high": 0.017570035081917186
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.000439127288234812,
+    "ci_low": -0.002483865496551846,
+    "ci_high": 0.001526923112923902
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.01124942385101202,
+    "ci_low": 0.005424671241532381,
+    "ci_high": 0.017570035081917186
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.000439127288234812,
+    "ci_low": -0.002483865496551846,
+    "ci_high": 0.001526923112923902
+   },
+   "crop_share": {
+    "frozen": 0.0,
+    "pooled": 0.3702970297029703
+   }
+  },
+  "fold1": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9174031416811882,
+    "ci_low": 0.9069973805950716,
+    "ci_high": 0.9276232828142331
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.0147996259095835,
+    "ci_low": 0.011882611310635872,
+    "ci_high": 0.018118438536975402
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9313544390057004,
+    "ci_low": 0.92189570483117,
+    "ci_high": 0.9407211116670956
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.015919073312942594,
+    "ci_low": 0.011720759502130643,
+    "ci_high": 0.020713469617318184
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8562001767321553,
+    "ci_low": 0.8430453212477612,
+    "ci_high": 0.869338942255565
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.05687034797102403,
+    "ci_low": 0.04779556948898379,
+    "ci_high": 0.06623937470574494
+   },
+   "router|bal_acc": {
+    "estimate": 0.9209672657478211,
+    "ci_low": 0.9107406197628181,
+    "ci_high": 0.9310709942815208
+   },
+   "router|aurc": {
+    "estimate": 0.014750620485768327,
+    "ci_low": 0.011737699593123567,
+    "ci_high": 0.01826459212024872
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.923117307831376,
+    "ci_low": 0.9129688826888518,
+    "ci_high": 0.9330361915134436
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.014127901650448804,
+    "ci_low": 0.01126824588207467,
+    "ci_high": 0.017496597524294846
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9612139317647287,
+    "ci_low": 0.9540121482581736,
+    "ci_high": 0.9684847718785636
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.012110722190063504,
+    "ci_low": 0.008421598432408672,
+    "ci_high": 0.016707390536374774
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.0103871732578793,
+    "ci_low": -0.019941622414254144,
+    "ci_high": -0.0013889063060347551
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.001168452827174267,
+    "ci_low": -0.005281988655052823,
+    "ci_high": 0.0024725856411391073
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.0035641240666328677,
+    "ci_low": -0.0005811319571729145,
+    "ci_high": 0.007729737770048859
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -4.900542381517346e-05,
+    "ci_low": -0.0008572042773031053,
+    "ci_high": 0.0007683390221643151
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.008237131174324341,
+    "ci_low": -0.016764673172154437,
+    "ci_high": -0.000156350983841778
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.0017911716624937901,
+    "ci_low": -0.005663809011617413,
+    "ci_high": 0.0018004023015717229
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.005714166150187827,
+    "ci_low": -7.612916209347176e-05,
+    "ci_high": 0.011468904598685162
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0006717242591346966,
+    "ci_low": -0.0021438467117862363,
+    "ci_high": 0.00073179430812197
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.0021500420835549594,
+    "ci_low": -0.0018423663676144064,
+    "ci_high": 0.006053630779994223
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.0006227188353195232,
+    "ci_low": -0.00195440459645545,
+    "ci_high": 0.00042133761524236913
+   },
+   "crop_share": {
+    "frozen": 0.19207920792079208,
+    "pooled": 0.33960396039603963
+   }
+  },
+  "fold2": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9122521293402631,
+    "ci_low": 0.9020347756545309,
+    "ci_high": 0.9229417070784733
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.01286497302574194,
+    "ci_low": 0.010518004899081253,
+    "ci_high": 0.01545151098312358
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9341977090137097,
+    "ci_low": 0.9252578925082959,
+    "ci_high": 0.9435731311895117
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.014935395392569632,
+    "ci_low": 0.011020722967935366,
+    "ci_high": 0.019191339648643474
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8635037886578831,
+    "ci_low": 0.8508651351645321,
+    "ci_high": 0.8763315795508803
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.06466636677790959,
+    "ci_low": 0.05364086403470073,
+    "ci_high": 0.07588000717606727
+   },
+   "router|bal_acc": {
+    "estimate": 0.912638826942738,
+    "ci_low": 0.9021670329016074,
+    "ci_high": 0.9230124647666257
+   },
+   "router|aurc": {
+    "estimate": 0.012782268141976324,
+    "ci_low": 0.010417053657190166,
+    "ci_high": 0.015451547710272828
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9202878124852601,
+    "ci_low": 0.9103046167359427,
+    "ci_high": 0.9299530040559112
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.01180665137531059,
+    "ci_low": 0.009341855025425163,
+    "ci_high": 0.014568146474362293
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9618908275260417,
+    "ci_low": 0.9549259801002324,
+    "ci_high": 0.9688002218738866
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.01073945981506547,
+    "ci_low": 0.007317360116435798,
+    "ci_high": 0.014458091294283446
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": -0.021558882070971674,
+    "ci_low": -0.03221431746491333,
+    "ci_high": -0.011126398077808679
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.0021531272505933077,
+    "ci_low": -0.005918593951033429,
+    "ci_high": 0.0015204137559405547
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.0003866976024748947,
+    "ci_low": -0.0007880220646176994,
+    "ci_high": 0.0016123019207477383
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -8.270488376561566e-05,
+    "ci_low": -0.00028769531759860695,
+    "ci_high": 0.00010771385497687512
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.013909896528449539,
+    "ci_low": -0.023029132757611606,
+    "ci_high": -0.005265363520524588
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.0031287440172590424,
+    "ci_low": -0.006637131684050679,
+    "ci_high": 0.0001273630280694183
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.00803568314499703,
+    "ci_low": 0.0024136777708226365,
+    "ci_high": 0.013644564520944345
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0010583216504313504,
+    "ci_low": -0.0025151285492707107,
+    "ci_high": 0.0003404582097582179
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.007648985542522135,
+    "ci_low": 0.0021743785073994686,
+    "ci_high": 0.013017354619080221
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": -0.0009756167666657347,
+    "ci_low": -0.0024179732747314072,
+    "ci_high": 0.00041523743977028735
+   },
+   "crop_share": {
+    "frozen": 0.033663366336633666,
+    "pooled": 0.366996699669967
+   }
+  },
+  "fold3": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.9130282925638049,
+    "ci_low": 0.9028613206167462,
+    "ci_high": 0.9232106911614065
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.013678050068826894,
+    "ci_low": 0.010498991385182085,
+    "ci_high": 0.01714083375208886
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.9242199834556125,
+    "ci_low": 0.9140272099818726,
+    "ci_high": 0.9335784272335582
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.014207360248303155,
+    "ci_low": 0.010957023721860519,
+    "ci_high": 0.018529140134238096
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8490383738411377,
+    "ci_low": 0.8359696285040248,
+    "ci_high": 0.8613942105224933
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.05601931149409007,
+    "ci_low": 0.048045584670268704,
+    "ci_high": 0.06438080150558337
+   },
+   "router|bal_acc": {
+    "estimate": 0.9319631214578679,
+    "ci_low": 0.922910579863759,
+    "ci_high": 0.9407280004535371
+   },
+   "router|aurc": {
+    "estimate": 0.009893860362804378,
+    "ci_low": 0.0071992937910955014,
+    "ci_high": 0.013466008400796025
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.9319631214578679,
+    "ci_low": 0.922910579863759,
+    "ci_high": 0.9407280004535371
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.009900392025212725,
+    "ci_low": 0.007210250869545737,
+    "ci_high": 0.013466008400796025
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9599587761522993,
+    "ci_low": 0.952456033809594,
+    "ci_high": 0.9668669833640331
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.008450375258096703,
+    "ci_low": 0.005547832810472333,
+    "ci_high": 0.012025225288253664
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.007743138002255345,
+    "ci_low": 0.0029828154776377013,
+    "ci_high": 0.012961676346699447
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": -0.004313499885498777,
+    "ci_low": -0.006626381803757682,
+    "ci_high": -0.0023603997455440865
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.01893482889406295,
+    "ci_low": 0.009457884196156268,
+    "ci_high": 0.028102624122157596
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.003784189706022517,
+    "ci_low": -0.007262028843876967,
+    "ci_high": -8.88165883704886e-05
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": 0.007743138002255345,
+    "ci_low": 0.0029828154776377013,
+    "ci_high": 0.012961676346699447
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": -0.004306968223090429,
+    "ci_low": -0.00662464292403199,
+    "ci_high": -0.002358248597481723
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.01893482889406295,
+    "ci_low": 0.009457884196156268,
+    "ci_high": 0.028102624122157596
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": -0.0037776580436141693,
+    "ci_low": -0.00724674682350036,
+    "ci_high": -7.328160705928109e-05
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 6.531662408347516e-06,
+    "ci_low": 0.0,
+    "ci_high": 2.206600082581158e-05
+   },
+   "crop_share": {
+    "frozen": 0.8861386138613861,
+    "pooled": 0.8864686468646865
+   }
+  },
+  "fold4": {
+   "full+MSP|bal_acc": {
+    "estimate": 0.8679187043465403,
+    "ci_low": 0.8560104618676153,
+    "ci_high": 0.8793326518733807
+   },
+   "full+MSP|aurc": {
+    "estimate": 0.04321057188782863,
+    "ci_low": 0.03643107143948997,
+    "ci_high": 0.05153982025551381
+   },
+   "crop32+MSP|bal_acc": {
+    "estimate": 0.932455993767321,
+    "ci_low": 0.9228722945522805,
+    "ci_high": 0.9413729179485119
+   },
+   "crop32+MSP|aurc": {
+    "estimate": 0.01404326459069239,
+    "ci_low": 0.010485537662777919,
+    "ci_high": 0.018349908154101358
+   },
+   "masked+MSP|bal_acc": {
+    "estimate": 0.8666606100257804,
+    "ci_low": 0.8539435865464565,
+    "ci_high": 0.8796759240217337
+   },
+   "masked+MSP|aurc": {
+    "estimate": 0.046825299314512334,
+    "ci_low": 0.0388747067231099,
+    "ci_high": 0.055071400978739395
+   },
+   "router|bal_acc": {
+    "estimate": 0.9334496214073152,
+    "ci_low": 0.9235066855279884,
+    "ci_high": 0.9422823608641393
+   },
+   "router|aurc": {
+    "estimate": 0.016295339287756738,
+    "ci_low": 0.011840426893392783,
+    "ci_high": 0.021743923942813024
+   },
+   "router(pooled)|bal_acc": {
+    "estimate": 0.8679187043465403,
+    "ci_low": 0.8560104618676153,
+    "ci_high": 0.8793326518733807
+   },
+   "router(pooled)|aurc": {
+    "estimate": 0.04321057188782863,
+    "ci_low": 0.03643107143948997,
+    "ci_high": 0.05153982025551381
+   },
+   "oracle-router|bal_acc": {
+    "estimate": 0.9585322508872879,
+    "ci_low": 0.951066289542236,
+    "ci_high": 0.9654050656946327
+   },
+   "oracle-router|aurc": {
+    "estimate": 0.010690333879056399,
+    "ci_low": 0.007501879782420011,
+    "ci_high": 0.014632637542750742
+   },
+   "router - crop32+MSP|bal_acc": {
+    "estimate": 0.0009936276399942212,
+    "ci_low": -0.0037705256245453567,
+    "ci_high": 0.005630904784007545
+   },
+   "router - crop32+MSP|aurc": {
+    "estimate": 0.002252074697064347,
+    "ci_low": -0.0007530559870320746,
+    "ci_high": 0.006105012140335013
+   },
+   "router - full+MSP|bal_acc": {
+    "estimate": 0.06553091706077496,
+    "ci_low": 0.05481785383364426,
+    "ci_high": 0.07643414181396975
+   },
+   "router - full+MSP|aurc": {
+    "estimate": -0.026915232600071896,
+    "ci_low": -0.03347216199057404,
+    "ci_high": -0.02088383478610088
+   },
+   "router(pooled) - crop32+MSP|bal_acc": {
+    "estimate": -0.06453728942078074,
+    "ci_low": -0.07651082529532728,
+    "ci_high": -0.05275303715709329
+   },
+   "router(pooled) - crop32+MSP|aurc": {
+    "estimate": 0.029167307297136243,
+    "ci_low": 0.022992994166486293,
+    "ci_high": 0.036387366127529
+   },
+   "router(pooled) - full+MSP|bal_acc": {
+    "estimate": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+   },
+   "router(pooled) - full+MSP|aurc": {
+    "estimate": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+   },
+   "router(pooled) - router|bal_acc": {
+    "estimate": -0.06553091706077496,
+    "ci_low": -0.07643414181396976,
+    "ci_high": -0.05481785383364426
+   },
+   "router(pooled) - router|aurc": {
+    "estimate": 0.026915232600071896,
+    "ci_low": 0.02088383478610086,
+    "ci_high": 0.03347216199057404
+   },
+   "crop_share": {
+    "frozen": 0.9306930693069307,
+    "pooled": 0.0
+   }
+  }
+ }
+}

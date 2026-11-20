@@ -49,3 +49,8 @@ STOP after M1.4 with the H-B1..H-B3 report.
 
 ## Outcome
 M1 experiments are complete. The STOP report on H-B1..H-B3 was given. **Kareem's decision (17:20):** options (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2; nothing to be run yet (ADR-0008). Branch `exp/m1-uncertainty` pushed.
+
+## Follow-up (ADR-0008, 17:25–17:50)
+- Branch `exp/m1-tau1-robustness`. Pre-specified EXP-006b in writing and committed (`f547997`) before writing code (`9ced2ce`) and running.
+- (b) pooled-val τ1 failed: folds 3/4 flip between 90 % crop and always-full when one of 4 pooled val frames changes; flat val-AURC objective. No other rule tried.
+- (d) frozen router worst-case bal. acc 0.607 [0.583, 0.630]; − crop32 +0.072 [+0.051, +0.110], − full +0.025 [+0.001, +0.063]; mean AURC −0.018 vs both (CIs exclude 0).

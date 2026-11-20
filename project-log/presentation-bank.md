@@ -21,9 +21,10 @@ The strongest results, figures and "wow" points for the final presentation, coll
 12. **Baseline → now:** classification 0.733 → 0.941 balanced accuracy (+0.207 [0.172, 0.244]); segmentation Dice 0.508 → 0.786. Same patients, same folds. Sources: EXP-002, EXP-003.
 
 13. **"The crop forgives bad masks, except false positives."** Crop 32 keeps 0.933 balanced accuracy with masks eroded to Dice 0.3, but drops to 0.636 when a false-positive blob is added at Dice 0.9. Source: EXP-004.
-14. **"The router never collapses."** Over 13 synthetic shifts, its worst balanced accuracy is 0.607, against 0.535 for the crop and 0.581 for the full image. At blur s3 it beats the crop by +0.145 [+0.103, +0.186]. Source: EXP-008.
+14. **"The router never collapses."** Over 13 synthetic shifts, its worst balanced accuracy is 0.607, against 0.535 for the crop and 0.581 for the full image. At blur s3 it beats the crop by +0.145 [+0.103, +0.186]. With CIs: worst case − crop +0.072 [+0.051, +0.110], − full +0.025 [+0.001, +0.063]; mean referral risk (AURC) −0.018 vs both. Sources: EXP-008, EXP-006b.
 15. **"A public 'external' test set is one-third our own training data."** 1,682 BDNeuro-MRI images duplicate Figshare slices (215 of 233 patients), including 33 % of BDNeuro's own test split. On the 3,030 clean images the pipeline still scores 0.931. Source: EXP-009.
 16. **Honest negative result:** segmentation uncertainty detects broken masks (AUROC 0.899) but does not predict classifier errors (≈ 0.5), and in-distribution routing ties the crop. The oracle head-room (0.974) shows what better routing could gain. Sources: EXP-005/006.
+17. **Pre-registered honesty:** we wrote the τ1 stabilisation rule down and committed it before running; it failed (the val objective is flat), and we report that. Source: EXP-006b.
 
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.

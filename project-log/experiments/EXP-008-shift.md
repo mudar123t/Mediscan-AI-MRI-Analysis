@@ -45,7 +45,7 @@ Balanced accuracy at 100 % coverage. Mean Dice is the EXP-002c predicted-mask Di
 | bias s2 | 0.781 | 0.41 | 0.927 | 0.941 | 0.940 | 0.976 | −0.001 [−0.015, +0.013] | **+0.013 [+0.004, +0.024]** |
 | bias s3 | 0.778 | 0.40 | 0.920 | 0.939 | 0.932 | 0.973 | −0.007 [−0.021, +0.005] | **+0.012 [+0.001, +0.024]** |
 
-Summary over the 13 conditions (point estimates; derived from results.json, no CI yet):
+Summary over the 13 conditions (point estimates; CIs in [EXP-006b](EXP-006b-stable-tau1.md)):
 
 | Policy | Worst bal. acc (condition) | Mean bal. acc | Worst AURC (condition) | Mean AURC |
 |---|---|---|---|---|
@@ -65,6 +65,6 @@ Conformal referral under shift (α = 0.1, q fitted on clean val):
   - Mechanism: as segmentation degrades, `ens:disagree` rises and the router sends more slices to the full view (crop share 0.41 → 0.19).
   - Under gamma the segmenter barely degrades but the full-image classifier does. The router is then worse than the crop (−0.02 to −0.03) but much better than the full view (+0.05 to +0.09).
   - Bias field changes almost nothing.
-- **The router is never the worst policy and never the best fixed view.** It has the best worst case and the best mean of all deployable policies: worst 0.607 vs 0.581 (full) and 0.535 (crop); mean AURC 0.072 vs 0.090. [I] Its value is **robustness when the type of shift is unknown**, rather than a gain in any single condition. CIs for the worst-case and mean summaries are not computed yet.
+- **The router is never the worst policy and never the best fixed view.** It has the best worst case and the best mean of all deployable policies: worst 0.607 vs 0.581 (full) and 0.535 (crop); mean AURC 0.072 vs 0.090. [I] Its value is **robustness when the type of shift is unknown**, rather than a gain in any single condition. CIs added in [EXP-006b](EXP-006b-stable-tau1.md) (d): worst-case bal. acc router − crop32 +0.072 [+0.051, +0.110], − full +0.025 [+0.001, +0.063]; mean AURC − crop32 −0.018 [−0.031, −0.006], − full −0.018 [−0.032, −0.006].
 - **Conformal guarantees do not survive shift**, as expected, since exchangeability is violated. Coverage falls far below 0.9, but the referral rate rises sharply. As an alarm, CP referral still reacts to shift.
 - The oracle gap stays large (e.g. blur s3: router 0.684 vs oracle 0.833), so better routing signals would pay off most under shift.

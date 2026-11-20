@@ -6,6 +6,7 @@ All experiments vs the semester-1 baseline. Test-set numbers only, unless noted.
 
 | EXP | Date | Model / change | Test set | Seg Dice | Seg IoU | Cls acc [95 % CI] | Cls macro-F1 | Notes |
 |---|---|---|---|---|---|---|---|---|
+| [EXP-006b](EXP-006b-stable-tau1.md) | 2026-11-20 | (d) Robustness of frozen router over 13 shifts, with CIs; (b) pooled-val τ1 (pre-specified, failed) | 5-fold OOF, corrupted | — | — | worst-case bal. router 0.607 [0.583, 0.630]; − crop32 +0.072 [+0.051, +0.110], − full +0.025 [+0.001, +0.063] | — | mean AURC −0.018 vs both; pooled τ1 no better (ext. 0.913) |
 | [EXP-009](EXP-009-external.md) | 2026-11-20 | External BDNeuro-MRI (3,030 non-duplicate images), crop32 / router / full | external, 5 fold model sets | — | — | bal. **0.931** / 0.922 / 0.904 (mean) | — | 1,682 BDNeuro images duplicate Figshare (33 % of its test split) |
 | [EXP-008](EXP-008-shift.md) | 2026-11-20 | Router under synthetic shift (13 conditions) | 5-fold OOF, corrupted | — | — | worst-case bal. router 0.607 vs crop32 0.535 vs full 0.581 | — | router − crop32 +0.145 [+0.103, +0.186] at blur s3 |
 | [EXP-006](EXP-006-router.md) | 2026-11-20 | Seg-quality-aware router (ens:disagree) vs crop32 / full; conformal referral (EXP-007) | 5-fold OOF, 3,064 / 233 patients | — | — | bal. 0.935 [0.912, 0.953] (crop32 0.941, n.s.) | — | AURC vs full −0.0115 [−0.0327, −0.0006]; oracle 0.974 |

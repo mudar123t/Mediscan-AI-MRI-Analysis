@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — EXP-006b results
+- (b) pre-specified pooled-val τ1 does not stabilise the router (flat objective); reported as a negative result, frozen results stay primary.
+- (d) robustness summary CIs: frozen router worst case and mean AURC significantly better than both fixed views.
+- Updated EXP-008 log (CI pointer), results-summary, thesis-map, presentation-bank, session log, HANDOFF.
+
+## 2026-11-20 — EXP-006b started (ADR-0008 (b)+(d))
+- Branch `exp/m1-tau1-robustness`. `f547997` pre-specifies the pooled-val τ1 rule and the robustness-summary CIs before running; `9ced2ce` adds `policy_eval.pooled_val_tau1`, `fit_params(tau1=)`, `scripts/eval_exp006b.py` and 2 tests.
+- Running since 17:31 (CPU). Early: pooled-val τ1 does not stabilise the threshold (fold 4 flips to always-full).
+
 ## 2026-11-20 — M1.4 gate decision
 - Kareem chose (b) stabilise τ1 + (d) CIs for the EXP-008 summary, not run yet ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)). Branch `exp/m1-uncertainty` pushed, then fast-forwarded into `main` and pushed (plan §1: merge when green; Kareem: "do what is better").
 

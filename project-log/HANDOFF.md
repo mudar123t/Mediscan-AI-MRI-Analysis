@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 17:45 (M1 merged into `main` (fast-forward) and pushed; (b)+(d) not run yet)
-**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem: do not run anything until he says so.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `main` = `origin/main` = tip of `exp/m1-uncertainty` (M1 merged by fast-forward 2026-11-20). Next work (ADR-0008 (b)+(d)) goes on a new branch from `main`.
+**Last updated:** 2026-11-20 17:55 (EXP-006b (b)+(d) done; next M2 demo)
+**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). Next: M2 demo.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `exp/m1-tau1-robustness` (from `main` `fa29301`; not pushed): `f547997` pre-specification of EXP-006b, `9ced2ce` code (`policy_eval.pooled_val_tau1`, `fit_params(tau1=)`, `scripts/eval_exp006b.py`, 2 tests; 64 tests pass). `main` = `origin/main` = `fa29301`.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -37,6 +37,7 @@
   - EXP-008: router − crop32 grows with noise/blur severity (+0.072 / +0.145 at s3); router − full +0.05..+0.09 under gamma; best worst-case (0.607) and mean AURC (0.072) over 13 conditions. CP coverage collapses under shift, referral rises.
   - EXP-009: BDNeuro 1,682/5,154 duplicates of Figshare (33 % of its test split); clean 3,030: crop32 0.931, router 0.922, full 0.904; router outcome set by each fold's τ1.
   - **Hypotheses:** H-B1 not supported; H-B2 supported vs full-image MSP gate only; H-B3 partly supported (synthetic noise/blur yes; external no).
+  - **EXP-006b (ADR-0008, pre-specified `f547997`):** (b) pooled-val τ1 fails (fold 4 flips to always-full; flat val-AURC objective; external 0.913). (d) frozen router robustness with CIs: worst-case bal. acc − crop32 +0.072 [+0.051, +0.110], − full +0.025 [+0.001, +0.063]; mean AURC −0.018 vs both (CIs exclude 0) → H-B3 (robustness formulation) strengthened.
   - Run notes: seed run crashed once (transient CUDA error), resumed; `runs/run_exp005_seeds.sh` now `set -eo pipefail`; seeded training not bit-exact. Preliminary det+tta outputs in `runs/*_prelim_tta/`.
 
 ## Where things stand
@@ -58,11 +59,11 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **Wait for Kareem's go** (he said: don't run anything now).
-2. Then (ADR-0008): (b) EXP-006b stabilised τ1 — write the val-only fitting rule down first, report as a separate labelled analysis, keep frozen results primary; (d) paired patient-bootstrap CIs for worst-case/mean over the 13 EXP-008 conditions (CPU, ~30 min).
-3. Then M2 demo → STOP → decide extras.
+1. **M2 demo** (plan: local Gradio app of the routing pipeline, `feature/m2-demo`, ~3 d) → **STOP: demo review**. Announce any long run first.
+2. Then decide M3 extras (R4/R2/R5, ADR-0006) with Kareem; thesis/presentation continuous.
 
 ## Open questions / blockers
+- [I] A non-AURC τ1 criterion (fixed target crop share or Dice-proxy) might be stable; not pre-specified, not tried — discuss only if Kareem wants it.
 - Segmentation below target (0.786): Kareem decided 2026-11-20 to keep EXP-002c (no tuning).
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).
 - Not yet read: the Cheng 2015 correction notice (e0144479), the BraTS licence/size details, and the Badža 2020 subject-wise number.
