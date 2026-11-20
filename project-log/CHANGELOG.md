@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M2 local demo (STOP: demo review)
+- Branch `feature/m2-demo`: Gradio 6.32.0 pinned; `pipeline.FoldModels` refactor (output identical); `mediscan/demo.py`; `scripts/export_demo_params.py`, `configs/demo.yaml`, `app/params_fold3.json`; `app/demo_app.py`; `tests/test_demo.py` (70 tests pass); README demo section + figure; environment.md.
+- Fold 3 used (fold 0's τ1 = −∞ would hide routing). Demo reproduces EXP-006 decisions on test-fold examples.
+
 ## 2026-11-20 — EXP-006b results
 - (b) pre-specified pooled-val τ1 does not stabilise the router (flat objective); reported as a negative result, frozen results stay primary.
 - Pushed `exp/m1-tau1-robustness` and fast-forwarded `main` to `7c7754d`.

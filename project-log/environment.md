@@ -25,3 +25,10 @@ Semester-1 `UNet` (7.76 M params), random tensors, batch 8, 1×256×256, Adam, A
 - ResNet-34 U-Net, AMP, batch 8, with augmentation: 29.9–30.9 s/epoch (folds 0–3 medians), peak 990–1,087 MiB.
 - Full EXP-002 (15 folds): about 6.1 h sequential.
 - EXP-003 classifiers (256², ~1,800 training slices): SimpleCNN fp32 batch 8 ≈ 4.4 s/epoch, 643 MiB; ResNet-18 AMP batch 32 ≈ 9 s/epoch, 757–795 MiB; EfficientNet-B0 AMP batch 32 ≈ 10 s/epoch, 1,915 MiB. Full EXP-003 (40 runs): 4.1 h.
+
+## M2 — 2026-11-20 [V: pip]
+- Added `gradio==6.32.0`. It pulled in 26 new packages, including `gradio_client==2.7.2`; **no existing pinned package changed**, verified by diffing `pip freeze` against the previous lock. `requirements-lock.txt` was regenerated.
+- Demo inference on the RTX 3050 [V: measured]:
+  - Model load is about 13 s (3 U-Nets + 3 ResNet-18).
+  - About 140 ms per slice in Python, and about 2 s per request through the Gradio web layer, image encoding included.
+  - The first call takes about 1.3 s (CUDA warm-up).
