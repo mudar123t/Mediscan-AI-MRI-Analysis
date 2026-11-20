@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — M3: R4 (EXP-010) results
+- GPU run 18:57–19:02 (logit check passed); analysis + figures in `experiments/EXP-010-xai-diagnostic/`. Descriptive: crop focuses attribution on the lesion (~70 % vs 22 %). Negative: attribution is not a useful error or routing signal (router(cam) −0.008 vs ens router). Logged in results-summary, thesis-map, presentation-bank, session log. Merged into `main`.
+
+## 2026-11-20 — M3: R4 (EXP-010) started
+- Kareem chose R4 now, R2 tonight, R5 skipped. Branch `research/m3-r4-xai`; `e28ae5a` pre-specifies EXP-010 before any code. Code: `src/mediscan/xai.py` (Grad-CAM, back-projection, region fractions; 4 tests), `scripts/run_exp010.py`, `scripts/eval_exp010.py`. GPU run started ~18:57.
+
 ## 2026-11-20 — MIT licence; GPU crash diagnosis
 - Kareem chose MIT with copyright "mudar123t": `LICENSE`, `pyproject.toml` `license = "MIT"`, README License section (weights also MIT; Figshare CC BY 4.0 attribution; not for clinical use). ADR-0009 updated.
 - Morning crash explained from Windows logs: AMD iGPU driver TDR storm, then the display moved to the NVIDIA GPU, which killed the CUDA context. No hardware errors. Overnight runs will use auto-retry (HANDOFF key facts).

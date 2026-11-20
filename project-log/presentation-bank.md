@@ -25,6 +25,8 @@ The strongest results, figures and "wow" points for the final presentation, coll
 15. **"A public 'external' test set is one-third our own training data."** 1,682 BDNeuro-MRI images duplicate Figshare slices (215 of 233 patients), including 33 % of BDNeuro's own test split. On the 3,030 clean images the pipeline still scores 0.931. Source: EXP-009.
 16. **Honest negative result:** segmentation uncertainty detects broken masks (AUROC 0.899) but does not predict classifier errors (≈ 0.5), and in-distribution routing ties the crop. The oracle head-room (0.974) shows what better routing could gain. Sources: EXP-005/006.
 17. **Pre-registered honesty:** we wrote the τ1 stabilisation rule down and committed it before running; it failed (the val objective is flat), and we report that. Source: EXP-006b.
+18. **"Why the crop works: it makes the network look at the lesion."** About 70 % of the crop classifier's Grad-CAM mass is on the tumour and its border, against about 22 % for the full-image classifier (still 4.3× chance). Figure: `experiments/EXP-010-xai-diagnostic/attribution_shares.png`. Source: EXP-010.
+19. **Failure-mode story [I]:** a sellar meningioma whose crop is called pituitary, while the full image (with location context) gets it right. Figure: `gradcam_examples.png`, rows 620–622. Source: EXP-010.
 
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
@@ -37,3 +39,4 @@ The strongest results, figures and "wow" points for the final presentation, coll
 - EXP-006: `experiments/EXP-006-router/risk_coverage.png` (ready).
 - EXP-008: `experiments/EXP-008-shift/accuracy_vs_severity.png` (ready).
 - M2 demo: `images/demo_outputs.png` (mask / uncertainty / classifier input for an uncertain and a confident case; ready). App UI screenshots: `images/demo_ui_referred.png` (meningioma misclassified as pituitary at 0.54 → empty conformal set → REFER: the safety net catching an error) and `images/demo_ui_confident.png` (pituitary 0.99, crop view, no referral).
+- EXP-010: `experiments/EXP-010-xai-diagnostic/attribution_shares.png`, `gradcam_examples.png` (ready).
