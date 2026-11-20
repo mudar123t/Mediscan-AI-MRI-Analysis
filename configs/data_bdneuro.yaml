@@ -1,0 +1,12 @@
+# M1.4 / EXP-009: external test set BDNeuro-MRI (Hira et al. 2026, CC BY 4.0, DOI 10.17632/zwr4ntf94j.7).
+paths:
+  zip: dataset/external/bdneuro_v7/Brain_Tumor_MRI_Dataset_Final.zip     # local only (git-ignored)
+  processed: data/processed/bdneuro_256
+  figshare_processed: data/processed/figshare_256
+sha256: 0d8fdb6a88b2c65019c11abfd20e0693ffb7b2296955598202303840b9be0c24  # from the Mendeley API
+image_size: 256
+intensity_percentiles: [0.5, 99.5]   # identical to Figshare (configs/data_figshare.yaml)
+phash_near_dup_threshold: 8          # Hamming distance (of 64 bits) counted as a near-duplicate [I]
+# Pixel-correlation audit (64x64 Pearson). Different Figshare patients reach at most ~0.952 (EXP-009 audit).
+corr_duplicate: 0.96                 # >= : duplicate of a Figshare slice (excluded)
+corr_clean_below: 0.90               # <  : clean external image; 0.90-0.96 = ambiguous (excluded)

@@ -124,3 +124,41 @@ def confusion_bootstrap(
             p = 2 * float(np.mean(d <= 0)) if obs >= 0 else 2 * float(np.mean(d >= 0))
             out["diff"][f"{b} - {a}"] = {"diff": obs, "ci_low": float(lo), "ci_high": float(hi), "p_two_sided": min(p, 1.0)}
     return out
+
+
+def patient_resamples(pids: np.ndarray, n_boot: int = 2000, seed: int = 0):
+    """Yield ``n_boot`` slice-index arrays, each a resample of patients (with all their slices)."""
+    pids = np.asarray(pids)
+    uniq, inv = np.unique(pids, return_inverse=True)
+    groups = [np.flatnonzero(inv == i) for i in range(len(uniq))]
+    rng = np.random.default_rng(seed)
+    for _ in range(n_boot):
+        pick = rng.integers(0, len(groups), size=len(groups))
+        yield np.concatenate([groups[i] for i in pick])
+
+
+def paired_stat_bootstrap(
+    pids: np.ndarray,
+    stat: Callable[[np.ndarray], dict[str, float]],
+    n_boot: int = 2000,
+    alpha: float = 0.05,
+    seed: int = 0,
+) -> dict[str, dict[str, float]]:
+    """Patient-bootstrap CIs for several statistics computed on the same resamples.
+
+    ``stat(idx)`` returns ``{name: value}`` for the slices ``idx``; resamples where
+    a statistic is undefined (NaN, e.g. AUROC with one class) are dropped for it.
+    """
+    point = stat(np.arange(len(pids)))
+    boot: dict[str, list[float]] = {k: [] for k in point}
+    for idx in patient_resamples(pids, n_boot, seed):
+        for k, v in stat(idx).items():
+            boot[k].append(v)
+    q = [100 * alpha / 2, 100 * (1 - alpha / 2)]
+    out = {}
+    for k, v in point.items():
+        b = np.asarray(boot[k], dtype=float)
+        b = b[~np.isnan(b)]
+        lo, hi = np.percentile(b, q) if b.size else (np.nan, np.nan)
+        out[k] = {"estimate": float(v), "ci_low": float(lo), "ci_high": float(hi)}
+    return out
