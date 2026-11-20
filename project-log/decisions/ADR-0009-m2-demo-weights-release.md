@@ -18,5 +18,5 @@
 
 ## Consequences
 - [V] **Fresh-clone check passed:** clone → `gh release download` → checksum matches → unzip → the demo pipeline from the clone's code reproduces the 5 example decisions.
-- The weights are public. The repository has **no LICENSE file** yet. Choosing a licence for the code and weights is an open question for Kareem.
+- The weights are public. **Licence decided by Kareem (2026-11-20): MIT, copyright "mudar123t"**, for the code and the released weights. The dataset attribution (Figshare, CC BY 4.0) and a "not for clinical use" note are in the README.
 - Other folds' weights stay local.

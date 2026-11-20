@@ -76,3 +76,8 @@ The demo uses the models of one cross-validation fold (`configs/demo.yaml`). Its
 - **Advanced Metrics:** Transitioning to Hausdorff Distance (HD95) for stricter boundary evaluation.
 - **Architectural Upgrades:** Exploring Attention U-Net and Residual U-Net enhancements.
 - **Backbone Optimization:** Replacing the SimpleCNN baseline with ResNet or EfficientNet.
+
+## 📄 License
+- **Code:** [MIT](LICENSE) © 2026 mudar123t.
+- **Released model weights** ([demo-weights-fold3-v1](https://github.com/mudar123t/Mediscan-AI-MRI-Analysis/releases/tag/demo-weights-fold3-v1)): also MIT. They were trained on the Figshare brain tumour dataset (Cheng et al. 2015, DOI [10.6084/m9.figshare.1512427](https://doi.org/10.6084/m9.figshare.1512427), CC BY 4.0). Please cite that dataset when you use them.
+- **Not for clinical use.** This is a research prototype, not a medical device, and must not be used for diagnosis.

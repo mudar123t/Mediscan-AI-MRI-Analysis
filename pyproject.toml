@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mediscan"
 version = "0.2.0.dev0"
+license = "MIT"
 description = "Brain-MRI tumor segmentation and classification with segmentation-quality-aware routing"
 readme = "README.md"
 requires-python = ">=3.11"

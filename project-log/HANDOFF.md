@@ -1,6 +1,6 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 18:30 (M2 approved and merged; weights released; next: M3 extras decision)
+**Last updated:** 2026-11-20 18:50 (MIT licence added; GPU crash diagnosed; R4 next, then STOP; R2 tonight)
 **Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). Next: decide M3 extras with Kareem.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
 **Branch:** `main` = `origin/main` includes M1, EXP-006b and M2 (`feature/m2-demo` fast-forwarded). Next work on a new branch from `main`.
 
@@ -57,6 +57,7 @@
 - Semester-1 numbers: [EXP-000](experiments/EXP-000-semester1-checkpoint-eval.md) (clean test: Dice 0.411; acc 0.80 / 0.74 / 0.46).
 
 ## Key facts every agent must know
+- **GPU reliability [V event logs 2026-11-20]:** the seed-run crash (~13:20) followed 18 TDR resets of the **AMD iGPU** driver (`amdkmdag.sys` 32.0.21045.1000, 13:10–13:19) and Windows moving the display to the RTX 3050 (13:19:5x) → CUDA context lost. No WHEA hardware errors (14 d). 24 unclean shutdowns (Kernel-Power 41) in 14 days. **Long/overnight runs must be resumable per unit and wrapped in an auto-retry loop; `pipefail`; plugged in, no sleep.**
 - **Raw data:** `dataset/dataset/` (git-ignored). Contents: `data/1..3064.mat`, `cvind.mat` (patient-disjoint folds). 233 patients, PIDs, binary masks. Licence CC BY 4.0: cite DOI 10.6084/m9.figshare.1512427 + Cheng 2015.
 - The semester-1 evaluation is invalid (contaminated directories + patient leakage).
 - System Python has CPU-only torch; semester-2 work uses `.venv` (CUDA build). GPU: RTX 3050 Laptop, **4 GB**.
@@ -67,7 +68,6 @@
 2. Thesis & presentation (continuous): final figures, CLAIM checklist, rebuilt references (replace ref [12] with Abdusalomov 2023).
 
 ## Open questions / blockers
-- Repository has no LICENSE; code and released weights are public — which licence (e.g. MIT for code; weights trained on CC BY 4.0 data)?
 - [I] A non-AURC τ1 criterion (fixed target crop share or Dice-proxy) might be stable; not pre-specified, not tried — discuss only if Kareem wants it.
 - Segmentation below target (0.786): Kareem decided 2026-11-20 to keep EXP-002c (no tuning).
 - Ref [12] resolved: Kareem does not know the source → replace it with Abdusalomov et al. 2023 (thesis-map).

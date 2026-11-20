@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-20 — MIT licence; GPU crash diagnosis
+- Kareem chose MIT with copyright "mudar123t": `LICENSE`, `pyproject.toml` `license = "MIT"`, README License section (weights also MIT; Figshare CC BY 4.0 attribution; not for clinical use). ADR-0009 updated.
+- Morning crash explained from Windows logs: AMD iGPU driver TDR storm, then the display moved to the NVIDIA GPU, which killed the CUDA context. No hardware errors. Overnight runs will use auto-retry (HANDOFF key facts).
+- Kareem: do R4 now, then stop; R2 will run tonight.
+
 ## 2026-11-20 — M2 approved; demo weights released
 - Kareem approved the demo ("looks good"; screenshots saved to `images/demo_ui_*.png`) and chose option (a) ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)).
 - `00eeaf6` demo loads only the crop32/full classifiers; README download instructions. `e2e062f` screenshots. `main` fast-forwarded to `e2e062f` and pushed.
