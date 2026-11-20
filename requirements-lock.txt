@@ -1,4 +1,4 @@
-# Full pip freeze of .venv (Python 3.12.2, Windows 11, 2026-11-20, after adding gradio for M2). Torch from the cu128 index; see requirements.txt.
+# Full pip freeze of .venv (Python 3.12.2, Windows 11, 2026-11-21, after adding transformers for EXP-011). Torch from the cu128 index; see requirements.txt.
 albucore==0.0.24
 albumentations==2.0.8
 annotated-doc==0.0.7
@@ -37,7 +37,7 @@ markdown-it-py==4.3.0
 MarkupSafe==3.0.3
 matplotlib==3.11.2
 mdurl==0.1.2
--e git+https://github.com/mudar123t/Mediscan-AI-MRI-Analysis@fac7881d9979660386662ef84d568f993371052f#egg=mediscan
+-e git+https://github.com/mudar123t/Mediscan-AI-MRI-Analysis@a397cc26ea2869c5369b120a182d659f96771457#egg=mediscan
 mpmath==1.3.0
 narwhals==2.29.0
 networkx==3.7
@@ -60,6 +60,7 @@ python-multipart==0.0.34
 pytz==2026.6
 PyWavelets==1.10.0
 PyYAML==6.0.3
+regex==2026.9.29
 rich==15.0.0
 safehttpx==0.1.7
 safetensors==0.8.0
@@ -75,10 +76,12 @@ stringzilla==5.3.2
 sympy==1.14.0
 threadpoolctl==3.8.0
 timm==1.0.31
+tokenizers==0.23.3
 tomlkit==0.14.0
 torch==2.9.1+cu128
 torchvision==0.24.1+cu128
 tqdm==4.70.1
+transformers==5.23.0
 truststore==0.10.5
 typer==0.29.2
 typing-inspection==0.4.5

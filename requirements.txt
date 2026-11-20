@@ -30,3 +30,8 @@ pytest==9.2.0
 
 # Demo (M2)
 gradio==6.32.0
+
+# R2 / EXP-011 (MedSAM via Hugging Face transformers)
+transformers==5.23.0
+tokenizers==0.23.3
+regex==2026.9.29
