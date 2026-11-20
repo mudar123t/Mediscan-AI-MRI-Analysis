@@ -1,0 +1,10 @@
+# EXP-005 (M1.2): segmentation-uncertainty scores. Inference only (seed runs trained separately).
+experiment: EXP-005
+run_name: exp005_uncertainty
+seg_run: exp002c_unet_r34                 # reference model (seed 0) and its predicted masks
+ensemble_runs: [exp002c_unet_r34, exp002c_unet_r34_s1, exp002c_unet_r34_s2]
+dropout: 0.2                              # must match the EXP-002c model
+mc_samples: 20                            # plan: T = 20
+batch_size: 16
+seed: 0
+folds: [0, 1, 2, 3, 4]
