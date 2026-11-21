@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-21 — M3: R2 (EXP-011) results
+- Run 00:58–05:50 finished without failure or retry; EXP-008 Dice check passed (60/60). `scripts/eval_exp011.py` (parts ABC, D) → `experiments/EXP-011-medsam-second-opinion/results.json`. Negative: MedSAM (U-Net box) Dice 0.593 vs 0.785; seg-failure AUROC 0.717 vs ens 0.899; router(sam) ties router(ens) in distribution, worse worst case under shift (−0.0125 [−0.022, −0.003]); external mixed. Logged in EXP-011, results-summary, thesis-map, presentation-bank, session log. Committed locally on `research/m3-r2-medsam`; not pushed.
+
+## 2026-11-21 — M3: R2 (EXP-011) started overnight
+- Branch `research/m3-r2-medsam`. `a397cc2` pre-specifies EXP-011 (3 MedSAM signals, choice on val, frozen EXP-006 router rule, shift/external). `4604c1f` adds `src/mediscan/medsam.py` (4 tests), `scripts/run_exp011.py`, `scripts/run_exp011_retry.sh` (auto-retry), pins transformers 5.23.0 / tokenizers 0.23.3 / regex 2026.9.29 (newest regex was 1 day old). `scripts/eval_exp011.py` written. 78 tests pass. Run started 00:58, ETA ~05:30.
+
 ## 2026-11-20 — M3: R4 (EXP-010) results
 - GPU run 18:57–19:02 (logit check passed); analysis + figures in `experiments/EXP-010-xai-diagnostic/`. Descriptive: crop focuses attribution on the lesion (~70 % vs 22 %). Negative: attribution is not a useful error or routing signal (router(cam) −0.008 vs ens router). Logged in results-summary, thesis-map, presentation-bank, session log. Merged into `main`.
 

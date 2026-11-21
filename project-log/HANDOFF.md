@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-20 19:25 (R4 / EXP-010 done; STOP; R2 tonight)
-**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). M3: R4 done ([EXP-010](experiments/EXP-010-xai-diagnostic.md)); **STOP** — R2 (MedSAM) tonight while Kareem sleeps; R5 skipped.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `main` = `origin/main` includes M1, EXP-006b, M2, MIT licence and R4/EXP-010 (`research/m3-r4-xai` fast-forwarded).
+**Last updated:** 2026-11-21 06:00 (R2 / EXP-011 done and logged; commit local, push waits for Kareem)
+**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). M3: R4 done ([EXP-010](experiments/EXP-010-xai-diagnostic.md)); R2 done ([EXP-011](experiments/EXP-011-medsam-second-opinion.md), negative); R5 skipped. STOP: show Kareem the R2 results and the push.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `research/m3-r2-medsam` (from `main`; `a397cc2` pre-spec, `4604c1f` code, then results/logs commit; not pushed). `main` = `origin/main` includes M1, EXP-006b, M2, MIT licence, R4.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -46,6 +46,8 @@
 
 - **M3 R4 done (EXP-010, 2026-11-20)**, session [2026-11-20-m3-r4-xai](sessions/2026-11-20-m3-r4-xai.md): Grad-CAM; crop ~70 % of attribution on tumour+border vs full ~22 % (4.3× chance); attribution predicts errors weakly (AUROC ≤ 0.58), adds nothing to MSP; `cam:full` router worse than ens router (−0.008 [−0.016, −0.001]). Negative for diagnostics/routing; descriptive insight + sellar-meningioma failure example [I].
 
+- **M3 R2 done (EXP-011, 2026-11-21)**, session [2026-11-21-m3-r2-medsam](sessions/2026-11-21-m3-r2-medsam.md): unattended run 00:58–05:50, no failure, EXP-008 Dice check passed. MedSAM with U-Net box Dice 0.593 vs 0.785; seg-failure AUROC 0.717 vs ens 0.899; router(sam) ties router(ens) in distribution (+0.0003), worse worst case under shift (0.594 vs 0.607, −0.0125 [−0.022, −0.003]); external fold-mean 0.923 vs 0.922 (mixed). H-R2 not supported; ens:disagree stays.
+
 ## Where things stand
 - Phase 1 audit: [00-project-understanding.md](00-project-understanding.md).
 - Phase 3 idea analysis: [ideas/idea-matrix.md](ideas/idea-matrix.md). Now includes the Phase 4 verdicts and research ideas R1–R7.
@@ -66,8 +68,9 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **R2 (MedSAM second opinion) — tonight, unattended, when Kareem says go.** Before running: pre-specify EXP-011 in writing (signal = U-Net vs MedSAM disagreement, box from U-Net mask ± jitter; same EXP-006 criterion/router; in-distribution first, then shift/external if time), verify MedSAM licence + weights source + 4 GB fp16 fit, and use a resumable runner with an auto-retry loop and `pipefail` (GPU reliability). Announce the time estimate before starting. Kareem: plugged in, no sleep.
-2. Thesis & presentation (continuous).
+1. **STOP — morning review with Kareem:** EXP-011 results (negative, see milestone status) and the push of `research/m3-r2-medsam` (`a397cc2`, `4604c1f`, results commit) + fast-forward `main`. Show `git log origin/main..` and `git diff --stat origin/main` first. Do not push before his OK.
+2. After that: M3 is complete (R4, R2 negative; R5 skipped) → thesis & presentation work (CLAIM checklist, references, replace ref [12] with Abdusalomov 2023).
+3. Thesis & presentation (continuous).
 
 ## Open questions / blockers
 - [I] A non-AURC τ1 criterion (fixed target crop share or Dice-proxy) might be stable; not pre-specified, not tried — discuss only if Kareem wants it.

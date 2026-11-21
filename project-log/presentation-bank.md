@@ -27,6 +27,7 @@ The strongest results, figures and "wow" points for the final presentation, coll
 17. **Pre-registered honesty:** we wrote the τ1 stabilisation rule down and committed it before running; it failed (the val objective is flat), and we report that. Source: EXP-006b.
 18. **"Why the crop works: it makes the network look at the lesion."** About 70 % of the crop classifier's Grad-CAM mass is on the tumour and its border, against about 22 % for the full-image classifier (still 4.3× chance). Figure: `experiments/EXP-010-xai-diagnostic/attribution_shares.png`. Source: EXP-010.
 19. **Failure-mode story [I]:** a sellar meningioma whose crop is called pituitary, while the full image (with location context) gets it right. Figure: `gradcam_examples.png`, rows 620–622. Source: EXP-010.
+20. **"A foundation model is not a better second opinion than a cheap ensemble."** MedSAM prompted with the U-Net's box segments worse (Dice 0.593 vs 0.785) and its disagreement flags broken masks less well (AUROC 0.717 vs 0.899). As a routing signal it ties in distribution and is worse in the worst shift case (−0.0125 [−0.022, −0.003]). Pre-specified negative result. Source: EXP-011.
 
 ## Figures to make
 - EXP-001 sample grid (`experiments/EXP-001-data-pipeline/samples.png`): 3 classes × 4 slices with mask contours.
