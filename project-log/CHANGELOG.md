@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, what changed, why, commits.
 
+## 2026-11-21 — R2 pushed
+- Kareem approved: pushed `research/m3-r2-medsam` (`a397cc2`, `4604c1f`, `ad61d4b`); `main` fast-forwarded to `ad61d4b` and pushed. M3 complete; STOP until Kareem resumes.
+
 ## 2026-11-21 — M3: R2 (EXP-011) results
 - Run 00:58–05:50 finished without failure or retry; EXP-008 Dice check passed (60/60). `scripts/eval_exp011.py` (parts ABC, D) → `experiments/EXP-011-medsam-second-opinion/results.json`. Negative: MedSAM (U-Net box) Dice 0.593 vs 0.785; seg-failure AUROC 0.717 vs ens 0.899; router(sam) ties router(ens) in distribution, worse worst case under shift (−0.0125 [−0.022, −0.003]); external mixed. Logged in EXP-011, results-summary, thesis-map, presentation-bank, session log. Committed locally on `research/m3-r2-medsam`; not pushed.
 

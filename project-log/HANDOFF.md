@@ -1,8 +1,8 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-11-21 06:00 (R2 / EXP-011 done and logged; commit local, push waits for Kareem)
-**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). M3: R4 done ([EXP-010](experiments/EXP-010-xai-diagnostic.md)); R2 done ([EXP-011](experiments/EXP-011-medsam-second-opinion.md), negative); R5 skipped. STOP: show Kareem the R2 results and the push.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
-**Branch:** `research/m3-r2-medsam` (from `main`; `a397cc2` pre-spec, `4604c1f` code, then results/logs commit; not pushed). `main` = `origin/main` includes M1, EXP-006b, M2, MIT licence, R4.
+**Last updated:** 2026-11-21 (R2 / EXP-011 done, pushed, `main` fast-forwarded; STOP — Kareem continues later)
+**Active phase:** **Phase 6 execution — M1 done; M1.4 gate passed ([ADR-0008](decisions/ADR-0008-m1-gate-decisions.md)): do (b) stabilised τ1 + (d) CIs for the EXP-008 summary, then M2. Kareem gave the go ("continue", 2026-11-20 ~17:25); **(b)+(d) done ([EXP-006b](experiments/EXP-006b-stable-tau1.md)). M2 demo approved and merged; weights published as release `demo-weights-fold3-v1` ([ADR-0009](decisions/ADR-0009-m2-demo-weights-release.md)). M3: R4 done ([EXP-010](experiments/EXP-010-xai-diagnostic.md)); R2 done ([EXP-011](experiments/EXP-011-medsam-second-opinion.md), negative); R5 skipped. Kareem approved the push; M3 complete. STOP until Kareem resumes.** Kareem (2026-11-20): push yes; keep EXP-002c segmenter (no tuning); start M1 with the seed run first; do M1.4 as needed without asking. Next STOP: after M2 (demo). Kareem wants to be told before every long run (with time estimate). Plan [plan-phase6.md](plan-phase6.md) approved ([ADR-0007](decisions/ADR-0007-phase6-plan-approval.md)).
+**Branch:** `research/m3-r2-medsam` (from `main`; `a397cc2` pre-spec, `4604c1f` code, `ad61d4b` results; pushed). `main` = `origin/main` = `ad61d4b`, includes R2. `main` = `origin/main` includes M1, EXP-006b, M2, MIT licence, R4.
 
 ## Milestone status
 - **M0.1 done** (`7c3a36b..5471d94`): `.venv` torch 2.9.1+cu128, GPU verified; pinned deps; `legacy/semester1/`; pyproject, configs, repro utils, tests. [environment.md](environment.md).
@@ -68,8 +68,8 @@
 - Environment [V 2026-11-19]: driver CUDA 13.3, 15.2 GB RAM, 12 threads, **only 37 GB free disk** (the 47 GB pituitary dataset is infeasible).
 
 ## Next steps
-1. **STOP — morning review with Kareem:** EXP-011 results (negative, see milestone status) and the push of `research/m3-r2-medsam` (`a397cc2`, `4604c1f`, results commit) + fast-forward `main`. Show `git log origin/main..` and `git diff --stat origin/main` first. Do not push before his OK.
-2. After that: M3 is complete (R4, R2 negative; R5 skipped) → thesis & presentation work (CLAIM checklist, references, replace ref [12] with Abdusalomov 2023).
+1. **STOP — wait for Kareem.** EXP-011 reviewed and pushed (2026-11-21). Nothing running.
+2. Next: M3 is complete (R4, R2 negative; R5 skipped) → thesis & presentation work (CLAIM checklist, references, replace ref [12] with Abdusalomov 2023).
 3. Thesis & presentation (continuous).
 
 ## Open questions / blockers
